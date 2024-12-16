@@ -14,6 +14,8 @@ website:
         href: index.qmd
       - section: "Coding Standards"
         href: coding_standards.qmd
+        contents:
+          - coding_style.qmd
 
 format:
   html:
