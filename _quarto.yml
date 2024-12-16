@@ -7,8 +7,13 @@ website:
   navbar:
     background: primary
     left:
-      - href: index.qmd
-        text: Home
+      - coding_standards.qmd
+  sidebar:
+    contents:
+      - text: "Python Best Practices"
+        href: index.qmd
+      - section: "Coding Standards"
+        href: coding_standards.qmd
 
 format:
   html:
