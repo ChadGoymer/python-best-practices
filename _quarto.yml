@@ -16,6 +16,7 @@ website:
         href: coding_standards.qmd
         contents:
           - coding_style.qmd
+          - recommended_packages.qmd
 
 format:
   html:

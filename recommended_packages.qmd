@@ -1,0 +1,20 @@
+---
+title: "Recommended Packages"
+---
+
+## Data Wrangling
+
+While [Pandas](https://pandas.pydata.org/docs/) is the most popular package for data
+wrangling, and may be used, it is recommended to use [Polars](https://docs.pola.rs/)
+instead. Polars is more performant and has more readable syntax.
+
+## Charts
+
+For static charts it is recommended to use [Seaborn](https://seaborn.pydata.org/).
+However, for interactive charts it is recommended to use
+[Plotly](https://plotly.com/python/) instead.
+
+## Web Applications
+When building dashboards or web applications, it is recommended to use
+[Shiny](https://shiny.posit.co/py/). Shiny provides a simple to use framework, allowing
+the developer to concentrate on the content and controls.
