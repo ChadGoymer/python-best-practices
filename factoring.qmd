@@ -1,0 +1,17 @@
+---
+title: "Factoring"
+---
+
+As in mathematics, factoring refers to the process of breaking code up into smaller parts.
+Complex code is much easier to understand, maintain and test if it is created from smaller
+building blocks. Much like a book is divided into chapters, sections, paragraphs, Python
+code should be divided into modules, functions, classes and methods.
+
+When deciding how to divide up code a useful rule-of-thumb is to describe what the code is
+doing as bullet points. Each bullet point could then be a function or method. If a
+function/method is still complex you may want to divide it further in to smaller
+functions. Keep going until each function is doing one thing, and one thing only.
+
+Another rule-of-thumb is if you find yourself repeating a chunk of code more than twice,
+then make it a function, and call it instead. This means any future changes can be made in
+one place, rather than many.

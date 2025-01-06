@@ -17,6 +17,7 @@ website:
         contents:
           - coding_style.qmd
           - recommended_packages.qmd
+          - factoring.qmd
 
 format:
   html:
