@@ -9,6 +9,8 @@ In Lloyd's, code should follow the PEP 8 style, as described. For a more accessi
 overview, read the article
 [How to Write Beautiful Python Code With PEP 8](https://realpython.com/python-pep8/).
 
+### Automated Styling
+
 To simplify the process of adhering to the PEP 8 conventions, we recomend using
 [Ruff](https://docs.astral.sh/ruff/) to style your code. Ruff checks your code and gives
 guidance on how to fix any issues (also known as linting). It can be run from the
@@ -44,6 +46,24 @@ conventions.
 | Module   | Use a short, lowercase word or words. Separate words with underscores to improve readability. | `module.py`, `python_module.py` |
 | Package  | Use a short, lowercase word or words. Don’t separate words with underscores. | `package`, `pythonpackage` |
 
+### Use Meaningful Names
+
+Don’t use vague or one-letter names (like `x` or `y`) if it is not for simple and short
+loops. Instead, give names that explain what the variable or the function does. This makes
+code much easier to read and understand.
+
+**Bad Example:**
+```python
+def a(x, y):
+    return x + y
+```
+
+**Good Example:**
+```python
+def add_numbers(first_number, second_number):
+    return first_number + second_number
+```
+
 ## Code Layout
 
 ### Blank Lines
@@ -52,9 +72,23 @@ conventions.
 - Surround method definitions inside classes with a single blank line.
 - Use blank lines sparingly inside functions to show clear steps.
 
+```python
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+```
+
 ### Indentation
 
 - Use four spaces to indent code.
+
+```python
+def greet():
+    print("Hello!")
+```
+
 - For long lines, we recommend using a hanging indent and put closing brackets on a new
 line, for example:
 
@@ -75,12 +109,19 @@ def function(
     return list_of_numbers
 ```
 
+### Line Length
+
+- Limit line length to 80 characters: Keep your code readable by not writing overly long
+  lines. If a line gets too long, break it into smaller parts using parentheses or
+  backslashes.
+
 ### Comments
 
 - Comments should be used sparingly. Using good names and clear layout should be enough in
-most cases.
+  most cases. Comments should focus on why the code is written in a certain way, not what
+  the code does.
 - For complicated code, split it into functions, classes and methods and use
-[docstrings](documentation.qmd) to document them instead.
+  [docstrings](documentation.qmd) to document them instead.
 
 ### Whitespace
 
@@ -88,8 +129,139 @@ most cases.
 - Add a space after a comma
 - Do not use spaces around `=` when assigning function and method arguments
 - Do not leave spaces at the end of the line. Visual Studio Code has an option to remove
-trailing whitespace on save:
+  trailing whitespace on save:
 
 ```json
 "files.trimTrailingWhitespace": true,
 ```
+
+## Coding Practices
+
+### Avoid Hardcoding Values
+
+Hardcoding values (e.g., numbers or strings) directly into your code can make it difficult
+to update or reuse. Instead, use variables or constants.
+
+**Bad Example:**
+```python
+print("The total price with tax is: $105")  # Hardcoded tax and total price
+```
+
+**Good Example:**
+```python
+PRICE = 100  # Base price of the product
+TAX_RATE = 0.05  # 5% tax rate
+
+# Calculate the total price
+total_price = PRICE + (PRICE * TAX_RATE)
+
+print(f"The total price with tax is: ${total_price:.2f}")
+```
+
+This makes your code more flexible and easy to modify.
+
+### Avoid Global Variables
+
+Relying on global variables can make your code harder to understand and debug. Instead,
+encapsulate state within classes or functions.
+
+**Bad Example (using a global variable):**
+```python
+total = 0
+
+def add_to_total(value):
+    global total
+    total += value
+```
+
+**Good Example (using a class):**
+```python
+class Calculator:
+    def __init__(self):
+        self.total = 0
+
+    def add_value(self, value):
+        self.total += value
+```
+
+Encapsulating data within objects or functions ensures that your code is modular,
+testable, and less error-prone.
+
+### Use f-Strings for String Formatting
+
+f-Strings (introduced in Python 3.6) are a clean and readable way to format strings.
+
+**Bad Example (concatenating strings):**
+```python
+name = "Alice"
+age = 25
+print("My name is " + name + " and I am " + str(age) + " years old")
+```
+
+**Good Example (using f-strings):**
+```python
+name = "Alice"
+age = 25
+print(f"My name is {name} and I am {age} years old")
+```
+
+f-Strings are not only more readable but also more efficient than other string formatting
+methods.
+
+### Use Built-in Functions and Libraries
+
+Python comes with many powerful built-in features. Use these to write efficient and proper
+code instead of coding it from scratch.
+
+**Bad Example (manually finding the maximum):**
+```python
+def find_max(numbers):
+    max_number = numbers[0]
+    for num in numbers:
+        if num > max_number:
+            max_number = num
+    return max_number
+```
+
+**Good Example (using max):**
+```python
+def find_max(numbers):
+    return max(numbers)
+```
+
+### Use Pythonic Code
+
+"Pythonic" code refers to writing code that takes advantage of Python’s simplicity and
+readability. Avoid overly complex or verbose solutions when simpler options are available.
+
+**Bad Example:**
+```python
+numbers = [1, 2, 3, 4, 5]
+doubled = []
+for num in numbers:
+    doubled.append(num * 2)
+```
+
+**Good Example:**
+```python
+numbers = [1, 2, 3, 4, 5]
+doubled = [num * 2 for num in numbers]
+```
+
+Using list comprehensions, built-in functions, and readable idioms makes your code more
+elegant.
+
+### Handle Errors Gracefully
+
+As a beginner, it’s tempting to skip error handling, but it’s an important part of writing
+good code. Use try and except blocks to handle potential errors.
+
+```python
+try:
+    number = int(input("Enter a number: "))
+    print(f"The number is {number}")
+except ValueError:
+    print("That’s not a valid number!")
+```
+
+This ensures your program doesn’t crash unexpectedly.
