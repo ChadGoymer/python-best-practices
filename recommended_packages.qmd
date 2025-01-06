@@ -5,16 +5,119 @@ title: "Recommended Packages"
 ## Data Wrangling
 
 While [Pandas](https://pandas.pydata.org/docs/) is the most popular package for data
-wrangling, and may be used, it is recommended to use [Polars](https://docs.pola.rs/)
-instead. Polars is more performant and has more readable syntax.
+wrangling in Python, and may be used, it is recommended to use [Polars](https://docs.pola.rs/)
+instead. Polars is more performant and has more readable syntax. It is built to chain
+methods in an elegant way, for example:
 
-## Charts
+```python
+import polars as pl
 
-For static charts it is recommended to use [Seaborn](https://seaborn.pydata.org/).
+df = (
+    pl.read_csv("docs/assets/data/iris.csv")
+    .filter(pl.col("sepal_length") > 5)
+    .group_by("species")
+    .agg(pl.all().sum())
+)
+```
+
+## Reading and Writing data
+
+Polars has a number of methods for reading from and writing to common formats. Some of
+them depend on other packages:
+
+### CSV
+
+Polars can read and write to CSV out of the box, using:
+
+```python
+import polars as pl
+
+df = pl.read_csv("data.csv")
+df.write_csv("data.csv")
+```
+
+### Excel
+
+Polars can read data from Excel by installing the
+[fastexcel](https://fastexcel.toucantoco.dev/fastexcel.html) package and write using the
+[xlsxwriter](https://xlsxwriter.readthedocs.io/) package. Once installed, you can use:
+
+```python
+df = pl.read_excel("data.xlsx", sheet_name="Sheet1")
+df.write_excel("data.xlsx", worksheet="Sheet2")
+```
+### Databases
+
+Polars can read and write to a database, if an appropriate connection is supplied. See
+[lloydsdb](lloydsdb.qmd) for more details.
+
+```python
+import polars as pl
+import lloydsdb as db
+
+engine = db.create_engine("Reserving_data")
+df = pl.read_database("SELECT * FROM OldTable", connection=engine)
+df.write_database("NewTable",  connection=engine)
+```
+
+## Visualisation
+
+For static charts it is recommended to use [Seaborn](https://seaborn.pydata.org/). For
+example:
+
+```{python}
+import seaborn as sns
+
+tips = sns.load_dataset("tips")
+sns.relplot(data=tips, x="total_bill", y="tip")
+```
+
 However, for interactive charts it is recommended to use
-[Plotly](https://plotly.com/python/) instead.
+[Plotly](https://plotly.com/python/) instead. For example:
+
+```{python}
+import plotly.express as px
+
+tips = px.data.tips()
+px.scatter(tips, x="total_bill", y="tip")
+```
+
+
+## Reporting
+
+When it comes to producing reports, [Quarto](https://quarto.org/) provides a simple,
+versatile and beautiful approach. It can be used to produce:
+
+1. Articles
+2. Presentations
+3. Books
+4. Websites
+5. Dashboards
 
 ## Web Applications
+
 When building dashboards or web applications, it is recommended to use
 [Shiny](https://shiny.posit.co/py/). Shiny provides a simple to use framework, allowing
-the developer to concentrate on the content and controls.
+the developer to concentrate on the content and controls. For example, a basic app can be
+created using:
+
+```python
+from shiny import App, render, ui
+
+app_ui = ui.page_fixed(
+    ui.h1("Simple App"),
+    ui.input_text("name", "Enter your name"),
+    ui.output_text("greeting"),
+)
+
+
+def server(input, output, session):
+    @render.text
+    def greeting():
+        return f"Hello {input.name()}, welcome to shiny!."
+
+
+app = App(app_ui, server)
+```
+
+For best practices when building Shiny web applications, see [Shiny](shiny.qmd).
