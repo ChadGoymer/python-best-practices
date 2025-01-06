@@ -22,11 +22,10 @@ standards are cumulative, so medium criticality must meet both medium and low st
 
 ::: {.callout-note}
 ### [Coding Style](coding_style.qmd)
-Styling your code in a consistent way makes it easier to read. Imagine reading a book
-without punctuation, sentences, paragraphs, or even spaces between words. It would be
-possible, but it will be much harder than a nicely formatted book. Having agreed
-conventions for file, variable and function names, will make it easier to locate and use
-code. In addition, having spaces around operators and splitting up long lines make it easier to read.
+Styling your code in a consistent way makes it easier to read. Having agreed conventions
+for file, variable and function names, will make it easier to locate and use code. In
+addition, having spaces around operators and splitting up long lines make it easier to
+read.
 :::
 
 ::::
@@ -35,10 +34,9 @@ code. In addition, having spaces around operators and splitting up long lines ma
 
 ::: {.callout-note}
 ### [Recommended Packages](recommended_packages.qmd)
-Specifying recommended packages ensures the same approach is taken across projects. For
-example, we recommend using Polars for data manipuations, but there are other approaches,
-for exampe, Pandas. If all the team use the same packages, then it is much easier for
-members to work across projects.
+Specifying recommended packages ensures the same approach is taken across projects. If all
+the team use the same packages, then it is much easier for members to work across
+projects.
 :::
 
 ::::
@@ -56,10 +54,7 @@ members to work across projects.
 As code gets more complicated a large script becomes harder to understand and maintain.
 Variables defined at the top of the scripts may be used much later so when making changes
 it becomes difficult to understand the consequences. In this case it is time to split the
-code up into smaller pieces, also known as factoring. By defining a smaller functions or
-classes with methods, it isolates that code from the rest of the script. In addition, you
-may find similar code being used in multiple places. In that case, it is a good idea to
-create a single function and call it multiple times.
+code up into smaller pieces, also known as factoring.
 :::
 
 ::::
@@ -70,10 +65,8 @@ create a single function and call it multiple times.
 ### [Patterns](patterns.qmd)
 When you work on many projects, you start to see repeated patterns emerging. This
 generally starts as similar snippets of code or copying code from one project to another.
-For example, to read common data from a shared database generally requires a few steps and
-may be some validation. It is worth specifying the approach all projects should take. Even
-better, the approach can be captured in a function or functions and added to an internal
-package. A package is the best way to share code across multiple projects.
+It is worth specifying the approach all projects should take. Even better, the approach
+can be captured in a function or functions and added to an internal package.
 :::
 
 ::::
@@ -88,12 +81,4 @@ For critical processes it is important the code is structured in an organised an
 consistent manner. For example, Python code should be broken up into functions or classes
 with methods and stored in a folder of modules. Each file should have a test script,
 testing the functions and methods it contains in the tests folder.
-
-Relatively simple scripts can then be used to run the process by loading the files and
-calling the functions. [Quarto](https://quarto.org) is ideal for these run scripts, as you
-can combine the user guide with the code.
-
-In Python, the project structure depends on whether you are building an application or
-package. The project manager app [uv](https://docs.astral.sh/uv/) simplifies the process
-of creating a project structure.
 :::
