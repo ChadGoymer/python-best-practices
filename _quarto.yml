@@ -19,6 +19,7 @@ website:
           - recommended_packages.qmd
           - factoring.qmd
           - patterns.qmd
+          - project_structure.qmd
 
 format:
   html:

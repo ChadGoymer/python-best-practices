@@ -1,0 +1,94 @@
+---
+title: "Project Structure"
+---
+
+Project structure in Python depends on whether you are creating an application or a
+package. The project manager app [uv](https://docs.astral.sh/uv/) simplifies the process
+of creating a project structure. For critical processes, it is important that the code is
+structured in an organised and consistent manner. For example, Python code should be
+broken up into functions or classes with methods and stored in a folder of modules. Each
+file should have a test script, testing the functions and methods it contains in the tests
+folder.
+
+## Application Structure
+
+An application is a standalone program that is run from the command line or a GUI. The
+structure of an application is similar to a package, but with a few differences. The main
+difference is that an application has a run script that is used to start the application.
+The run script is the entry point to the application and is used to load the modules and
+call the functions.
+
+To create an application structure, use uv within PowerShell:
+
+```powershell
+uv init example-app
+```
+
+This creates a folder called `example-app` with the following structure:
+
+```powershell
+tree example-app
+example-app
+├── .python_version
+├── README.md
+├── hello.py
+└── pyproject.toml
+```
+
+The `.python_version` file specifies the version of Python to use. The `README.md` file
+should be used to document the application. The `hello.py` file is the main module of the
+application. If you are buiding a Shiny app, you would replace or rename this `app.py`.
+The `pyproject.toml` file is used to specify the metadata for the application.
+
+::: {.callout-note}
+## Note
+uv determines the version of Python to use based on installed versions. If you have more
+than one Python installation, it is a good idea to specify the version to use when
+creating the project. For example:
+
+```powershell
+uv init example-app --python 3.12
+```
+:::
+
+The pyproject.toml file contains the metadata below, you should update the description.
+
+```toml
+[project]
+name = "example-app"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+```
+
+See [Shiny](shiny.qmd) For more details on the project structure for Shiny applications.
+
+## Library Structure
+
+A library provides functions and objects for other projects to consume. Libraries are
+intended to be built and distributed, e.g., by uploading them to
+[Package Manager](package_manager.qmd).
+
+Libraries can be created by using the --lib flag:
+
+```powershell
+uv init --lib example-lib
+```
+
+A `src` layout is used to ensure that the library is isolated from any python invocations
+in the project root and that distributed library code is well separated from the rest of
+the project source.
+
+```powershell
+tree example-lib
+example-lib
+├── .python_version
+├── README.md
+├── pyproject.toml
+└── src
+    └── example_lib
+        ├── py.typed
+        └── __init__.py
+```
