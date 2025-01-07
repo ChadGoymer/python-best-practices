@@ -1,0 +1,276 @@
+[
+  {
+    "objectID": "recommended_software.html",
+    "href": "recommended_software.html",
+    "title": "Recommended Software",
+    "section": "",
+    "text": "For Python development we recommend using Visual Studio Code. It has great support for Python and a large number of extensions for improving common tasks.\n\n\n\nPython: Provides Python language support and debugging capabilities.\nRuff: Provides linting and code formatting for Python.\nPyright: Provides static type checking for Python.\nGitLens: Provides user-friendly Git enhancements.\nGitHub Copilot: Provides AI-powered code suggestions.\nShiny: Run and develop Shiny apps in Python or R.\nQuarto: Extension for the Quarto scientific and technical publishing system.\nPosit Publisher: Publish and share your Python and R content on Posit Connect.\n\n\n\n\nTo take the most advantage of the extensions, we recommend the following settings. You can access these using CTRL + Shift + P and the type “settings”, then select Preferences: Open User Settings (JSON).\n{\n    \"[python]\": {\n        \"editor.defaultFormatter\": \"charliermarsh.ruff\",\n        \"editor.formatOnSave\": true,\n        \"editor.codeActionsOnSave\": {\n            \"source.fixAll\": \"explicit\",\n            \"source.organizeImports\": \"explicit\"\n        }\n    },\n    \"editor.rulers\": [90],\n    \"notebook.formatOnSave.enabled\": true,\n    \"notebook.codeActionsOnSave\": {\n        \"notebook.source.fixAll\": \"explicit\",\n        \"notebook.source.organizeImports\": \"explicit\"\n    },\n    \"files.autoSave\": \"afterDelay\",\n    \"files.trimTrailingWhitespace\": true,\n    \"github.copilot.enable\": {\n        \"quarto\": true,\n        \"*\": true\n    }\n}"
+  },
+  {
+    "objectID": "recommended_software.html#integrated-development-environment",
+    "href": "recommended_software.html#integrated-development-environment",
+    "title": "Recommended Software",
+    "section": "",
+    "text": "For Python development we recommend using Visual Studio Code. It has great support for Python and a large number of extensions for improving common tasks.\n\n\n\nPython: Provides Python language support and debugging capabilities.\nRuff: Provides linting and code formatting for Python.\nPyright: Provides static type checking for Python.\nGitLens: Provides user-friendly Git enhancements.\nGitHub Copilot: Provides AI-powered code suggestions.\nShiny: Run and develop Shiny apps in Python or R.\nQuarto: Extension for the Quarto scientific and technical publishing system.\nPosit Publisher: Publish and share your Python and R content on Posit Connect.\n\n\n\n\nTo take the most advantage of the extensions, we recommend the following settings. You can access these using CTRL + Shift + P and the type “settings”, then select Preferences: Open User Settings (JSON).\n{\n    \"[python]\": {\n        \"editor.defaultFormatter\": \"charliermarsh.ruff\",\n        \"editor.formatOnSave\": true,\n        \"editor.codeActionsOnSave\": {\n            \"source.fixAll\": \"explicit\",\n            \"source.organizeImports\": \"explicit\"\n        }\n    },\n    \"editor.rulers\": [90],\n    \"notebook.formatOnSave.enabled\": true,\n    \"notebook.codeActionsOnSave\": {\n        \"notebook.source.fixAll\": \"explicit\",\n        \"notebook.source.organizeImports\": \"explicit\"\n    },\n    \"files.autoSave\": \"afterDelay\",\n    \"files.trimTrailingWhitespace\": true,\n    \"github.copilot.enable\": {\n        \"quarto\": true,\n        \"*\": true\n    }\n}"
+  },
+  {
+    "objectID": "project_structure.html",
+    "href": "project_structure.html",
+    "title": "Project Structure",
+    "section": "",
+    "text": "Project structure in Python depends on whether you are creating an application or a package. The project manager app uv simplifies the process of creating a project structure. For critical processes, it is important that the code is structured in an organised and consistent manner. For example, Python code should be broken up into functions or classes with methods and stored in a folder of modules. Each file should have a test script, testing the functions and methods it contains in the tests folder.",
+    "crumbs": [
+      "Coding Standards",
+      "Project Structure"
+    ]
+  },
+  {
+    "objectID": "project_structure.html#application-structure",
+    "href": "project_structure.html#application-structure",
+    "title": "Project Structure",
+    "section": "Application Structure",
+    "text": "Application Structure\nAn application is a standalone program that is run from the command line or a GUI. The structure of an application is similar to a package, but with a few differences. The main difference is that an application has a run script that is used to start the application. The run script is the entry point to the application and is used to load the modules and call the functions.\nTo create an application structure, use uv within PowerShell:\nuv init example-app\nThis creates a folder called example-app with the following structure:\ntree example-app\nexample-app\n├── .python_version\n├── README.md\n├── hello.py\n└── pyproject.toml\nThe .python_version file specifies the version of Python to use. The README.md file should be used to document the application. The hello.py file is the main module of the application. If you are buiding a Shiny app, you would replace or rename this app.py. The pyproject.toml file is used to specify the metadata for the application.\n\n\n\n\n\n\nNote\n\n\n\nuv determines the version of Python to use based on installed versions. If you have more than one Python installation, it is a good idea to specify the version to use when creating the project. For example:\nuv init example-app --python 3.12\n\n\nThe pyproject.toml file contains the metadata below, you should update the description.\n[project]\nname = \"example-app\"\nversion = \"0.1.0\"\ndescription = \"Add your description here\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.11\"\ndependencies = []\nSee Shiny For more details on the project structure for Shiny applications.",
+    "crumbs": [
+      "Coding Standards",
+      "Project Structure"
+    ]
+  },
+  {
+    "objectID": "project_structure.html#library-structure",
+    "href": "project_structure.html#library-structure",
+    "title": "Project Structure",
+    "section": "Library Structure",
+    "text": "Library Structure\nA library provides functions and objects for other projects to consume. Libraries are intended to be built and distributed, e.g., by uploading them to Package Manager.\nLibraries can be created by using the –lib flag:\nuv init --lib example-lib\nA src layout is used to ensure that the library is isolated from any python invocations in the project root and that distributed library code is well separated from the rest of the project source.\ntree example-lib\nexample-lib\n├── .python_version\n├── README.md\n├── pyproject.toml\n└── src\n    └── example_lib\n        ├── py.typed\n        └── __init__.py",
+    "crumbs": [
+      "Coding Standards",
+      "Project Structure"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Python Best Practices",
+    "section": "",
+    "text": "Following best practice guidelines requires extra effort, so why should we spend more time ensuring a project meets the requirements?\n\n\n\n\n\n\n\n\nCollaboration\n\n\n\nIt is easier for others, and your future self, to understand your work.\n\n\n\n\n\n\n\n\n\n\nAccuracy\n\n\n\nCode has fewer bugs, and everyone has more confidence about the results.\n\n\n\n\n\n\n\n\n\n\nReliability\n\n\n\nCode is more likely to run consistently across users and over time.\n\n\n\n\n\n\n\n\n\n\nMaintenance\n\n\n\nMaking future changes, and fixing bugs, is much easier and quicker.\n\n\n\n\n\n\n\n\n\n\nSecurity\n\n\n\nWho can view and edit the code and data is controlled, and everything is backed up.\n\n\n\n\n\n\n\n\n\n\nRegulatory\n\n\n\nThe Bank of England identifies end-user computing as a risk that should be controlled.",
+    "crumbs": [
+      "Coding Standards",
+      "Python Best Practices"
+    ]
+  },
+  {
+    "objectID": "index.html#motivation",
+    "href": "index.html#motivation",
+    "title": "Python Best Practices",
+    "section": "",
+    "text": "Following best practice guidelines requires extra effort, so why should we spend more time ensuring a project meets the requirements?\n\n\n\n\n\n\n\n\nCollaboration\n\n\n\nIt is easier for others, and your future self, to understand your work.\n\n\n\n\n\n\n\n\n\n\nAccuracy\n\n\n\nCode has fewer bugs, and everyone has more confidence about the results.\n\n\n\n\n\n\n\n\n\n\nReliability\n\n\n\nCode is more likely to run consistently across users and over time.\n\n\n\n\n\n\n\n\n\n\nMaintenance\n\n\n\nMaking future changes, and fixing bugs, is much easier and quicker.\n\n\n\n\n\n\n\n\n\n\nSecurity\n\n\n\nWho can view and edit the code and data is controlled, and everything is backed up.\n\n\n\n\n\n\n\n\n\n\nRegulatory\n\n\n\nThe Bank of England identifies end-user computing as a risk that should be controlled.",
+    "crumbs": [
+      "Coding Standards",
+      "Python Best Practices"
+    ]
+  },
+  {
+    "objectID": "index.html#best-practices",
+    "href": "index.html#best-practices",
+    "title": "Python Best Practices",
+    "section": "Best Practices",
+    "text": "Best Practices\nIn order to realise the benefits of using best practices, there are six areas to consider when creating, or updating, a project.\n\n\n\n\n\n\n\n\nCoding Standards\n\n\n\nFollowing coding standards makes projects easier to read and understand. Well-written code reduces the time to handover to others and for them to modify it.\n\n\n\n\n\n\n\n\n\n\nDocumentation\n\n\n\nDocumentation ensures everyone understands the code’s purpose, what it does and how to use it effectively.\n\n\n\n\n\n\n\n\n\n\nTesting\n\n\n\nTesting ensures the code actually does what it intended. Test results should be recorded as evidence and repeated whenever any changes are made.\n\n\n\n\n\n\n\n\n\n\nReproducibility\n\n\n\nResults should be reproducible by others, and your future self. This means keeping track of inputs, parameters, code and packages used to produce the same results.\n\n\n\n\n\n\n\n\n\n\nChange Control\n\n\n\nChanges to code are inevitable and should be managed. Changes must be understood by all parties, agreed, reviewed and approved. It should also be possible to easily revert changes.\n\n\n\n\n\n\n\n\n\n\nAccess Control\n\n\n\nThere should be controls on who has acccess to the code and who can execute it. Any storage used should have appropriate backup and disaster recovery in place.",
+    "crumbs": [
+      "Coding Standards",
+      "Python Best Practices"
+    ]
+  },
+  {
+    "objectID": "index.html#application",
+    "href": "index.html#application",
+    "title": "Python Best Practices",
+    "section": "Application",
+    "text": "Application\nThe degree to which the above points need to be addressed depends on the importance of the work. A process or application that is critical to reporting results to a regulator is subjected to more controls than a simple analysis that does not go beyond the team.\nBefore we can decide what level of controls are required, we must assess the criticality of the project. Once the assessment is complete, the pages for each area of best practice (linked above) describe the minimum standards. The following can be used as a guide when assessing the criticality of a piece of work. If any of the bullets are true, then the project meets that level of assessment.\n\n\n\n\n\n\n\n\nLow Criticality\n\n\n\n\nSimple script of limited scope.\nNo dependencies, other than external packages.\nNot used for decision making.\nNot used outside the team.\nDoes not use sensitive data.\n\n\n\n\n\n\n\n\n\n\n\nMedium Criticality\n\n\n\n\nSmall project of a few scripts.\nA few upstream or downstream dependencies.\nUsed for team decision making.\nUsed by other teams.\nUses sensitive data.\n\n\n\n\n\n\n\n\n\n\n\nHigh Criticality\n\n\n\n\nLarge project or package of Multiple scripts.\nMany upstream or downstream dependencies.\nUsed for senior leadership / executive decision making.\nUsed externally or for regulatory purposes.\nUses personal data.",
+    "crumbs": [
+      "Coding Standards",
+      "Python Best Practices"
+    ]
+  },
+  {
+    "objectID": "coding_style.html",
+    "href": "coding_style.html",
+    "title": "Coding Style",
+    "section": "",
+    "text": "The official Python style guide is known as PEP 8. In Lloyd’s, code should follow the PEP 8 style, as described. For a more accessible overview, read the article How to Write Beautiful Python Code With PEP 8.\n\n\nTo simplify the process of adhering to the PEP 8 conventions, we recomend using Ruff to style your code. Ruff checks your code and gives guidance on how to fix any issues (also known as linting). It can be run from the command line or as a Visual Studio Code extension. The extension can also be used to format your code and it is recommended to set the option to format on save, to keep your code tidy. This can be achieved by adding the following options to your settings.json file:\n\"[python]\": {\n    \"editor.defaultFormatter\": \"charliermarsh.ruff\",\n    \"editor.formatOnSave\": true,\n    \"editor.codeActionsOnSave\": {\n        \"source.fixAll\": \"explicit\",\n        \"source.organizeImports\": \"explicit\"\n    }\n}",
+    "crumbs": [
+      "Coding Standards",
+      "Coding Style"
+    ]
+  },
+  {
+    "objectID": "coding_style.html#style-guide",
+    "href": "coding_style.html#style-guide",
+    "title": "Coding Style",
+    "section": "",
+    "text": "The official Python style guide is known as PEP 8. In Lloyd’s, code should follow the PEP 8 style, as described. For a more accessible overview, read the article How to Write Beautiful Python Code With PEP 8.\n\n\nTo simplify the process of adhering to the PEP 8 conventions, we recomend using Ruff to style your code. Ruff checks your code and gives guidance on how to fix any issues (also known as linting). It can be run from the command line or as a Visual Studio Code extension. The extension can also be used to format your code and it is recommended to set the option to format on save, to keep your code tidy. This can be achieved by adding the following options to your settings.json file:\n\"[python]\": {\n    \"editor.defaultFormatter\": \"charliermarsh.ruff\",\n    \"editor.formatOnSave\": true,\n    \"editor.codeActionsOnSave\": {\n        \"source.fixAll\": \"explicit\",\n        \"source.organizeImports\": \"explicit\"\n    }\n}",
+    "crumbs": [
+      "Coding Standards",
+      "Coding Style"
+    ]
+  },
+  {
+    "objectID": "coding_style.html#naming-conventions",
+    "href": "coding_style.html#naming-conventions",
+    "title": "Coding Style",
+    "section": "Naming Conventions",
+    "text": "Naming Conventions\nTo ensure that code is written consistenty across projects, use the following naming conventions.\n\n\n\n\n\n\n\n\nType\nNaming Convention\nExamples\n\n\n\n\nVariable\nUse a lowercase single letter, word, or words. Separate words with underscores to improve readability.\nx, var, python_variable\n\n\nFunction\nUse a lowercase word or words. Separate words by underscores to improve readability.\nfunction, python_function\n\n\nClass\nStart each word with a capital letter. Don’t separate words with underscores. This style is called camel case or Pascal case.\nModel, PythonClass\n\n\nMethod\nUse a lowercase word or words. Separate words with underscores to improve readability.\nclass_method, method\n\n\nConstant\nUse an uppercase single letter, word, or words. Separate words with underscores to improve readability.\nCONSTANT, PYTHON_CONSTANT, PYTHON_LONG_CONSTANT\n\n\nModule\nUse a short, lowercase word or words. Separate words with underscores to improve readability.\nmodule.py, python_module.py\n\n\nPackage\nUse a short, lowercase word or words. Don’t separate words with underscores.\npackage, pythonpackage\n\n\n\n\nUse Meaningful Names\nDon’t use vague or one-letter names (like x or y) if it is not for simple and short loops. Instead, give names that explain what the variable or the function does. This makes code much easier to read and understand.\nBad Example:\ndef a(x, y):\n    return x + y\nGood Example:\ndef add_numbers(first_number, second_number):\n    return first_number + second_number",
+    "crumbs": [
+      "Coding Standards",
+      "Coding Style"
+    ]
+  },
+  {
+    "objectID": "coding_style.html#code-layout",
+    "href": "coding_style.html#code-layout",
+    "title": "Coding Style",
+    "section": "Code Layout",
+    "text": "Code Layout\n\nBlank Lines\n\nSurround top-level functions and classes with two blank lines.\nSurround method definitions inside classes with a single blank line.\nUse blank lines sparingly inside functions to show clear steps.\n\ndef add(a, b):\n    return a + b\n\n\ndef subtract(a, b):\n    return a - b\n\n\nIndentation\n\nUse four spaces to indent code.\n\ndef greet():\n    print(\"Hello!\")\n\nFor long lines, we recommend using a hanging indent and put closing brackets on a new line, for example:\n\ndef function(\n    arg_one,\n    arg_two,\n    arg_three,\n    arg_four\n):\n    list_of_numbers = [\n        arg_one,\n        arg_two,\n        arg_three,\n        arg_four\n    ]\n\n    return list_of_numbers\n\n\nLine Length\n\nLimit line length to 80 characters: Keep your code readable by not writing overly long lines. If a line gets too long, break it into smaller parts using parentheses or backslashes.\n\n\n\nComments\n\nComments should be used sparingly. Using good names and clear layout should be enough in most cases. Comments should focus on why the code is written in a certain way, not what the code does.\nFor complicated code, split it into functions, classes and methods and use docstrings to document them instead.\n\n\n\nWhitespace\n\nSurround binary operators with a space.\nAdd a space after a comma\nDo not use spaces around = when assigning function and method arguments\nDo not leave spaces at the end of the line. Visual Studio Code has an option to remove trailing whitespace on save:\n\n\"files.trimTrailingWhitespace\": true,",
+    "crumbs": [
+      "Coding Standards",
+      "Coding Style"
+    ]
+  },
+  {
+    "objectID": "coding_style.html#coding-practices",
+    "href": "coding_style.html#coding-practices",
+    "title": "Coding Style",
+    "section": "Coding Practices",
+    "text": "Coding Practices\n\nAvoid Hardcoding Values\nHardcoding values (e.g., numbers or strings) directly into your code can make it difficult to update or reuse. Instead, use variables or constants.\nBad Example:\nprint(\"The total price with tax is: $105\")  # Hardcoded tax and total price\nGood Example:\nPRICE = 100  # Base price of the product\nTAX_RATE = 0.05  # 5% tax rate\n\n# Calculate the total price\ntotal_price = PRICE + (PRICE * TAX_RATE)\n\nprint(f\"The total price with tax is: ${total_price:.2f}\")\nThis makes your code more flexible and easy to modify.\n\n\nAvoid Global Variables\nRelying on global variables can make your code harder to understand and debug. Instead, encapsulate state within classes or functions.\nBad Example (using a global variable):\ntotal = 0\n\ndef add_to_total(value):\n    global total\n    total += value\nGood Example (using a class):\nclass Calculator:\n    def __init__(self):\n        self.total = 0\n\n    def add_value(self, value):\n        self.total += value\nEncapsulating data within objects or functions ensures that your code is modular, testable, and less error-prone.\n\n\nUse f-Strings for String Formatting\nf-Strings (introduced in Python 3.6) are a clean and readable way to format strings.\nBad Example (concatenating strings):\nname = \"Alice\"\nage = 25\nprint(\"My name is \" + name + \" and I am \" + str(age) + \" years old\")\nGood Example (using f-strings):\nname = \"Alice\"\nage = 25\nprint(f\"My name is {name} and I am {age} years old\")\nf-Strings are not only more readable but also more efficient than other string formatting methods.\n\n\nUse Built-in Functions and Libraries\nPython comes with many powerful built-in features. Use these to write efficient and proper code instead of coding it from scratch.\nBad Example (manually finding the maximum):\ndef find_max(numbers):\n    max_number = numbers[0]\n    for num in numbers:\n        if num &gt; max_number:\n            max_number = num\n    return max_number\nGood Example (using max):\ndef find_max(numbers):\n    return max(numbers)\n\n\nUse Pythonic Code\n“Pythonic” code refers to writing code that takes advantage of Python’s simplicity and readability. Avoid overly complex or verbose solutions when simpler options are available.\nBad Example:\nnumbers = [1, 2, 3, 4, 5]\ndoubled = []\nfor num in numbers:\n    doubled.append(num * 2)\nGood Example:\nnumbers = [1, 2, 3, 4, 5]\ndoubled = [num * 2 for num in numbers]\nUsing list comprehensions, built-in functions, and readable idioms makes your code more elegant.\n\n\nHandle Errors Gracefully\nAs a beginner, it’s tempting to skip error handling, but it’s an important part of writing good code. Use try and except blocks to handle potential errors.\ntry:\n    number = int(input(\"Enter a number: \"))\n    print(f\"The number is {number}\")\nexcept ValueError:\n    print(\"That’s not a valid number!\")\nThis ensures your program doesn’t crash unexpectedly.",
+    "crumbs": [
+      "Coding Standards",
+      "Coding Style"
+    ]
+  },
+  {
+    "objectID": "coding_standards.html",
+    "href": "coding_standards.html",
+    "title": "Coding Standards",
+    "section": "",
+    "text": "When writing code in any language it is important to follow coding standards. They make it easier to read and understand the code. New starters will be able to learn how projects work faster, which reduces key-person dependencies.\nPython has some standard approaches to building projects, which then give you access to useful tools to aid in development, so they should be used wherever possible. Python has a very large number of packages, and sometimes more than one for the same job. Having a set of recommended packages ensures consistency across projects. When common patterns are identified across projects, they should be extracted into packages themselves so they can be shared easily.\nEach section details the minimum standards, based on the criticality of the project. The standards are cumulative, so medium criticality must meet both medium and low standards.",
+    "crumbs": [
+      "Coding Standards"
+    ]
+  },
+  {
+    "objectID": "coding_standards.html#low-criticality",
+    "href": "coding_standards.html#low-criticality",
+    "title": "Coding Standards",
+    "section": "Low Criticality",
+    "text": "Low Criticality\n\n\n\n\n\n\n\n\nCoding Style\n\n\n\nStyling your code in a consistent way makes it easier to read and understand. Having agreed conventions makes it easier to locate and maintain code. Writing code well is about helping future developers.\n\n\n\n\n\n\n\n\n\n\nRecommended Packages\n\n\n\nSpecifying recommended packages ensures the same approach is taken across projects. If all the team use the same packages, then it is much easier for members to work across projects.",
+    "crumbs": [
+      "Coding Standards"
+    ]
+  },
+  {
+    "objectID": "coding_standards.html#medium-criticality",
+    "href": "coding_standards.html#medium-criticality",
+    "title": "Coding Standards",
+    "section": "Medium Criticality",
+    "text": "Medium Criticality\n\n\n\n\n\n\n\n\nFactoring\n\n\n\nAs code gets more complicated a large script becomes harder to understand and maintain. Variables defined at the top of the scripts may be used much later, so when making changes it becomes difficult to understand the consequences. In this case it is time to split the code up into smaller pieces, also known as factoring.\n\n\n\n\n\n\n\n\n\n\nPatterns\n\n\n\nWhen you work on many projects, you start to see repeated patterns emerging. This generally starts as similar snippets of code or copying code from one project to another. It is worth specifying the approach all projects should take. Even better, the approach can be captured in a function or functions and added to an internal package.",
+    "crumbs": [
+      "Coding Standards"
+    ]
+  },
+  {
+    "objectID": "coding_standards.html#high-criticality",
+    "href": "coding_standards.html#high-criticality",
+    "title": "Coding Standards",
+    "section": "High Criticality",
+    "text": "High Criticality\n\n\n\n\n\n\nProject Structure\n\n\n\nFor critical processes it is important the code is structured in an organised and consistent manner. For example, Python code should be broken up into functions or classes with methods and stored in a folder of modules. Each file should have a test script, testing the functions and methods it contains in the tests folder.",
+    "crumbs": [
+      "Coding Standards"
+    ]
+  },
+  {
+    "objectID": "factoring.html",
+    "href": "factoring.html",
+    "title": "Factoring",
+    "section": "",
+    "text": "As in mathematics, factoring refers to the process of breaking code up into smaller parts. Complex code is much easier to understand, maintain and test if it is created from smaller building blocks. Much like a book is divided into chapters, sections, paragraphs, Python code should be divided into modules, functions, classes and methods.\nWhen deciding how to divide up code a useful rule-of-thumb is to describe what the code is doing as bullet points. Each bullet point could then be a function or method. If a function/method is still complex you may want to divide it further in to smaller functions. Keep going until each function is doing one thing, and one thing only.\nAnother rule-of-thumb is if you find yourself repeating a chunk of code more than twice, then make it a function, and call it instead. This means any future changes can be made in one place, rather than many.",
+    "crumbs": [
+      "Coding Standards",
+      "Factoring"
+    ]
+  },
+  {
+    "objectID": "patterns.html",
+    "href": "patterns.html",
+    "title": "Patterns",
+    "section": "",
+    "text": "As you create more Python projects you will start to see repeated patterns emerging. When this occurs, it is a good idea to specify the approach all projects should take. Managing projects in this way ensures consistency across projects, and makes it easier for team members to work across projects.\nOne way to ensure patterns are followed is to capture the approach in a package. A package is the best way to share code across multiple projects. For example, if you have a common way to read data from a shared database, you could create a function or functions and add them to an internal package. This way, the approach is documented and can be easily shared across projects.\nAnother way to ensure patterns are followed is to create a template project. A template project is a project that contains the structure and code that all projects should follow. When a new project is started, the template project is copied and modified to suit the new project. This ensures that all projects follow the same structure and code patterns.\nExamples of existing patterns we use include:\n\nlloydsdb: lloydsdb is a package that provides a common way to read and write data from a Lloyd’s database. It also contains a general approach for running processes and capturing outputs and an audit trail.\nlloydsbrand: lloydsbrand is a package that provides styling and formatting option for applications and reports, so they follow Lloyd’s brand guidelines.\nTapyr: Tapyr provides a template for Shiny applications.",
+    "crumbs": [
+      "Coding Standards",
+      "Patterns"
+    ]
+  },
+  {
+    "objectID": "recommended_packages.html",
+    "href": "recommended_packages.html",
+    "title": "Recommended Packages",
+    "section": "",
+    "text": "While Pandas is the most popular package for data wrangling in Python, and may be used, it is recommended to use Polars instead. Polars is more performant and has more readable syntax. It is built to chain methods in an elegant way, for example:\nimport polars as pl\n\ndf = (\n    pl.read_csv(\"docs/assets/data/iris.csv\")\n    .filter(pl.col(\"sepal_length\") &gt; 5)\n    .group_by(\"species\")\n    .agg(pl.all().sum())\n)",
+    "crumbs": [
+      "Coding Standards",
+      "Recommended Packages"
+    ]
+  },
+  {
+    "objectID": "recommended_packages.html#data-wrangling",
+    "href": "recommended_packages.html#data-wrangling",
+    "title": "Recommended Packages",
+    "section": "",
+    "text": "While Pandas is the most popular package for data wrangling in Python, and may be used, it is recommended to use Polars instead. Polars is more performant and has more readable syntax. It is built to chain methods in an elegant way, for example:\nimport polars as pl\n\ndf = (\n    pl.read_csv(\"docs/assets/data/iris.csv\")\n    .filter(pl.col(\"sepal_length\") &gt; 5)\n    .group_by(\"species\")\n    .agg(pl.all().sum())\n)",
+    "crumbs": [
+      "Coding Standards",
+      "Recommended Packages"
+    ]
+  },
+  {
+    "objectID": "recommended_packages.html#reading-and-writing-data",
+    "href": "recommended_packages.html#reading-and-writing-data",
+    "title": "Recommended Packages",
+    "section": "Reading and Writing data",
+    "text": "Reading and Writing data\nPolars has a number of methods for reading from and writing to common formats. Some of them depend on other packages:\n\nCSV\nPolars can read and write to CSV out of the box, using:\nimport polars as pl\n\ndf = pl.read_csv(\"data.csv\")\ndf.write_csv(\"data.csv\")\n\n\nExcel\nPolars can read data from Excel by installing the fastexcel package and write using the xlsxwriter package. Once installed, you can use:\ndf = pl.read_excel(\"data.xlsx\", sheet_name=\"Sheet1\")\ndf.write_excel(\"data.xlsx\", worksheet=\"Sheet2\")\n\n\nDatabases\nPolars can read and write to a database, if an appropriate connection is supplied. See lloydsdb for more details.\nimport polars as pl\nimport lloydsdb as db\n\nengine = db.create_engine(\"Reserving_data\")\ndf = pl.read_database(\"SELECT * FROM OldTable\", connection=engine)\ndf.write_database(\"NewTable\",  connection=engine)",
+    "crumbs": [
+      "Coding Standards",
+      "Recommended Packages"
+    ]
+  },
+  {
+    "objectID": "recommended_packages.html#visualisation",
+    "href": "recommended_packages.html#visualisation",
+    "title": "Recommended Packages",
+    "section": "Visualisation",
+    "text": "Visualisation\nFor static charts it is recommended to use Seaborn. For example:\n\nimport seaborn as sns\n\ntips = sns.load_dataset(\"tips\")\nsns.relplot(data=tips, x=\"total_bill\", y=\"tip\")\n\n\n\n\n\n\n\n\nHowever, for interactive charts it is recommended to use Plotly instead. For example:\n\nimport plotly.express as px\n\ntips = px.data.tips()\npx.scatter(tips, x=\"total_bill\", y=\"tip\")",
+    "crumbs": [
+      "Coding Standards",
+      "Recommended Packages"
+    ]
+  },
+  {
+    "objectID": "recommended_packages.html#reporting",
+    "href": "recommended_packages.html#reporting",
+    "title": "Recommended Packages",
+    "section": "Reporting",
+    "text": "Reporting\nWhen it comes to producing reports, Quarto provides a simple, versatile and beautiful approach. It can be used to produce:\n\nArticles\nPresentations\nBooks\nWebsites\nDashboards",
+    "crumbs": [
+      "Coding Standards",
+      "Recommended Packages"
+    ]
+  },
+  {
+    "objectID": "recommended_packages.html#web-applications",
+    "href": "recommended_packages.html#web-applications",
+    "title": "Recommended Packages",
+    "section": "Web Applications",
+    "text": "Web Applications\nWhen building dashboards or web applications, it is recommended to use Shiny. Shiny provides a simple to use framework, allowing the developer to concentrate on the content and controls. For example, a basic app can be created using:\nfrom shiny import App, render, ui\n\napp_ui = ui.page_fixed(\n    ui.h1(\"Simple App\"),\n    ui.input_text(\"name\", \"Enter your name\"),\n    ui.output_text(\"greeting\"),\n)\n\n\ndef server(input, output, session):\n    @render.text\n    def greeting():\n        return f\"Hello {input.name()}, welcome to shiny!.\"\n\n\napp = App(app_ui, server)\nFor best practices when building Shiny web applications, see Shiny.",
+    "crumbs": [
+      "Coding Standards",
+      "Recommended Packages"
+    ]
+  }
+]

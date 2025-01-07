@@ -1,2 +1,3 @@
-# python-best-practices
-The Python Best Practices website
+# Python Best Practices
+
+This is the Python best practices website.

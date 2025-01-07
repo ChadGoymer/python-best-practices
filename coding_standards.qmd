@@ -1,0 +1,85 @@
+---
+title: "Coding Standards"
+---
+
+When writing code in any language it is important to follow coding standards. They make it
+easier to read and understand the code. New starters will be able to learn how projects
+work faster, which reduces key-person dependencies.
+
+Python has some standard approaches to building projects, which then give you access to
+useful tools to aid in development, so they should be used wherever possible. Python has a
+very large number of packages, and sometimes more than one for the same job. Having a set
+of recommended packages ensures consistency across projects. When common patterns are
+identified across projects, they should be extracted into packages themselves so they can
+be shared easily.
+
+Each section details the minimum standards, based on the criticality of the project. The
+standards are cumulative, so medium criticality must meet both medium and low standards.
+
+## Low Criticality
+
+::::: {.grid}
+
+:::: {.g-col-6}
+
+::: {.callout-note}
+### [Coding Style](coding_style.qmd)
+Styling your code in a consistent way makes it easier to read and understand. Having
+agreed conventions makes it easier to locate and maintain code. Writing code well is about
+helping future developers.
+:::
+
+::::
+
+:::: {.g-col-6}
+
+::: {.callout-note}
+### [Recommended Packages](recommended_packages.qmd)
+Specifying recommended packages ensures the same approach is taken across projects. If all
+the team use the same packages, then it is much easier for members to work across
+projects.
+:::
+
+::::
+
+:::::
+
+## Medium Criticality
+
+::::: {.grid}
+
+:::: {.g-col-6}
+
+::: {.callout-warning}
+### [Factoring](factoring.qmd)
+As code gets more complicated a large script becomes harder to understand and maintain.
+Variables defined at the top of the scripts may be used much later, so when making changes
+it becomes difficult to understand the consequences. In this case it is time to split the
+code up into smaller pieces, also known as factoring.
+:::
+
+::::
+
+:::: {.g-col-6}
+
+::: {.callout-warning}
+### [Patterns](patterns.qmd)
+When you work on many projects, you start to see repeated patterns emerging. This
+generally starts as similar snippets of code or copying code from one project to another.
+It is worth specifying the approach all projects should take. Even better, the approach
+can be captured in a function or functions and added to an internal package.
+:::
+
+::::
+
+:::::
+
+## High Criticality
+
+::: {.callout-important}
+### [Project Structure](project_structure.qmd)
+For critical processes it is important the code is structured in an organised and
+consistent manner. For example, Python code should be broken up into functions or classes
+with methods and stored in a folder of modules. Each file should have a test script,
+testing the functions and methods it contains in the tests folder.
+:::

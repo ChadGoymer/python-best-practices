@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Python Best Practices"
+  navbar:
+    background: primary
+    left:
+      - coding_standards.qmd
+  sidebar:
+    contents:
+      - text: "Python Best Practices"
+        href: index.qmd
+      - section: "Coding Standards"
+        href: coding_standards.qmd
+        contents:
+          - coding_style.qmd
+          - recommended_packages.qmd
+          - factoring.qmd
+          - patterns.qmd
+          - project_structure.qmd
+
+format:
+  html:
+    theme: bootstrap
+    toc: true

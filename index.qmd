@@ -1,0 +1,193 @@
+---
+title: "Python Best Practices"
+---
+
+## Motivation
+
+Following best practice guidelines requires extra effort, so why should we spend more time
+ensuring a project meets the requirements?
+
+::::: {.grid}
+
+:::: {.g-col-4}
+
+::: {.callout-caution}
+## Collaboration
+It is easier for others, and your future self, to understand your work.
+:::
+
+::::
+
+:::: {.g-col-4}
+
+::: {.callout-caution}
+## Accuracy
+Code has fewer bugs, and everyone has more confidence about the results.
+:::
+
+::::
+
+:::: {.g-col-4}
+
+::: {.callout-caution}
+## Reliability
+Code is more likely to run consistently across users and over time.
+:::
+
+::::
+
+:::: {.g-col-4}
+
+::: {.callout-caution}
+## Maintenance
+Making future changes, and fixing bugs, is much easier and quicker.
+:::
+
+::::
+
+:::: {.g-col-4}
+
+::: {.callout-caution}
+## Security
+Who can view and edit the code and data is controlled, and everything is backed up.
+:::
+
+::::
+
+:::: {.g-col-4}
+
+::: {.callout-caution}
+## Regulatory
+The Bank of England [identifies end-user computing as a risk](https://www.bankofengland.co.uk/-/media/boe/files/prudential-regulation/publication/solvency-ii-internal-model-approved-process-data-review-findings-09-02-2016.pdf?la=en&hash=873ED57439F79A32D0F00D7255BC0E436E9F85E5)
+that should be controlled.
+:::
+
+::::
+
+:::::
+
+## Best Practices
+
+In order to realise the benefits of using best practices, there are six areas to consider
+when creating, or updating, a project.
+
+::::: {.grid}
+
+:::: {.g-col-4}
+
+::: {.callout-tip}
+## [Coding Standards](coding_standards.qmd)
+
+Following coding standards makes projects easier to read and understand. Well-written code
+reduces the time to handover to others and for them to modify it.
+:::
+
+::::
+
+:::: {.g-col-4}
+
+::: {.callout-tip}
+## Documentation
+Documentation ensures everyone understands the code's purpose, what it does and how to use
+it effectively.
+:::
+
+::::
+
+:::: {.g-col-4}
+
+::: {.callout-tip}
+## Testing
+Testing ensures the code actually does what it intended. Test results should be recorded
+as evidence and repeated whenever any changes are made.
+:::
+
+::::
+
+:::: {.g-col-4}
+
+::: {.callout-tip}
+## Reproducibility
+Results should be reproducible by others, and your future self. This means keeping track
+of inputs, parameters, code and packages used to produce the same results.
+:::
+
+::::
+
+:::: {.g-col-4}
+
+::: {.callout-tip}
+## Change Control
+Changes to code are inevitable and should be managed. Changes must be understood by all
+parties, agreed, reviewed and approved. It should also be possible to easily revert
+changes.
+:::
+
+::::
+
+:::: {.g-col-4}
+
+::: {.callout-tip}
+## Access Control
+There should be controls on who has acccess to the code and who can execute it. Any
+storage used should have appropriate backup and disaster recovery in place.
+:::
+
+::::
+
+:::::
+
+## Application
+
+The degree to which the above points need to be addressed depends on the importance of the
+work. A process or application that is critical to reporting results to a regulator is
+subjected to more controls than a simple analysis that does not go beyond the team.
+
+Before we can decide what level of controls are required, we must assess the criticality
+of the project. Once the assessment is complete, the pages for each area of best practice
+(linked above) describe the minimum standards. The following can be used as a guide when
+assessing the criticality of a piece of work. If any of the bullets are true, then the
+project meets that level of assessment.
+
+::::: {.grid}
+
+:::: {.g-col-4}
+
+::: {.callout-note}
+## Low Criticality
+- Simple script of limited scope.
+- No dependencies, other than external packages.
+- Not used for decision making.
+- Not used outside the team.
+- Does not use sensitive data.
+:::
+
+::::
+
+:::: {.g-col-4}
+
+::: {.callout-warning}
+## Medium Criticality
+- Small project of a few scripts.
+- A few upstream or downstream dependencies.
+- Used for team decision making.
+- Used by other teams.
+- Uses sensitive data.
+:::
+
+::::
+
+:::: {.g-col-4}
+
+::: {.callout-important}
+## High Criticality
+- Large project or package of Multiple scripts.
+- Many upstream or downstream dependencies.
+- Used for senior leadership / executive decision making.
+- Used externally or for regulatory purposes.
+- Uses personal data.
+:::
+
+::::
+
+:::::

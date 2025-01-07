@@ -1,0 +1,41 @@
+color:
+  palette:
+    white: "#fafafa"
+    black: "#141414"
+    blue-1: "#1e35bf"
+    blue-2: "#282f54"
+    blue-3: "#0021a4"
+    blue-4: "#0a4bb7"
+    steel-1: "#a1a1a2"
+    steel-2: "#646569"
+    steel-3: "#d5d5d5"
+    concrete-1: "#949990"
+    concrete-2: "#717c7c"
+    red: "#ff5141"
+    orange: "#ff9425"
+    yellow: "#ffc729"
+    turquoise: "#00ccb8"
+    sky-blue: "#54a6ff"
+    light-blue: "#cce4f7"
+    violet: "#c724b1"
+  background: white
+  foreground: black
+  light: white
+  dark: black
+  primary: blue-4
+  secondary: steel-3
+  tertiary: steel-3
+  success: turquoise
+  warning: yellow
+  danger: red
+  info: sky-blue
+
+typography:
+  fonts:
+    - family: Arimo
+      source: google
+    - family: Fira Code
+      source: google
+  base: Arimo
+  headings: Arimo
+  monospace: Fira Code
