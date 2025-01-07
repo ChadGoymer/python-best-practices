@@ -4,12 +4,14 @@ title: "Coding Standards"
 
 When writing code in any language it is important to follow coding standards. They make it
 easier to read and understand the code. New starters will be able to learn how projects
-work faster, which reduces key-person dependencies. Python has some standard approaches to
-building projects, which then give you access to useful tools to aid in development, so
-they should be used wherever possible. Python has a very large number of packages, and
-sometimes more than one for the same job. Having a set of recommended packages ensures
-consistency across projects. When common patterns are identified across projects, they
-should be extracted into packages themselves so they can be shared easily.
+work faster, which reduces key-person dependencies.
+
+Python has some standard approaches to building projects, which then give you access to
+useful tools to aid in development, so they should be used wherever possible. Python has a
+very large number of packages, and sometimes more than one for the same job. Having a set
+of recommended packages ensures consistency across projects. When common patterns are
+identified across projects, they should be extracted into packages themselves so they can
+be shared easily.
 
 Each section details the minimum standards, based on the criticality of the project. The
 standards are cumulative, so medium criticality must meet both medium and low standards.
@@ -22,10 +24,9 @@ standards are cumulative, so medium criticality must meet both medium and low st
 
 ::: {.callout-note}
 ### [Coding Style](coding_style.qmd)
-Styling your code in a consistent way makes it easier to read. Having agreed conventions
-for file, variable and function names, will make it easier to locate and use code. In
-addition, having spaces around operators and splitting up long lines make it easier to
-read.
+Styling your code in a consistent way makes it easier to read and understand. Having
+agreed conventions makes it easier to locate and maintain code. Writing code well is about
+helping future developers.
 :::
 
 ::::
@@ -52,7 +53,7 @@ projects.
 ::: {.callout-warning}
 ### [Factoring](factoring.qmd)
 As code gets more complicated a large script becomes harder to understand and maintain.
-Variables defined at the top of the scripts may be used much later so when making changes
+Variables defined at the top of the scripts may be used much later, so when making changes
 it becomes difficult to understand the consequences. In this case it is time to split the
 code up into smaller pieces, also known as factoring.
 :::

@@ -21,7 +21,8 @@ project. This ensures that all projects follow the same structure and code patte
 Examples of existing patterns we use include:
 
 1. [lloydsdb](lloydsdb.qmd): lloydsdb is a package that provides a common way to read and
-   write data from a Lloyd's database.
+   write data from a Lloyd's database. It also contains a general approach for running
+   processes and capturing outputs and an audit trail.
 1. [lloydsbrand](lloydsbrand.qmd): lloydsbrand is a package that provides styling and
    formatting option for applications and reports, so they follow Lloyd's brand
    guidelines.
