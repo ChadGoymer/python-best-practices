@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Python Best Practices</title>
+<title>Project Structure – Python Best Practices</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Python Best Practices</span>
     </a>
   </div>
@@ -88,11 +122,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./coding-standards/index.html" aria-current="page"> 
+    <a class="nav-link active" href="../coding-standards/index.html" aria-current="page"> 
 <span class="menu-text">Coding Standards</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./documentation/index.html"> 
+    <a class="nav-link" href="../documentation/index.html"> 
 <span class="menu-text">Documentation</span></a>
   </li>  
 </ul>
@@ -106,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Python Best Practices</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../coding-standards/index.html">Coding Standards</a></li><li class="breadcrumb-item"><a href="../coding-standards/project-structure.html">Project Structure</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -120,13 +154,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python Best Practices</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./coding-standards/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../coding-standards/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Coding Standards</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -135,37 +169,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./coding-standards/coding-style.html" class="sidebar-item-text sidebar-link">
+  <a href="../coding-standards/coding-style.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Coding Style</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./coding-standards/recommended-packages.html" class="sidebar-item-text sidebar-link">
+  <a href="../coding-standards/recommended-packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Recommended Packages</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./coding-standards/factoring.html" class="sidebar-item-text sidebar-link">
+  <a href="../coding-standards/factoring.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Factoring</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./coding-standards/recommended-packages.html" class="sidebar-item-text sidebar-link">
+  <a href="../coding-standards/recommended-packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Recommended Packages</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./coding-standards/design-patterns.html" class="sidebar-item-text sidebar-link">
+  <a href="../coding-standards/design-patterns.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Design Patterns</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./coding-standards/project-structure.html" class="sidebar-item-text sidebar-link">
+  <a href="../coding-standards/project-structure.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Project Structure</span></a>
   </div>
 </li>
@@ -173,7 +207,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./documentation/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../documentation/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Documentation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -182,37 +216,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./documentation/markdown.html" class="sidebar-item-text sidebar-link">
+  <a href="../documentation/markdown.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Markdown</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./documentation/readme.html" class="sidebar-item-text sidebar-link">
+  <a href="../documentation/readme.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">README</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./documentation/docstrings.html" class="sidebar-item-text sidebar-link">
+  <a href="../documentation/docstrings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Docstrings</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./documentation/process-scripts.html" class="sidebar-item-text sidebar-link">
+  <a href="../documentation/process-scripts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Process Scripts</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./documentation/projects.html" class="sidebar-item-text sidebar-link">
+  <a href="../documentation/projects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Projects</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./documentation/changelog.html" class="sidebar-item-text sidebar-link">
+  <a href="../documentation/changelog.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Change Log</span></a>
   </div>
 </li>
@@ -228,18 +262,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation">Motivation</a></li>
-  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices">Best Practices</a></li>
-  <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application">Application</a></li>
+  <li><a href="#application-structure" id="toc-application-structure" class="nav-link active" data-scroll-target="#application-structure">Application Structure</a></li>
+  <li><a href="#library-structure" id="toc-library-structure" class="nav-link" data-scroll-target="#library-structure">Library Structure</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../coding-standards/index.html">Coding Standards</a></li><li class="breadcrumb-item"><a href="../coding-standards/project-structure.html">Project Structure</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Python Best Practices</h1>
+<h1 class="title">Project Structure</h1>
 </div>
 
 
@@ -256,267 +289,80 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="motivation" class="level2">
-<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
-<p>Following best practice guidelines requires extra effort, so why should we spend more time ensuring a project meets the requirements?</p>
-<div class="grid">
-<div class="g-col-4">
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Collaboration
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>It is easier for others, and your future self, to understand your work.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Accuracy
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Code has fewer bugs, and everyone has more confidence about the results.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Reliability
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Code is more likely to run consistently across users and over time.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Maintenance
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Making future changes, and fixing bugs, is much easier and quicker.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Security
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Who can view and edit the code and data is controlled, and everything is backed up.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Regulatory
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The Bank of England <a href="https://www.bankofengland.co.uk/-/media/boe/files/prudential-regulation/publication/solvency-ii-internal-model-approved-process-data-review-findings-09-02-2016.pdf?la=en&amp;hash=873ED57439F79A32D0F00D7255BC0E436E9F85E5">identifies end-user computing as a risk</a> that should be controlled.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="best-practices" class="level2">
-<h2 class="anchored" data-anchor-id="best-practices">Best Practices</h2>
-<p>In order to realise the benefits of using best practices, there are six areas to consider when creating, or updating, a project.</p>
-<div class="grid">
-<div class="g-col-4">
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<a href="./coding-standards/index.html">Coding Standards</a>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Following coding standards makes projects easier to read and understand. Well-written code reduces the time to handover to others and for them to modify it.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<a href="documentation/index.html">Documentation</a>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Documentation ensures everyone understands the code’s purpose, what it does and how to use it effectively.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Testing
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Testing ensures the code actually does what it intended. Test results should be recorded as evidence and repeated whenever any changes are made.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Reproducibility
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Results should be reproducible by others, and your future self. This means keeping track of inputs, parameters, code and packages used to produce the same results.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Change Control
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Changes to code are inevitable and should be managed. Changes must be understood by all parties, agreed, reviewed and approved. It should also be possible to easily revert changes.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Access Control
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>There should be controls on who has acccess to the code and who can execute it. Any storage used should have appropriate backup and disaster recovery in place.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="application" class="level2">
-<h2 class="anchored" data-anchor-id="application">Application</h2>
-<p>The degree to which the above points need to be addressed depends on the importance of the work. A process or application that is critical to reporting results to a regulator is subjected to more controls than a simple analysis that does not go beyond the team.</p>
-<p>Before we can decide what level of controls are required, we must assess the criticality of the project. Once the assessment is complete, the pages for each area of best practice (linked above) describe the minimum standards. The following can be used as a guide when assessing the criticality of a piece of work. If any of the bullets are true, then the project meets that level of assessment.</p>
-<div class="grid">
-<div class="g-col-4">
+<p>Project structure in Python depends on whether you are creating an application or a package. The project manager app <a href="https://docs.astral.sh/uv/">uv</a> simplifies the process of creating a project structure. For critical processes, it is important that the code is structured in an organised and consistent manner. For example, Python code should be broken up into functions or classes with methods and stored in a folder of modules. Each file should have a test script, testing the functions and methods it contains in the tests folder.</p>
+<section id="application-structure" class="level2">
+<h2 class="anchored" data-anchor-id="application-structure">Application Structure</h2>
+<p>An application is a standalone program that is run from the command line or a GUI. The structure of an application is similar to a package, but with a few differences. The main difference is that an application has a run script that is used to start the application. The run script is the entry point to the application and is used to load the modules and call the functions.</p>
+<p>To create an application structure, use <a href="../reproducibility/project-management/uv.qmd">uv</a> within PowerShell:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>uv init example-app</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This creates a folder called <code>example-app</code> with the following structure:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tree example-app</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>example-app</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>├── <span class="op">.</span><span class="fu">python_version</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>├── README<span class="op">.</span><span class="fu">md</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>├── hello<span class="op">.</span><span class="fu">py</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>└── pyproject<span class="op">.</span><span class="fu">toml</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>.python_version</code> file specifies the version of Python to use. The <code>README.md</code> file should be used to document the application. The <code>hello.py</code> file is the main module of the application. If you are buiding a Shiny app, you would replace or rename this <code>app.py</code>. The <code>pyproject.toml</code> file is used to specify the metadata for the application.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Low Criticality
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li>Simple script of limited scope.</li>
-<li>No dependencies, other than external packages.</li>
-<li>Not used for decision making.</li>
-<li>Not used outside the team.</li>
-<li>Does not use sensitive data.</li>
-</ul>
+<p>uv determines the version of Python to use based on installed versions. If you have more than one Python installation, it is a good idea to specify the version to use when creating the project. For example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>uv init example-app <span class="op">--</span>python <span class="dv">3.12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Medium Criticality
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Small project of a few scripts.</li>
-<li>A few upstream or downstream dependencies.</li>
-<li>Used for team decision making.</li>
-<li>Used by other teams.</li>
-<li>Uses sensitive data.</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-High Criticality
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Large project or package of Multiple scripts.</li>
-<li>Many upstream or downstream dependencies.</li>
-<li>Used for senior leadership / executive decision making.</li>
-<li>Used externally or for regulatory purposes.</li>
-<li>Uses personal data.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
+<p>The pyproject.toml file contains the metadata below, you should update the description.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"example-app"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Add your description here"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.11"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When adding code to the appication, there should be a simple top-level scripts for running the processes or application. These should not contain any logic, instead they should import functions from modules stored in folders and call them in order. Parameters or constants should be cearly defined at the top of these scripts.</p>
+<p>To define modules, create a suitably named folder and .py file within. Define any functions, classes and methods, within that file. In order to import, the function you must also create a <strong>init</strong>.py file within the folder. The <strong>init</strong>.py does not need to contain anything, but if you want to limit the functions, classes and methods available outside the module, you can specify them here. For example, if your project structure looks like:</p>
+<pre><code>example-app
+├── .python_version
+├── README.md
+├── main.py
+├── pyproject.toml
+└── some_module
+    ├── __init__.py
+    └── some_file</code></pre>
+<p>Then you can specify the functions and classes to make available in the __init_.py using:</p>
+<p><code>some_module/__init__.py</code></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .some_file <span class="im">import</span> some_function</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .some_file <span class="im">import</span> SomeClass</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then you can import them in your main.py script using:</p>
+<p><code>main.py</code></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> some_module</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>some_module.some_function()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>some_module.SomeClass()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For <a href="shiny.qmd">Shiny</a> applications, we use the the project structure defined by <a href="https://appsilon.github.io/tapyr-docs/">Tapyr</a>.</p>
+</section>
+<section id="library-structure" class="level2">
+<h2 class="anchored" data-anchor-id="library-structure">Library Structure</h2>
+<p>A library provides functions and objects for other projects to consume. Libraries are intended to be built and distributed, e.g., by uploading them to <a href="package_manager.qmd">Package Manager</a>.</p>
+<p>Libraries can be created by using the –lib flag:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>uv init <span class="op">--</span>lib example-lib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A <code>src</code> layout is used to ensure that the library is isolated from any python invocations in the project root and that distributed library code is well separated from the rest of the project source.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tree example-lib</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>example-lib</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>├── <span class="op">.</span><span class="fu">python_version</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>├── README<span class="op">.</span><span class="fu">md</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>├── pyproject<span class="op">.</span><span class="fu">toml</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>└── src</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    └── example_lib</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        ├── py<span class="op">.</span><span class="fu">typed</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        └── __init__<span class="op">.</span><span class="fu">py</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For more details on building packages, see <a href="../packages/building-packages.qmd">building packages</a></p>
 
 
 </section>
