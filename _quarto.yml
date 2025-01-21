@@ -22,12 +22,15 @@ website:
           - coding-standards/recommended-packages.qmd
           - coding-standards/design-patterns.qmd
           - coding-standards/project-structure.qmd
+      - section: "Documentation"
+        href: documentation/index.qmd
         contents:
-          - coding_style.qmd
-          - recommended_packages.qmd
-          - factoring.qmd
-          - patterns.qmd
-          - project_structure.qmd
+          - documentation/markdown.qmd
+          - documentation/readme.qmd
+          - documentation/docstrings.qmd
+          - documentation/process-scripts.qmd
+          - documentation/projects.qmd
+          - documentation/changelog.qmd
 
 format:
   html:
