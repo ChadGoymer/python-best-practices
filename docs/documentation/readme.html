@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Python Best Practices</title>
+<title>README – Python Best Practices</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Python Best Practices</span>
     </a>
   </div>
@@ -88,11 +122,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./coding-standards/index.html" aria-current="page"> 
+    <a class="nav-link active" href="../coding-standards/index.html" aria-current="page"> 
 <span class="menu-text">Coding Standards</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./documentation/index.html"> 
+    <a class="nav-link" href="../documentation/index.html"> 
 <span class="menu-text">Documentation</span></a>
   </li>  
 </ul>
@@ -106,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Python Best Practices</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../documentation/index.html">Documentation</a></li><li class="breadcrumb-item"><a href="../documentation/readme.html">README</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -120,13 +154,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python Best Practices</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./coding-standards/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../coding-standards/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Coding Standards</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -135,37 +169,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./coding-standards/coding-style.html" class="sidebar-item-text sidebar-link">
+  <a href="../coding-standards/coding-style.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Coding Style</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./coding-standards/recommended-packages.html" class="sidebar-item-text sidebar-link">
+  <a href="../coding-standards/recommended-packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Recommended Packages</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./coding-standards/factoring.html" class="sidebar-item-text sidebar-link">
+  <a href="../coding-standards/factoring.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Factoring</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./coding-standards/recommended-packages.html" class="sidebar-item-text sidebar-link">
+  <a href="../coding-standards/recommended-packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Recommended Packages</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./coding-standards/design-patterns.html" class="sidebar-item-text sidebar-link">
+  <a href="../coding-standards/design-patterns.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Design Patterns</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./coding-standards/project-structure.html" class="sidebar-item-text sidebar-link">
+  <a href="../coding-standards/project-structure.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project Structure</span></a>
   </div>
 </li>
@@ -173,7 +207,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./documentation/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../documentation/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Documentation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -182,37 +216,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./documentation/markdown.html" class="sidebar-item-text sidebar-link">
+  <a href="../documentation/markdown.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Markdown</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./documentation/readme.html" class="sidebar-item-text sidebar-link">
+  <a href="../documentation/readme.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">README</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./documentation/docstrings.html" class="sidebar-item-text sidebar-link">
+  <a href="../documentation/docstrings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Docstrings</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./documentation/process-scripts.html" class="sidebar-item-text sidebar-link">
+  <a href="../documentation/process-scripts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Process Scripts</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./documentation/projects.html" class="sidebar-item-text sidebar-link">
+  <a href="../documentation/projects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Projects</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./documentation/changelog.html" class="sidebar-item-text sidebar-link">
+  <a href="../documentation/changelog.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Change Log</span></a>
   </div>
 </li>
@@ -228,18 +262,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation">Motivation</a></li>
-  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices">Best Practices</a></li>
-  <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application">Application</a></li>
+  <li><a href="#writing-effective-readme-files" id="toc-writing-effective-readme-files" class="nav-link active" data-scroll-target="#writing-effective-readme-files">Writing Effective README Files</a></li>
+  <li><a href="#what-is-a-readme" id="toc-what-is-a-readme" class="nav-link" data-scroll-target="#what-is-a-readme">What is a README?</a></li>
+  <li><a href="#why-is-a-readme-important" id="toc-why-is-a-readme-important" class="nav-link" data-scroll-target="#why-is-a-readme-important">Why is a README Important?</a></li>
+  <li><a href="#essential-elements-of-a-readme" id="toc-essential-elements-of-a-readme" class="nav-link" data-scroll-target="#essential-elements-of-a-readme">Essential Elements of a README</a></li>
+  <li><a href="#formatting-and-style" id="toc-formatting-and-style" class="nav-link" data-scroll-target="#formatting-and-style">Formatting and Style</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../documentation/index.html">Documentation</a></li><li class="breadcrumb-item"><a href="../documentation/readme.html">README</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Python Best Practices</h1>
+<h1 class="title">README</h1>
 </div>
 
 
@@ -256,267 +292,68 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="motivation" class="level2">
-<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
-<p>Following best practice guidelines requires extra effort, so why should we spend more time ensuring a project meets the requirements?</p>
-<div class="grid">
-<div class="g-col-4">
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Collaboration
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>It is easier for others, and your future self, to understand your work.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Accuracy
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Code has fewer bugs, and everyone has more confidence about the results.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Reliability
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Code is more likely to run consistently across users and over time.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Maintenance
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Making future changes, and fixing bugs, is much easier and quicker.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Security
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Who can view and edit the code and data is controlled, and everything is backed up.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Regulatory
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The Bank of England <a href="https://www.bankofengland.co.uk/-/media/boe/files/prudential-regulation/publication/solvency-ii-internal-model-approved-process-data-review-findings-09-02-2016.pdf?la=en&amp;hash=873ED57439F79A32D0F00D7255BC0E436E9F85E5">identifies end-user computing as a risk</a> that should be controlled.</p>
-</div>
-</div>
-</div>
-</div>
+<section id="writing-effective-readme-files" class="level2">
+<h2 class="anchored" data-anchor-id="writing-effective-readme-files">Writing Effective README Files</h2>
+<p>A well-written README file is the first impression your project makes. It’s the landing page for your repository, providing essential information to potential users and contributors. A clear, concise, and informative README can significantly impact the adoption and success of your project. This article outlines the key elements of a great README.</p>
 </section>
-<section id="best-practices" class="level2">
-<h2 class="anchored" data-anchor-id="best-practices">Best Practices</h2>
-<p>In order to realise the benefits of using best practices, there are six areas to consider when creating, or updating, a project.</p>
-<div class="grid">
-<div class="g-col-4">
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<a href="./coding-standards/index.html">Coding Standards</a>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Following coding standards makes projects easier to read and understand. Well-written code reduces the time to handover to others and for them to modify it.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<a href="documentation/index.html">Documentation</a>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Documentation ensures everyone understands the code’s purpose, what it does and how to use it effectively.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Testing
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Testing ensures the code actually does what it intended. Test results should be recorded as evidence and repeated whenever any changes are made.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Reproducibility
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Results should be reproducible by others, and your future self. This means keeping track of inputs, parameters, code and packages used to produce the same results.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Change Control
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Changes to code are inevitable and should be managed. Changes must be understood by all parties, agreed, reviewed and approved. It should also be possible to easily revert changes.</p>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Access Control
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>There should be controls on who has acccess to the code and who can execute it. Any storage used should have appropriate backup and disaster recovery in place.</p>
-</div>
-</div>
-</div>
-</div>
+<section id="what-is-a-readme" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-a-readme">What is a README?</h2>
+<p>A README file (typically named <code>README.md</code>) is a plain text file that provides an overview of your project. It’s the first thing visitors see when they land on your project’s repository on GitHub.</p>
 </section>
-<section id="application" class="level2">
-<h2 class="anchored" data-anchor-id="application">Application</h2>
-<p>The degree to which the above points need to be addressed depends on the importance of the work. A process or application that is critical to reporting results to a regulator is subjected to more controls than a simple analysis that does not go beyond the team.</p>
-<p>Before we can decide what level of controls are required, we must assess the criticality of the project. Once the assessment is complete, the pages for each area of best practice (linked above) describe the minimum standards. The following can be used as a guide when assessing the criticality of a piece of work. If any of the bullets are true, then the project meets that level of assessment.</p>
-<div class="grid">
-<div class="g-col-4">
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Low Criticality
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="why-is-a-readme-important" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-a-readme-important">Why is a README Important?</h2>
 <ul>
-<li>Simple script of limited scope.</li>
-<li>No dependencies, other than external packages.</li>
-<li>Not used for decision making.</li>
-<li>Not used outside the team.</li>
-<li>Does not use sensitive data.</li>
+<li><strong>First Impression:</strong> It’s the initial introduction to your project, so it needs to be clear, concise, and engaging.</li>
+<li><strong>Onboarding Users:</strong> It guides users on how to install, use, and contribute to your project.</li>
+<li><strong>Attracting Contributors:</strong> A good README can encourage others to contribute to your project by providing clear guidelines.</li>
+<li><strong>Documentation Entry Point:</strong> It serves as a starting point for more detailed documentation.</li>
 </ul>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Medium Criticality
-</div>
-</div>
-<div class="callout-body-container callout-body">
+</section>
+<section id="essential-elements-of-a-readme" class="level2">
+<h2 class="anchored" data-anchor-id="essential-elements-of-a-readme">Essential Elements of a README</h2>
+<ol type="1">
+<li><p><strong>Project Title and Short Description:</strong> Start with the project’s name in a prominent heading (e.g., <code># My Project</code>). Immediately follow with a brief, one-sentence description of what the project does.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Awesome Python Library</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>A powerful and easy-to-use library for data analysis.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Installation Instructions:</strong> Clearly explain how to install your package. This usually involves using <code>pip</code> or <code>uv</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Installation</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install your-package</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>or</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add your-package</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If there are any dependencies or specific system requirements, mention them here.</p></li>
+<li><p><strong>Usage Examples:</strong> Provide concise and practical examples demonstrating how to use your library. Code blocks are essential for this:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> your_package</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> your_package.load_data(<span class="st">"data.csv"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> your_package.analyze(data)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you have more extensive examples, consider linking to a separate examples directory or documentation site.</p></li>
+<li><p><strong>Documentation Link:</strong> If you have more detailed documentation (generated by mkdocs, for example), provide a link to it.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Documentation</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Full documentation can be found at</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">https://connect/docs/projects</span><span class="co">](https://connect/docs/projects)</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="formatting-and-style" class="level2">
+<h2 class="anchored" data-anchor-id="formatting-and-style">Formatting and Style</h2>
 <ul>
-<li>Small project of a few scripts.</li>
-<li>A few upstream or downstream dependencies.</li>
-<li>Used for team decision making.</li>
-<li>Used by other teams.</li>
-<li>Uses sensitive data.</li>
+<li><strong>Use Markdown:</strong> Markdown is the preferred format for README files on most platforms. It’s easy to read and write and supports basic formatting like headings, lists, code blocks, and links.</li>
+<li><strong>Keep it Concise:</strong> Avoid unnecessary jargon or overly long explanations. Get to the point quickly.</li>
+<li><strong>Use Headings and Subheadings:</strong> Structure your README with clear headings and subheadings to make it easy to navigate.</li>
+<li><strong>Use Code Blocks:</strong> Use code blocks (using triple backticks ```) to display code examples clearly.</li>
+<li><strong>Use Lists:</strong> Use lists for enumerating items or steps.</li>
+<li><strong>Proofread Carefully:</strong> Ensure your README is free of typos and grammatical errors.</li>
 </ul>
-</div>
-</div>
-</div>
-<div class="g-col-4">
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-High Criticality
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Large project or package of Multiple scripts.</li>
-<li>Many upstream or downstream dependencies.</li>
-<li>Used for senior leadership / executive decision making.</li>
-<li>Used externally or for regulatory purposes.</li>
-<li>Uses personal data.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
+<p>By following these guidelines, you can create a compelling and informative README file that will help users and contributors understand and engage with your Python project. Remember, a good README is an investment that pays off in the long run.</p>
 
 
 </section>

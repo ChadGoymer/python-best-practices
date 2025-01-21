@@ -122,7 +122,7 @@ def function(
   most cases. Comments should focus on why the code is written in a certain way, not what
   the code does.
 - For complicated code, split it into functions, classes and methods and use
-  [docstrings](documentation.qmd) to document them instead.
+  [docstrings](../documentation/index.qmd) to document them instead.
 
 ### Whitespace
 

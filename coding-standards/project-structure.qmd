@@ -18,7 +18,8 @@ difference is that an application has a run script that is used to start the app
 The run script is the entry point to the application and is used to load the modules and
 call the functions.
 
-To create an application structure, use uv within PowerShell:
+To create an application structure, use [uv](../reproducibility/project-management/uv.qmd)
+within PowerShell:
 
 ```powershell
 uv init example-app
@@ -63,7 +64,48 @@ requires-python = ">=3.11"
 dependencies = []
 ```
 
-See [Shiny](shiny.qmd) For more details on the project structure for Shiny applications.
+When adding code to the appication, there should be a simple top-level scripts for running
+the processes or application. These should not contain any logic, instead they should
+import functions from modules stored in folders and call them in order. Parameters or
+constants should be cearly defined at the top of these scripts.
+
+To define modules, create a suitably named folder and .py file within. Define any
+functions, classes and methods, within that file. In order to import, the function you
+must also create a __init__.py file within the folder. The __init__.py does not need to
+contain anything, but if you want to limit the functions, classes and methods available
+outside the module, you can specify them here. For example, if your project structure
+looks like:
+
+```
+example-app
+├── .python_version
+├── README.md
+├── main.py
+├── pyproject.toml
+└── some_module
+    ├── __init__.py
+    └── some_file
+```
+Then you can specify the functions and classes to make available in the __init_.py using:
+
+`some_module/__init__.py`
+```python
+from .some_file import some_function
+from .some_file import SomeClass
+```
+
+Then you can import them in your main.py script using:
+
+`main.py`
+```python
+import some_module
+
+some_module.some_function()
+some_module.SomeClass()
+```
+
+For [Shiny](shiny.qmd) applications, we use the the project structure defined by
+[Tapyr](https://appsilon.github.io/tapyr-docs/).
 
 ## Library Structure
 
@@ -92,3 +134,6 @@ example-lib
         ├── py.typed
         └── __init__.py
 ```
+
+For more details on building packages, see
+[building packages](../packages/building-packages.qmd)

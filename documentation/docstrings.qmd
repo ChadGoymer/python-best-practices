@@ -1,0 +1,174 @@
+---
+title: Docstrings
+---
+
+## Documenting Python Functions and Classes with Docstrings
+
+Well-documented code is crucial for maintainability, collaboration, and usability. NumPy
+style docstrings offer a standardized and readable format for documenting Python functions
+and classes, making your code easier to understand and use. This article provides a
+detailed guide on how to effectively document your Python code using this style.
+
+## What are Docstrings?
+
+NumPy style docstrings are a convention for writing documentation within Python code,
+popularized by the NumPy and SciPy projects. They provide a structured format that clearly
+outlines the purpose, parameters, return values, and other essential details of functions
+and classes.
+
+## Structure of a NumPy Style Docstring:
+
+A NumPy style docstring is a multi-line string enclosed in triple quotes
+(`"""Docstring goes here"""`). It typically follows this structure:
+
+1.  **Short Summary:** A concise one-line description of the object.
+2.  **Extended Summary (Optional):** A more detailed explanation of the object's purpose
+    and functionality.
+3.  **Parameters:** Describes the function's parameters, including their names, types, and
+    descriptions.
+4.  **Returns:** Describes the value returned by the function, including its type and a
+    description.
+5.  **Yields (for Generators):** Describes the values yielded by a generator function.
+6.  **Raises:** Lists any exceptions that the function might raise.
+7.  **See Also:** Provides links to related functions, classes, or modules.
+8.  **Notes (Optional):** Contains additional information or caveats about the object.
+9.  **References (Optional):** Lists any relevant references or publications.
+10. **Examples:** Demonstrates how to use the object with executable code examples
+    (doctests).
+
+## Documenting Functions:
+
+Here's an example of a function documented using NumPy style:
+
+```python
+import numpy as np
+
+def calculate_area(length, width):
+    """
+    Calculates the area of a rectangle.
+
+    Parameters
+    ----------
+    length : float or int
+        The length of the rectangle.
+    width : float or int
+        The width of the rectangle.
+
+    Returns
+    -------
+    float
+        The area of the rectangle.
+
+    Raises
+    ------
+    TypeError
+        If either `length` or `width` is not a number.
+    ValueError
+        If either `length` or `width` is negative.
+
+    See Also
+    --------
+    calculate_perimeter : Calculates the perimeter of a rectangle.
+
+    Examples
+    --------
+    >>> calculate_area(5, 10)
+    50.0
+    >>> calculate_area(3.5, 7)
+    24.5
+    """
+    if not isinstance(length, (int, float)) or not isinstance(width, (int, float)):
+        raise TypeError("Length and width must be numbers.")
+    if length < 0 or width < 0:
+        raise ValueError("Length and width must be non-negative.")
+    return float(length * width)
+```
+
+### Key elements explained:
+
+*   **Parameters:** The `Parameters` section clearly lists each parameter with its type
+    and a brief description.
+*   **Returns:** The `Returns` section specifies the type and a description of the
+    returned value.
+*   **Raises:** The `Raises` section documents potential exceptions and the conditions
+    under which they are raised.
+*   **See Also:** The `See Also` section provides cross-references to related functions.
+*   **Examples:** The `Examples` section demonstrates how to use the function with
+    doctests, which are executable code examples.
+
+## Documenting Classes:
+
+Here's an example of a class documented using NumPy style:
+
+```python
+class Rectangle:
+    """
+    Represents a rectangle.
+
+    Attributes
+    ----------
+    length : float or int
+        The length of the rectangle.
+    width : float or int
+        The width of the rectangle.
+
+    Methods
+    -------
+    area()
+        Calculates the area of the rectangle.
+    perimeter()
+        Calculates the perimeter of the rectangle.
+
+    Examples
+    --------
+    >>> rect = Rectangle(5, 10)
+    >>> rect.area()
+    50.0
+    >>> rect.perimeter()
+    30.0
+    """
+
+    def __init__(self, length, width):
+        """
+        Initializes a Rectangle object.
+
+        Parameters
+        ----------
+        length : float or int
+            The length of the rectangle.
+        width : float or int
+            The width of the rectangle.
+        """
+        self.length = length
+        self.width = width
+
+    def area(self):
+        """
+        Calculates the area of the rectangle.
+
+        Returns
+        -------
+        float
+            The area of the rectangle.
+        """
+        return float(self.length * self.width)
+
+    def perimeter(self):
+        """
+        Calculates the perimeter of the rectangle.
+
+        Returns
+        -------
+        float
+            The perimeter of the rectangle.
+        """
+        return float(2 * (self.length + self.width))
+```
+
+### Key elements explained:
+
+*   **Attributes:** The `Attributes` section lists the class's attributes with their types
+    and descriptions.
+*   **Methods:** The `Methods` section lists the class's methods with brief descriptions.
+*   **Method Docstrings:** Each method also has its own docstring, following the same
+    NumPy style conventions as functions.

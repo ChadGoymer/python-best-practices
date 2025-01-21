@@ -1,0 +1,81 @@
+---
+title: Process Scripts
+---
+
+## What is a process script?
+
+When building and running processes, it is good practice to implement all the logic in
+functions, classes and methods (see [../coding-standards/factoring.qmd]). Running the
+process then becomes a series of steps, each calling a function or method. These steps
+should be detailed in a high-level process script.
+
+::: {.callout-note}
+A process script should not contain any logic, it should just allow the user to set
+parameters and run the process by executing each step, one-by-one, or the whole process in
+a single step.
+:::
+
+## What format should a process script use?
+
+Quarto is a good format to use for process scripts. It allows you mix documentation and
+code so you can explain each step and guide the user and they can execute the code by
+running the cell.
+
+## Example
+
+````markdown
+# Awesome Process
+
+## Setup
+
+In order to run this process the following packages must be installed, using
+[uv](../reproducibility/project-management/uv.qmd):
+
+```powershell
+uv add polars lloydsdb
+```
+
+## Parameters
+
+Before running the process, review and update the following parameters:
+
+```python
+params = {
+    "return_year": 2024,
+    "min_yoa": 2014,
+    "threshold": 0.2,
+}
+```
+
+## Run Process
+
+### Read Required Data
+
+Read the reserving data from the reserving database.
+
+```python
+from reserving_flags import read_reserving_data
+
+reserving_data = read_reserving_data(params["return_year"], params["min_yoa"])
+```
+
+### Calculate Flags
+
+Calculate the flags given the suppied threshold.
+
+```python
+from reserving_flags import calculate_flags
+
+flags = calculate_flags(reserving_data, params["threshold"])
+```
+
+### Save Results
+
+Save results to the reserving database.
+
+```python
+from reserving_flags import save_flags
+
+save_flags(flags)
+```
+````

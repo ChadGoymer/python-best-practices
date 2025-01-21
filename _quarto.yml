@@ -7,19 +7,30 @@ website:
   navbar:
     background: primary
     left:
-      - coding_standards.qmd
+      - coding-standards/index.qmd
+      - documentation/index.qmd
   sidebar:
     contents:
       - text: "Python Best Practices"
         href: index.qmd
       - section: "Coding Standards"
-        href: coding_standards.qmd
+        href: coding-standards/index.qmd
         contents:
-          - coding_style.qmd
-          - recommended_packages.qmd
-          - factoring.qmd
-          - patterns.qmd
-          - project_structure.qmd
+          - coding-standards/coding-style.qmd
+          - coding-standards/recommended-packages.qmd
+          - coding-standards/factoring.qmd
+          - coding-standards/recommended-packages.qmd
+          - coding-standards/design-patterns.qmd
+          - coding-standards/project-structure.qmd
+      - section: "Documentation"
+        href: documentation/index.qmd
+        contents:
+          - documentation/markdown.qmd
+          - documentation/readme.qmd
+          - documentation/docstrings.qmd
+          - documentation/process-scripts.qmd
+          - documentation/projects.qmd
+          - documentation/changelog.qmd
 
 format:
   html:
