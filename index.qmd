@@ -76,7 +76,7 @@ when creating, or updating, a project.
 :::: {.g-col-4}
 
 ::: {.callout-tip}
-## [Coding Standards](coding_standards.qmd)
+## [Coding Standards](coding-standards/index.qmd)
 
 Following coding standards makes projects easier to read and understand. Well-written code
 reduces the time to handover to others and for them to modify it.
@@ -87,7 +87,7 @@ reduces the time to handover to others and for them to modify it.
 :::: {.g-col-4}
 
 ::: {.callout-tip}
-## Documentation
+## [Documentation](documentation/index.html)
 Documentation ensures everyone understands the code's purpose, what it does and how to use
 it effectively.
 :::
