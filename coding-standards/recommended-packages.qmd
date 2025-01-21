@@ -5,9 +5,9 @@ title: "Recommended Packages"
 ## Data Wrangling
 
 While [Pandas](https://pandas.pydata.org/docs/) is the most popular package for data
-wrangling in Python, and may be used, it is recommended to use [Polars](https://docs.pola.rs/)
-instead. Polars is more performant and has more readable syntax. It is built to chain
-methods in an elegant way, for example:
+wrangling in Python, and may be used, it is recommended to use
+ [Polars](https://docs.pola.rs/) instead. Polars is more performant and has more readable
+ syntax. It is built to chain methods in an elegant way, for example:
 
 ```python
 import polars as pl
@@ -49,7 +49,7 @@ df.write_excel("data.xlsx", worksheet="Sheet2")
 ### Databases
 
 Polars can read and write to a database, if an appropriate connection is supplied. See
-[lloydsdb](lloydsdb.qmd) for more details.
+[lloydsdb](../packages/lloydsdb.qmd) for more details.
 
 ```python
 import polars as pl

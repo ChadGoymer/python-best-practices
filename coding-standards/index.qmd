@@ -23,7 +23,7 @@ standards are cumulative, so medium criticality must meet both medium and low st
 :::: {.g-col-6}
 
 ::: {.callout-note}
-### [Coding Style](coding_style.qmd)
+### [Coding Style](coding-style.qmd)
 Styling your code in a consistent way makes it easier to read and understand. Having
 agreed conventions makes it easier to locate and maintain code. Writing code well is about
 helping future developers.
@@ -34,7 +34,7 @@ helping future developers.
 :::: {.g-col-6}
 
 ::: {.callout-note}
-### [Recommended Packages](recommended_packages.qmd)
+### [Recommended Packages](recommended-packages.qmd)
 Specifying recommended packages ensures the same approach is taken across projects. If all
 the team use the same packages, then it is much easier for members to work across
 projects.
@@ -63,7 +63,37 @@ code up into smaller pieces, also known as factoring.
 :::: {.g-col-6}
 
 ::: {.callout-warning}
-### [Patterns](patterns.qmd)
+### [Recommended Software](recommended-software.qmd)
+To ensure a consistent across developers it is a good idea to define recommended software.
+This includes the IDE to use and any supporting software, such as version control, AI,
+etc. If everyone uses the same approach  it is easier to support new joiners and each
+other.
+:::
+
+::::
+
+:::::
+
+## High Criticality
+
+::::: {.grid}
+
+:::: {.g-col-6}
+
+::: {.callout-important}
+### [Project Structure](project-structure.qmd)
+For critical processes it is important the code is structured in an organised and
+consistent manner. For example, Python code should be broken up into functions or classes
+with methods and stored in a folder of modules. Each file should have a test script,
+testing the functions and methods it contains in the tests folder.
+:::
+
+::::
+
+:::: {.g-col-6}
+
+::: {.callout-important}
+### [Design Patterns](design-patterns.qmd)
 When you work on many projects, you start to see repeated patterns emerging. This
 generally starts as similar snippets of code or copying code from one project to another.
 It is worth specifying the approach all projects should take. Even better, the approach
@@ -73,13 +103,3 @@ can be captured in a function or functions and added to an internal package.
 ::::
 
 :::::
-
-## High Criticality
-
-::: {.callout-important}
-### [Project Structure](project_structure.qmd)
-For critical processes it is important the code is structured in an organised and
-consistent manner. For example, Python code should be broken up into functions or classes
-with methods and stored in a folder of modules. Each file should have a test script,
-testing the functions and methods it contains in the tests folder.
-:::
