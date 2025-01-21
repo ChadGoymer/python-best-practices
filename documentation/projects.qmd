@@ -1,0 +1,210 @@
+---
+title: "Projects"
+---
+
+## Documentating Projects with MkDocs
+
+MkDocs is a fast, simple, and beautiful static site generator geared towards building
+project documentation. It uses Markdown for content, making it easy to write and maintain.
+This article guides you through setting up MkDocs and using it to document your Python
+project.
+
+### 1. Installation
+
+It is recommended you install mkdocs with
+[uv](../reproducibility/project-management/uv.qmd) into the dev group. You can do this in
+Powershell using:
+
+```Powershell
+uv add --dev mkdocs "mkdocstrings[python]" mkdocs-material
+```
+
+- `mkdocstrings[python]` is a plugin that automatically generates API documentation from
+  your Python code's docstrings.
+- `mkdocs-material` is a highly recommended theme that provides a modern and responsive
+    look.
+
+### 2. Project Setup
+
+Navigate to your project's root directory in the terminal and initialize MkDocs:
+
+```Powershell
+mkdocs new . # The '.' creates the config files in the current directory
+```
+
+This creates two important files:
+
+*   `mkdocs.yml`: The main configuration file for MkDocs.
+*   `docs/index.md`: The main page of your documentation.
+
+## 3. Configuring `mkdocs.yml`
+
+Open `mkdocs.yml` and configure it according to your project's needs. Here's a basic
+configuration:
+
+```yaml
+site_name: Python Project
+site_url: "https://pages/github/mrc/python-project/"
+repo_url: "https://github/mrc/python-project/"
+docs_dir: mkdocs
+site_dir: docs
+
+theme:
+  name: material
+
+nav:
+  - index.md
+  - setup-guide.md
+  - how-to-use.md
+  - reference.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: numpy
+```
+
+Key configuration options:
+
+*   `site_name`: The name of your project.
+*   `site_url`: The URL where your documentation will be hosted.
+*   `repo_url`: The URL of your project's repository.
+*   `theme`: Specifies the theme to use (`material` is highly recommended).
+*   `nav`: Defines the navigation menu of your documentation.
+*   `plugins`: Enables plugins like the search plugin. `mkdocstrings` is required to
+    extract function and class documentation from docstrings.
+
+### 4. Writing Documentation in Markdown
+
+Edit the `docs/index.md` file to write the main content of your documentation. You can use
+standard [Markdown](markdown.qmd) syntax. The index page should provide an overview of
+your project, very similar (or identical) to the [README](readme.qmd).
+
+If the README is getting large, it is a good idea to split it up into smaller articles.
+Each one can be saved as a separate markdown file in the `docs` folder. Make sure you
+remember to add it to the `nav` in the configuration file, so a user can navigate to it.
+
+### 5. Rendering Docstrings
+
+API Reference documentation can be rendered by using `:::` followed by the path. For
+example, if you have implemented a function called `add()` with a docstring in
+`/calculator/calculations.py`, you can render the documentation in a markdown document
+using:
+
+```markdown
+## `add()`
+::: calculator.calculations.add
+```
+
+In addition to functions, classes and methods, docstrings can be used to document modules
+and packages. Module documenation should be added to the top of the file and describe the
+functions and classes in that script. For example:
+
+```markdown
+# calculator/calculations.py
+
+"""
+Provide several sample math calculations.
+
+This module allows the user to make mathematical calculations.
+
+Examples
+--------
+>>> from calculator import calculations
+>>> calculations.add(2, 4)
+6.0
+>>> calculations.multiply(2.0, 4.0)
+8.0
+>>> from calculator.calculations import divide
+>>> divide(4.0, 2)
+2.0
+
+The module contains the following functions:
+
+- `add(a, b)` - Returns the sum of two numbers.
+- `subtract(a, b)` - Returns the difference of two numbers.
+- `multiply(a, b)` - Returns the product of two numbers.
+- `divide(a, b)` - Returns the quotient of two numbers.
+"""
+```
+
+The above docstring, and all the function/class docstrings can then be reference in a
+markdown document using:
+
+```markdown
+::: calculator.calculations
+```
+
+Finally, package documentation should be written in the top-level __init__.py file. This
+should summarise the entire package. For example:
+
+```markdown
+# calculator/__init__.py
+
+"""
+Do math with your own functions.
+
+Modules exported by this package:
+
+- `calculations`: Provide several sample math calculations.
+"""
+```
+
+The above docstring can be rendered into a markdown document using:
+
+```markdown
+::: calculator
+```
+
+### 6. Building and Serving the Documentation
+
+To build the documentation, run:
+
+```Powershell
+mkdocs build
+```
+
+This will generate the static site in the `site` directory. To serve the documentation
+locally for development, run:
+
+```Powershell
+mkdocs serve
+```
+
+This starts a local development server that automatically reloads the documentation when
+you make changes.
+
+### 7. Deploying the Documentation
+
+There are several ways to deploy your MkDocs documentation:
+
+*   **GitHub Pages:** A simple option for hosting static websites directly from your
+    GitHub repository. Just set the pages options in GitHub to the 'site' folder. This is
+    useful for bleeding edge development documentation.
+
+*   **Posit Connect:** Posit Connect can host static websites. The can be deployed from
+    the UI. This is better for released documentation.
+
+## Example Project Structure
+
+```
+my-project/
+├── src
+|   ├── my_package/
+│   ├── __init__.py
+│   └── my_module.py
+├── mkdocs.yml
+├── docs/
+│   ├── index.md
+|   ├── setup-guide.md
+|   └── how-to-use.md
+└── setup.py
+```
+
+By following these steps, you can quickly and easily create beautiful and functional
+documentation for your Python projects using MkDocs and Markdown. The combination of
+simple Markdown syntax and powerful features like automatic API documentation makes MkDocs
+a great choice for many projects.
