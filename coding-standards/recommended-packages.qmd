@@ -62,26 +62,17 @@ df.write_database("NewTable",  connection=engine)
 
 ## Visualisation
 
-For static charts it is recommended to use [Seaborn](https://seaborn.pydata.org/). For
+For visualisation, it is recommended to use [Plotly](https://plotly.com/python/). For
 example:
 
-```{python}
-import seaborn as sns
-
-tips = sns.load_dataset("tips")
-sns.relplot(data=tips, x="total_bill", y="tip")
-```
-
-However, for interactive charts it is recommended to use
-[Plotly](https://plotly.com/python/) instead. For example:
-
-```{python}
+```python
 import plotly.express as px
 
 tips = px.data.tips()
 px.scatter(tips, x="total_bill", y="tip")
 ```
 
+![plotly example](/images/plotly_example.png)
 
 ## Reporting
 
