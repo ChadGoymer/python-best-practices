@@ -32,6 +32,15 @@ website:
           - documentation/process-scripts.qmd
           - documentation/projects.qmd
           - documentation/changelog.qmd
+      - section: "Testing"
+        href: testing/index.qmd
+        contents:
+          - testing/manual-tests.qmd
+          - testing/document-test-process.qmd
+          - testing/coded-tests.qmd
+          - testing/test-reports.qmd
+          - testing/test-coverage.qmd
+          - testing/validate-inputs.qmd
 
 format:
   html:
