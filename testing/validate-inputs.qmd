@@ -1,0 +1,318 @@
+---
+title: Validate Inputs
+---
+
+While not strictly testing, when creating production applications it is a good idea to
+validate inputs. This forms part of a software development practice called defensive
+programming, which anticipates potential errors and security issues, and handles them
+gracefully. This increases the overall quality, readability and predictability of the
+code.
+
+When deploying software for others to use, it is likely at some point someone will try to
+do something unexpected. Capturing those actions early, and giving the user a useful error
+message, will reduce the likelihood of support requests and, more importantly, incorrect
+results. While it is impossible to predict everything users my try, we can check the
+inputs to functions and methods conform to our expectations.
+
+For example, if we expect the argument `number_of_years` to be a positive integer, then
+we should check it. We could even set a range of allowed values, if you expect it to also
+be less than 20, say.
+
+## Type hints
+
+Python has builtin support for specifying the types of inputs using
+[type hints](https://docs.python.org/3/glossary.html#term-type-hint), for example:
+
+```python
+def syndicate_metric(syndicate: str, return_year: int, threshold: float = 0.05):
+    ...
+```
+
+The above function declares that it expects `syndicate` to be a string, `return_year` to
+be an integer, and `threshold` to be a float, with default value of `0.05`. While this is
+useful information to the user, it does not prevent them from supplying any types they
+like.
+
+For more complex types, the hints can use `[]` to add element types. For example, while
+`list` will check the argument is a list, `list[int]` will check whether it is a list of
+integers.
+
+```python
+def check_args(
+    list_of_strings: list[str],
+    tuple_of_int_and_str: tuple[str, int],
+    dictionary_of_strings: dict[str, str],
+    composite: Sequence[tuple[tuple[str, int], dict[str, str]]]
+):
+    ...
+```
+
+
+## Pydantic
+
+### Validating a function
+
+We could add validation to the above function, by explictly writing to code to check types
+and raise errors when appropriate. However, there is an easier (and faster) way. The
+package [`pydantic`](https://docs.pydantic.dev/), can add type validation. To install
+`pydantic` use `uv`:
+
+```powershell
+uv add pydantic
+```
+
+Then we can validate a function's arguments using the `validate_call` decorator. For
+example:
+
+```python
+# calculator/calculations.py
+from pydantic import validate_call
+
+@validate_call
+def add(a: float | int, b: float | int) -> float | int:
+    return a + b
+```
+
+When we execute the above function with invalid parameters, we get a `ValidationError`:
+
+```python
+import calculator as calc
+
+calc.add(3, "x")
+```
+```
+pydantic_core._pydantic_core.ValidationError: 2 validation errors for add
+1.float
+  Input should be a valid number [type=float_type, input_value='x', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/float_type
+1.int
+  Input should be a valid integer [type=int_type, input_value='x', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/int_type
+```
+
+### Argument Coercion
+
+What may be a surprise, is that `calc.add(3, "2")` results in `5`. This is because, by
+default pydantic will coerce arguments before execution. This is useful in a lot of
+circumstances. However, if you want the check to be strict, then use the `config`
+argument:
+
+```python
+# calculator/calculations.py
+from pydantic import ConfigDict, validate_call
+
+@validate_call(config=ConfigDict(strict=True))
+def add(a: float | int, b: float | int) -> float | int:
+    return a + b
+```
+
+Which also results in a `ValidationError`:
+
+```python
+import calculator as calc
+
+calc.add(3, "2")
+```
+```
+pydantic_core._pydantic_core.ValidationError: 2 validation errors for add
+1.float
+  Input should be a valid number [type=float_type, input_value='2', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/float_type
+1.int
+  Input should be a valid integer [type=int_type, input_value='2', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/int_type
+```
+
+### Validating Argument Values
+
+Pydantic also includes a number of
+[special types](https://docs.pydantic.dev/latest/api/types/) for validating the values as
+well as the types. For example, if you want to force `a` to be a positive integer, then
+you can use `PositiveInt`:
+
+```python
+# calculator/calculations.py
+from pydantic import ConfigDict, PositiveInt, validate_call
+
+@validate_call(config=ConfigDict(strict=True))
+def add(a: PositiveInt, b: float | int) -> float | int:
+    return a + b
+```
+
+You can also build arbitrary validation by annotating existing types using the `Annotated`
+class from the `typing_extensions` module, combined with `Field` from `pydantic`:
+
+```python
+from pydantic import Field, validate_call
+from typing_extensions import Annotated
+
+@validate_call
+def add(a: Annotated[float | int, Field(gt=0)], b: float | int) -> float | int:
+    return a + b
+```
+
+### Validating Non-Standard Types
+
+Since DataFrames are not a basic Python type, we need to configure `pydantic` to allow
+arbitrary types. Then, when executed it checks that the input is of instance
+`pl.DataFrame`:
+
+```python
+import polars as pl
+from pydantic import ConfigDict, validate_call
+
+@validate_call(config=ConfigDict(arbitrary_types_allowed=True))
+def add_df(a: pl.DataFrame, b: int | float):
+    return a.with_columns(Y=pl.col("Y") + pl.lit(b))
+```
+
+When an invalid argument is supplied a suitable error message is returned:
+
+```python
+calc.add_df(1, 1)
+```
+```
+pydantic_core._pydantic_core.ValidationError: 1 validation error for add_df
+0
+  Input should be an instance of DataFrame [type=is_instance_of, input_value=1, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.10/v/is_instance_of
+```
+
+## Validating DataFrames
+
+While checking the type of an argument is useful, it does not capture incorrect structure.
+If your code depends on the presence of a column, or its type, or even the values within
+it, further validation is required. This can be done using the
+[`pandera`](https://pandera.readthedocs.io/en/latest/polars.html) package, which is
+designed to easily validate dataframes against a defined schema.
+
+In order to use `pandera`, instal it with `uv`:
+
+```powershell
+uv add "pandera[polars]"
+```
+
+### Pandera Schema
+
+We can define a schema using the `DataFrameSchema` class, combined with the `Column`
+class, which defines column properties. For example:
+
+```python
+import pandera.polars as pa
+import polars as pl
+
+basic_schema = pa.DataFrameSchema(
+    {
+        "X": pa.Column(str),
+        "Y": pa.Column(int),
+    }
+)
+```
+
+Then we call the `validate()` method. This returns the DataFrame if valid:
+
+```python
+valid_df = pl.DataFrame(
+    {
+        "X": ["A", "B", "C"],
+        "Y": [1, 2, 3],
+    }
+)
+
+basic_schema.validate(valid_df)
+```
+```
+shape: (3, 2)
+┌─────┬─────┐
+│ X   ┆ Y   │
+│ --- ┆ --- │
+│ str ┆ i64 │
+╞═════╪═════╡
+│ A   ┆ 1   │
+│ B   ┆ 2   │
+│ C   ┆ 3   │
+└─────┴─────┘
+```
+
+For an invalid DataFrame, it raises an error describing the issues:
+
+```python
+invalid_df = pl.DataFrame(
+    {
+        "X": ["A", "B", "C"],
+        "Y": ["1", "2", "3"],
+    }
+)
+
+basic_schema.validate(invalid_df)
+```
+```
+pandera.errors.SchemaError: expected column 'Y' to have type Int64, got String
+```
+
+### Column Options
+
+The `Column` class has a number of useful arguments to further define the properties of
+the column. For example, we can coerce the values, if appropriate:
+
+```python
+coerce_schema = pa.DataFrameSchema(
+    {
+        "X": pa.Column(str, coerce=True),
+        "Y": pa.Column(int, coerce=True),
+    }
+)
+
+coerce_schema.validate(invalid_df)
+```
+```
+shape: (3, 2)
+┌─────┬─────┐
+│ X   ┆ Y   │
+│ --- ┆ --- │
+│ str ┆ i64 │
+╞═════╪═════╡
+│ A   ┆ 1   │
+│ B   ┆ 2   │
+│ C   ┆ 3   │
+└─────┴─────┘
+```
+
+We can also define whether `null` values are allowed, whether the values must be unique,
+whether the column is required, and more. See
+[Column documentation](https://pandera.readthedocs.io/en/latest/reference/generated/pandera.api.polars.components.Column.html)
+for more details.
+
+### Check Values
+
+As well as column properties, we can also define checks on the values. For example, if a
+column must contain positive values, we can use:
+
+```python
+check_schema = pa.DataFrameSchema(
+    {
+        "X": pa.Column(str),
+        "Y": pa.Column(int, pa.Check.gt(0)),
+    }
+)
+```
+
+Validating a dataframe with negative values then results in an error:
+
+```python
+negative_df = pl.DataFrame(
+    {
+        "X": ["A", "B", "C"],
+        "Y": [1, -2, 3],
+    }
+)
+
+check_schema.validate(negative_df)
+```
+```
+pandera.errors.SchemaError: Column 'Y' failed validator number 0: <Check greater_than: greater_than(0)> failure case examples: [{'Y': -2}]
+```
+
+The `Check` class has method for validating numbers, strings and dates. See the
+[Check documentation](https://pandera.readthedocs.io/en/latest/reference/generated/pandera.api.checks.Check.html)
+for more details.

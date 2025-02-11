@@ -1,0 +1,101 @@
+---
+title: Test Reports
+---
+
+Test reports are invaluable for future reference. They provide a record of what was
+tested, how it was tested, and the results of the tests. Creating test reports with
+`pytest` requires a plugin called
+[`pytest-html`](https://pytest-html.readthedocs.io/en/latest/).
+
+[`pytest-html`](https://pytest-html.readthedocs.io/en/latest/) can be installed using
+[uv](../reproducibility/project-management/uv.qmd). As with `pytest`, we use the "dev"
+group so it is not an explicit dependency of the project.
+
+```powershell
+uv add --dev pytest-html
+```
+
+## Generating Test Reports
+
+Once installed, you can generate a test report by running `pytest` with the `--html`
+argument, set to the name of the report file. For example:
+
+```powershell
+pytest --html=report.html --self-contained-html
+```
+
+Adding the `--self-contained-html` argument ensures that the report is created as a
+single file, making it easier to move and share.
+
+### Using Visual Studio Code
+
+You can also configure Visual Studio Code to run tests and generate reports. This is
+done by adding configuration settings to the `.vscode/settings.json` file. For example:
+
+```json
+{
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [
+        "--html=report.html",
+        "--self-contained-html",
+        "tests"
+    ]
+}
+```
+
+Then whenever you run tests in Visual Studio Code, a new report will be generated.
+
+## Viewing Test Reports
+
+The report can be opened in your browser. The standard report looks like:
+
+![pytest-html example](/images/pytest_report_example.png)
+
+## Enhancing Reports
+
+### Report Title
+
+By default the report title will be the filename of the report, you can edit it by using
+the `pytest_html_report_title` hook in the `conftest.py` file:
+
+```python
+def pytest_html_report_title(report):
+    report.title = "Testing Calculations"
+```
+
+### Enhancing the Results Table
+
+The results table itself can also be modified. For details, please refer to the
+[`pytest-html`](https://pytest-html.readthedocs.io/en/latest/) documentation, however the
+useful example below adds a 'Time' and 'Description' column to the table. The
+'Description' is pulled from the docstring of the test function.
+
+```python
+from datetime import datetime
+
+import pytest
+
+
+def pytest_html_results_table_header(cells):
+    cells.insert(2, "<th>Description</th>")
+    cells.insert(1, '<th class="sortable time" data-column-type="time">Time</th>')
+
+
+def pytest_html_results_table_row(report, cells):
+    cells.insert(2, f"<td>{report.description}</td>")
+    cells.insert(
+        1, f'<td class="col-time">{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}</td>'
+    )
+
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    report = outcome.get_result()
+    report.description = str(item.function.__doc__)
+```
+
+This produces the following output:
+
+![pytest-html enhanced](/images/pytest_report_enhanced.png)

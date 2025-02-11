@@ -11,10 +11,26 @@ detailed guide on how to effectively document your Python code using this style.
 
 ## What are Docstrings?
 
-NumPy style docstrings are a convention for writing documentation within Python code,
-popularized by the NumPy and SciPy projects. They provide a structured format that clearly
-outlines the purpose, parameters, return values, and other essential details of functions
-and classes.
+[NumPy style docstrings](https://numpydoc.readthedocs.io/en/latest/format.html) is a
+convention for writing documentation within Python code, popularized by the NumPy and
+SciPy projects. They provide a structured format that clearly outlines the purpose,
+parameters, return values, and other essential details of functions and classes.
+
+### Generating Doctrings
+
+To simplify the process of generating docstrings,we recommend using the
+[autoDocstring](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)
+extension for Visual Studio Code. This extension allows you to quickly create NumPy style
+docstrings by typing `"""` and pressing `Enter` within a function or class definition.
+To create a docstring in NumPy format, add the following settings:
+
+```json
+"autoDocstring.docstringFormat": "numpy",
+"autoDocstring.startOnNewLine": true
+```
+
+**Tip**: You can also use GitHub Copilot to generate docstrings, or ask it to summarise
+the function for you for an extended summary.
 
 ## Structure of a NumPy Style Docstring:
 
@@ -29,12 +45,12 @@ A NumPy style docstring is a multi-line string enclosed in triple quotes
 4.  **Returns:** Describes the value returned by the function, including its type and a
     description.
 5.  **Yields (for Generators):** Describes the values yielded by a generator function.
-6.  **Raises:** Lists any exceptions that the function might raise.
-7.  **See Also:** Provides links to related functions, classes, or modules.
+6.  **Raises (Optional):** Lists any exceptions that the function might raise.
+7.  **See Also (Optional):** Provides links to related functions, classes, or modules.
 8.  **Notes (Optional):** Contains additional information or caveats about the object.
 9.  **References (Optional):** Lists any relevant references or publications.
-10. **Examples:** Demonstrates how to use the object with executable code examples
-    (doctests).
+10. **Examples (Optional):** Demonstrates how to use the object with executable code
+    examples (doctests).
 
 ## Documenting Functions:
 

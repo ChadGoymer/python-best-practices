@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Coding Style – Python Best Practices</title>
+<title>Validate Inputs – Python Best Practices</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -144,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../coding-standards/index.html">Coding Standards</a></li><li class="breadcrumb-item"><a href="../coding-standards/coding-style.html">Coding Style</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../testing/index.html">Testing</a></li><li class="breadcrumb-item"><a href="../testing/validate-inputs.html">Validate Inputs</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -173,7 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../coding-standards/coding-style.html" class="sidebar-item-text sidebar-link active">
+  <a href="../coding-standards/coding-style.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Coding Style</span></a>
   </div>
 </li>
@@ -297,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../testing/validate-inputs.html" class="sidebar-item-text sidebar-link">
+  <a href="../testing/validate-inputs.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Validate Inputs</span></a>
   </div>
 </li>
@@ -313,30 +313,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#style-guide" id="toc-style-guide" class="nav-link active" data-scroll-target="#style-guide">Style Guide</a>
+  <li><a href="#type-hints" id="toc-type-hints" class="nav-link active" data-scroll-target="#type-hints">Type hints</a></li>
+  <li><a href="#pydantic" id="toc-pydantic" class="nav-link" data-scroll-target="#pydantic">Pydantic</a>
   <ul class="collapse">
-  <li><a href="#automated-styling" id="toc-automated-styling" class="nav-link" data-scroll-target="#automated-styling">Automated Styling</a></li>
+  <li><a href="#validating-a-function" id="toc-validating-a-function" class="nav-link" data-scroll-target="#validating-a-function">Validating a function</a></li>
+  <li><a href="#argument-coercion" id="toc-argument-coercion" class="nav-link" data-scroll-target="#argument-coercion">Argument Coercion</a></li>
+  <li><a href="#validating-argument-values" id="toc-validating-argument-values" class="nav-link" data-scroll-target="#validating-argument-values">Validating Argument Values</a></li>
+  <li><a href="#validating-non-standard-types" id="toc-validating-non-standard-types" class="nav-link" data-scroll-target="#validating-non-standard-types">Validating Non-Standard Types</a></li>
   </ul></li>
-  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link" data-scroll-target="#naming-conventions">Naming Conventions</a>
+  <li><a href="#validating-dataframes" id="toc-validating-dataframes" class="nav-link" data-scroll-target="#validating-dataframes">Validating DataFrames</a>
   <ul class="collapse">
-  <li><a href="#use-meaningful-names" id="toc-use-meaningful-names" class="nav-link" data-scroll-target="#use-meaningful-names">Use Meaningful Names</a></li>
-  </ul></li>
-  <li><a href="#code-layout" id="toc-code-layout" class="nav-link" data-scroll-target="#code-layout">Code Layout</a>
-  <ul class="collapse">
-  <li><a href="#blank-lines" id="toc-blank-lines" class="nav-link" data-scroll-target="#blank-lines">Blank Lines</a></li>
-  <li><a href="#indentation" id="toc-indentation" class="nav-link" data-scroll-target="#indentation">Indentation</a></li>
-  <li><a href="#line-length" id="toc-line-length" class="nav-link" data-scroll-target="#line-length">Line Length</a></li>
-  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments">Comments</a></li>
-  <li><a href="#whitespace" id="toc-whitespace" class="nav-link" data-scroll-target="#whitespace">Whitespace</a></li>
-  </ul></li>
-  <li><a href="#coding-practices" id="toc-coding-practices" class="nav-link" data-scroll-target="#coding-practices">Coding Practices</a>
-  <ul class="collapse">
-  <li><a href="#avoid-hardcoding-values" id="toc-avoid-hardcoding-values" class="nav-link" data-scroll-target="#avoid-hardcoding-values">Avoid Hardcoding Values</a></li>
-  <li><a href="#avoid-global-variables" id="toc-avoid-global-variables" class="nav-link" data-scroll-target="#avoid-global-variables">Avoid Global Variables</a></li>
-  <li><a href="#use-f-strings-for-string-formatting" id="toc-use-f-strings-for-string-formatting" class="nav-link" data-scroll-target="#use-f-strings-for-string-formatting">Use f-Strings for String Formatting</a></li>
-  <li><a href="#use-built-in-functions-and-libraries" id="toc-use-built-in-functions-and-libraries" class="nav-link" data-scroll-target="#use-built-in-functions-and-libraries">Use Built-in Functions and Libraries</a></li>
-  <li><a href="#use-pythonic-code" id="toc-use-pythonic-code" class="nav-link" data-scroll-target="#use-pythonic-code">Use Pythonic Code</a></li>
-  <li><a href="#handle-errors-gracefully" id="toc-handle-errors-gracefully" class="nav-link" data-scroll-target="#handle-errors-gracefully">Handle Errors Gracefully</a></li>
+  <li><a href="#pandera-schema" id="toc-pandera-schema" class="nav-link" data-scroll-target="#pandera-schema">Pandera Schema</a></li>
+  <li><a href="#column-options" id="toc-column-options" class="nav-link" data-scroll-target="#column-options">Column Options</a></li>
+  <li><a href="#check-values" id="toc-check-values" class="nav-link" data-scroll-target="#check-values">Check Values</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -344,9 +333,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../coding-standards/index.html">Coding Standards</a></li><li class="breadcrumb-item"><a href="../coding-standards/coding-style.html">Coding Style</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../testing/index.html">Testing</a></li><li class="breadcrumb-item"><a href="../testing/validate-inputs.html">Validate Inputs</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Coding Style</h1>
+<h1 class="title">Validate Inputs</h1>
 </div>
 
 
@@ -363,236 +352,194 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="style-guide" class="level2">
-<h2 class="anchored" data-anchor-id="style-guide">Style Guide</h2>
-<p>The official Python style guide is known as <a href="https://peps.python.org/pep-0008/">PEP 8</a>. In Lloyd’s, code should follow the PEP 8 style, as described. For a more accessible overview, read the article <a href="https://realpython.com/python-pep8/">How to Write Beautiful Python Code With PEP 8</a>.</p>
-<section id="automated-styling" class="level3">
-<h3 class="anchored" data-anchor-id="automated-styling">Automated Styling</h3>
-<p>To simplify the process of adhering to the PEP 8 conventions, we recomend using <a href="https://docs.astral.sh/ruff/">Ruff</a> to style your code. Ruff checks your code and gives guidance on how to fix any issues (also known as linting). It can be run from the command line or as a <a href="https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff">Visual Studio Code extension</a>. The extension can also be used to format your code and it is recommended to set the option to format on save, to keep your code tidy. This can be achieved by adding the following options to your <code>settings.json</code> file:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="er">"</span><span class="ot">[</span><span class="er">python</span><span class="ot">]</span><span class="er">":</span> <span class="fu">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"editor.defaultFormatter"</span><span class="fu">:</span> <span class="st">"charliermarsh.ruff"</span><span class="fu">,</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"editor.formatOnSave"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"editor.codeActionsOnSave"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"source.fixAll"</span><span class="fu">:</span> <span class="st">"explicit"</span><span class="fu">,</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"source.organizeImports"</span><span class="fu">:</span> <span class="st">"explicit"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>While not strictly testing, when creating production applications it is a good idea to validate inputs. This forms part of a software development practice called defensive programming, which anticipates potential errors and security issues, and handles them gracefully. This increases the overall quality, readability and predictability of the code.</p>
+<p>When deploying software for others to use, it is likely at some point someone will try to do something unexpected. Capturing those actions early, and giving the user a useful error message, will reduce the likelihood of support requests and, more importantly, incorrect results. While it is impossible to predict everything users my try, we can check the inputs to functions and methods conform to our expectations.</p>
+<p>For example, if we expect the argument <code>number_of_years</code> to be a positive integer, then we should check it. We could even set a range of allowed values, if you expect it to also be less than 20, say.</p>
+<section id="type-hints" class="level2">
+<h2 class="anchored" data-anchor-id="type-hints">Type hints</h2>
+<p>Python has builtin support for specifying the types of inputs using <a href="https://docs.python.org/3/glossary.html#term-type-hint">type hints</a>, for example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> syndicate_metric(syndicate: <span class="bu">str</span>, return_year: <span class="bu">int</span>, threshold: <span class="bu">float</span> <span class="op">=</span> <span class="fl">0.05</span>):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The above function declares that it expects <code>syndicate</code> to be a string, <code>return_year</code> to be an integer, and <code>threshold</code> to be a float, with default value of <code>0.05</code>. While this is useful information to the user, it does not prevent them from supplying any types they like.</p>
+<p>For more complex types, the hints can use <code>[]</code> to add element types. For example, while <code>list</code> will check the argument is a list, <code>list[int]</code> will check whether it is a list of integers.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_args(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    list_of_strings: <span class="bu">list</span>[<span class="bu">str</span>],</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    tuple_of_int_and_str: <span class="bu">tuple</span>[<span class="bu">str</span>, <span class="bu">int</span>],</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    dictionary_of_strings: <span class="bu">dict</span>[<span class="bu">str</span>, <span class="bu">str</span>],</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    composite: Sequence[<span class="bu">tuple</span>[<span class="bu">tuple</span>[<span class="bu">str</span>, <span class="bu">int</span>], <span class="bu">dict</span>[<span class="bu">str</span>, <span class="bu">str</span>]]]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-</section>
-<section id="naming-conventions" class="level2">
-<h2 class="anchored" data-anchor-id="naming-conventions">Naming Conventions</h2>
-<p>To ensure that code is written consistenty across projects, use the following naming conventions.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 50%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Type</th>
-<th style="text-align: left;">Naming Convention</th>
-<th style="text-align: left;">Examples</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Variable</td>
-<td style="text-align: left;">Use a lowercase single letter, word, or words. Separate words with underscores to improve readability.</td>
-<td style="text-align: left;"><code>x</code>, <code>var</code>, <code>python_variable</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Function</td>
-<td style="text-align: left;">Use a lowercase word or words. Separate words by underscores to improve readability.</td>
-<td style="text-align: left;"><code>function</code>, <code>python_function</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Class</td>
-<td style="text-align: left;">Start each word with a capital letter. Don’t separate words with underscores. This style is called camel case or Pascal case.</td>
-<td style="text-align: left;"><code>Model</code>, <code>PythonClass</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Method</td>
-<td style="text-align: left;">Use a lowercase word or words. Separate words with underscores to improve readability.</td>
-<td style="text-align: left;"><code>class_method</code>, <code>method</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Constant</td>
-<td style="text-align: left;">Use an uppercase single letter, word, or words. Separate words with underscores to improve readability.</td>
-<td style="text-align: left;"><code>CONSTANT</code>, <code>PYTHON_CONSTANT</code>, <code>PYTHON_LONG_CONSTANT</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Module</td>
-<td style="text-align: left;">Use a short, lowercase word or words. Separate words with underscores to improve readability.</td>
-<td style="text-align: left;"><code>module.py</code>, <code>python_module.py</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Package</td>
-<td style="text-align: left;">Use a short, lowercase word or words. Don’t separate words with underscores.</td>
-<td style="text-align: left;"><code>package</code>, <code>pythonpackage</code></td>
-</tr>
-</tbody>
-</table>
-<section id="use-meaningful-names" class="level3">
-<h3 class="anchored" data-anchor-id="use-meaningful-names">Use Meaningful Names</h3>
-<p>Don’t use vague or one-letter names (like <code>x</code> or <code>y</code>) if it is not for simple and short loops. Instead, give names that explain what the variable or the function does. This makes code much easier to read and understand.</p>
-<p><strong>Bad Example:</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> a(x, y):</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Good Example:</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_numbers(first_number, second_number):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> first_number <span class="op">+</span> second_number</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="code-layout" class="level2">
-<h2 class="anchored" data-anchor-id="code-layout">Code Layout</h2>
-<section id="blank-lines" class="level3">
-<h3 class="anchored" data-anchor-id="blank-lines">Blank Lines</h3>
-<ul>
-<li>Surround top-level functions and classes with two blank lines.</li>
-<li>Surround method definitions inside classes with a single blank line.</li>
-<li>Use blank lines sparingly inside functions to show clear steps.</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(a, b):</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span>
+<section id="pydantic" class="level2">
+<h2 class="anchored" data-anchor-id="pydantic">Pydantic</h2>
+<section id="validating-a-function" class="level3">
+<h3 class="anchored" data-anchor-id="validating-a-function">Validating a function</h3>
+<p>We could add validation to the above function, by explictly writing to code to check types and raise errors when appropriate. However, there is an easier (and faster) way. The package <a href="https://docs.pydantic.dev/"><code>pydantic</code></a>, can add type validation. To install <code>pydantic</code> use <code>uv</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>uv add pydantic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then we can validate a function’s arguments using the <code>validate_call</code> decorator. For example:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculator/calculations.py</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> validate_call</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> subtract(a, b):</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">-</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">@validate_call</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(a: <span class="bu">float</span> <span class="op">|</span> <span class="bu">int</span>, b: <span class="bu">float</span> <span class="op">|</span> <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span> <span class="op">|</span> <span class="bu">int</span>:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When we execute the above function with invalid parameters, we get a <code>ValidationError</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> calculator <span class="im">as</span> calc</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>calc.add(<span class="dv">3</span>, <span class="st">"x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>pydantic_core._pydantic_core.ValidationError: 2 validation errors for add
+1.float
+  Input should be a valid number [type=float_type, input_value='x', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/float_type
+1.int
+  Input should be a valid integer [type=int_type, input_value='x', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/int_type</code></pre>
 </section>
-<section id="indentation" class="level3">
-<h3 class="anchored" data-anchor-id="indentation">Indentation</h3>
-<ul>
-<li>Use four spaces to indent code.</li>
-</ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet():</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hello!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>For long lines, we recommend using a hanging indent and put closing brackets on a new line, for example:</li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> function(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    arg_one,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    arg_two,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    arg_three,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    arg_four</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>):</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    list_of_numbers <span class="op">=</span> [</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        arg_one,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        arg_two,</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        arg_three,</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        arg_four</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> list_of_numbers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="argument-coercion" class="level3">
+<h3 class="anchored" data-anchor-id="argument-coercion">Argument Coercion</h3>
+<p>What may be a surprise, is that <code>calc.add(3, "2")</code> results in <code>5</code>. This is because, by default pydantic will coerce arguments before execution. This is useful in a lot of circumstances. However, if you want the check to be strict, then use the <code>config</code> argument:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculator/calculations.py</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> ConfigDict, validate_call</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">@validate_call</span>(config<span class="op">=</span>ConfigDict(strict<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(a: <span class="bu">float</span> <span class="op">|</span> <span class="bu">int</span>, b: <span class="bu">float</span> <span class="op">|</span> <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span> <span class="op">|</span> <span class="bu">int</span>:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Which also results in a <code>ValidationError</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> calculator <span class="im">as</span> calc</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>calc.add(<span class="dv">3</span>, <span class="st">"2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>pydantic_core._pydantic_core.ValidationError: 2 validation errors for add
+1.float
+  Input should be a valid number [type=float_type, input_value='2', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/float_type
+1.int
+  Input should be a valid integer [type=int_type, input_value='2', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/int_type</code></pre>
 </section>
-<section id="line-length" class="level3">
-<h3 class="anchored" data-anchor-id="line-length">Line Length</h3>
-<ul>
-<li>Limit line length to 80 characters: Keep your code readable by not writing overly long lines. If a line gets too long, break it into smaller parts using parentheses or backslashes.</li>
-</ul>
+<section id="validating-argument-values" class="level3">
+<h3 class="anchored" data-anchor-id="validating-argument-values">Validating Argument Values</h3>
+<p>Pydantic also includes a number of <a href="https://docs.pydantic.dev/latest/api/types/">special types</a> for validating the values as well as the types. For example, if you want to force <code>a</code> to be a positive integer, then you can use <code>PositiveInt</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculator/calculations.py</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> ConfigDict, PositiveInt, validate_call</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="at">@validate_call</span>(config<span class="op">=</span>ConfigDict(strict<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(a: PositiveInt, b: <span class="bu">float</span> <span class="op">|</span> <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span> <span class="op">|</span> <span class="bu">int</span>:</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can also build arbitrary validation by annotating existing types using the <code>Annotated</code> class from the <code>typing_extensions</code> module, combined with <code>Field</code> from <code>pydantic</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> Field, validate_call</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing_extensions <span class="im">import</span> Annotated</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="at">@validate_call</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(a: Annotated[<span class="bu">float</span> <span class="op">|</span> <span class="bu">int</span>, Field(gt<span class="op">=</span><span class="dv">0</span>)], b: <span class="bu">float</span> <span class="op">|</span> <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span> <span class="op">|</span> <span class="bu">int</span>:</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="comments" class="level3">
-<h3 class="anchored" data-anchor-id="comments">Comments</h3>
-<ul>
-<li>Comments should be used sparingly. Using good names and clear layout should be enough in most cases. Comments should focus on why the code is written in a certain way, not what the code does.</li>
-<li>For complicated code, split it into functions, classes and methods and use <a href="../documentation/index.html">docstrings</a> to document them instead.</li>
-</ul>
+<section id="validating-non-standard-types" class="level3">
+<h3 class="anchored" data-anchor-id="validating-non-standard-types">Validating Non-Standard Types</h3>
+<p>Since DataFrames are not a basic Python type, we need to configure <code>pydantic</code> to allow arbitrary types. Then, when executed it checks that the input is of instance <code>pl.DataFrame</code>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> ConfigDict, validate_call</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="at">@validate_call</span>(config<span class="op">=</span>ConfigDict(arbitrary_types_allowed<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_df(a: pl.DataFrame, b: <span class="bu">int</span> <span class="op">|</span> <span class="bu">float</span>):</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a.with_columns(Y<span class="op">=</span>pl.col(<span class="st">"Y"</span>) <span class="op">+</span> pl.lit(b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When an invalid argument is supplied a suitable error message is returned:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>calc.add_df(<span class="dv">1</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>pydantic_core._pydantic_core.ValidationError: 1 validation error for add_df
+0
+  Input should be an instance of DataFrame [type=is_instance_of, input_value=1, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.10/v/is_instance_of</code></pre>
 </section>
-<section id="whitespace" class="level3">
-<h3 class="anchored" data-anchor-id="whitespace">Whitespace</h3>
-<ul>
-<li>Surround binary operators with a space.</li>
-<li>Add a space after a comma</li>
-<li>Do not use spaces around <code>=</code> when assigning function and method arguments</li>
-<li>Do not leave spaces at the end of the line. Visual Studio Code has an option to remove trailing whitespace on save:</li>
-</ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="er">"files.trimTrailingWhitespace":</span> <span class="er">true,</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="validating-dataframes" class="level2">
+<h2 class="anchored" data-anchor-id="validating-dataframes">Validating DataFrames</h2>
+<p>While checking the type of an argument is useful, it does not capture incorrect structure. If your code depends on the presence of a column, or its type, or even the values within it, further validation is required. This can be done using the <a href="https://pandera.readthedocs.io/en/latest/polars.html"><code>pandera</code></a> package, which is designed to easily validate dataframes against a defined schema.</p>
+<p>In order to use <code>pandera</code>, instal it with <code>uv</code>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>uv add <span class="st">"pandera[polars]"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="pandera-schema" class="level3">
+<h3 class="anchored" data-anchor-id="pandera-schema">Pandera Schema</h3>
+<p>We can define a schema using the <code>DataFrameSchema</code> class, combined with the <code>Column</code> class, which defines column properties. For example:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandera.polars <span class="im">as</span> pa</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>basic_schema <span class="op">=</span> pa.DataFrameSchema(</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"X"</span>: pa.Column(<span class="bu">str</span>),</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Y"</span>: pa.Column(<span class="bu">int</span>),</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then we call the <code>validate()</code> method. This returns the DataFrame if valid:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>valid_df <span class="op">=</span> pl.DataFrame(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"X"</span>: [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>],</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Y"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>],</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>basic_schema.validate(valid_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>shape: (3, 2)
+┌─────┬─────┐
+│ X   ┆ Y   │
+│ --- ┆ --- │
+│ str ┆ i64 │
+╞═════╪═════╡
+│ A   ┆ 1   │
+│ B   ┆ 2   │
+│ C   ┆ 3   │
+└─────┴─────┘</code></pre>
+<p>For an invalid DataFrame, it raises an error describing the issues:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>invalid_df <span class="op">=</span> pl.DataFrame(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"X"</span>: [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>],</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Y"</span>: [<span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>],</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>basic_schema.validate(invalid_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>pandera.errors.SchemaError: expected column 'Y' to have type Int64, got String</code></pre>
 </section>
-<section id="coding-practices" class="level2">
-<h2 class="anchored" data-anchor-id="coding-practices">Coding Practices</h2>
-<section id="avoid-hardcoding-values" class="level3">
-<h3 class="anchored" data-anchor-id="avoid-hardcoding-values">Avoid Hardcoding Values</h3>
-<p>Hardcoding values (e.g., numbers or strings) directly into your code can make it difficult to update or reuse. Instead, use variables or constants.</p>
-<p><strong>Bad Example:</strong></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The total price with tax is: $105"</span>)  <span class="co"># Hardcoded tax and total price</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Good Example:</strong></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>PRICE <span class="op">=</span> <span class="dv">100</span>  <span class="co"># Base price of the product</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>TAX_RATE <span class="op">=</span> <span class="fl">0.05</span>  <span class="co"># 5% tax rate</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the total price</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>total_price <span class="op">=</span> PRICE <span class="op">+</span> (PRICE <span class="op">*</span> TAX_RATE)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The total price with tax is: $</span><span class="sc">{</span>total_price<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This makes your code more flexible and easy to modify.</p>
+<section id="column-options" class="level3">
+<h3 class="anchored" data-anchor-id="column-options">Column Options</h3>
+<p>The <code>Column</code> class has a number of useful arguments to further define the properties of the column. For example, we can coerce the values, if appropriate:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>coerce_schema <span class="op">=</span> pa.DataFrameSchema(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"X"</span>: pa.Column(<span class="bu">str</span>, <span class="bu">coerce</span><span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Y"</span>: pa.Column(<span class="bu">int</span>, <span class="bu">coerce</span><span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>coerce_schema.validate(invalid_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>shape: (3, 2)
+┌─────┬─────┐
+│ X   ┆ Y   │
+│ --- ┆ --- │
+│ str ┆ i64 │
+╞═════╪═════╡
+│ A   ┆ 1   │
+│ B   ┆ 2   │
+│ C   ┆ 3   │
+└─────┴─────┘</code></pre>
+<p>We can also define whether <code>null</code> values are allowed, whether the values must be unique, whether the column is required, and more. See <a href="https://pandera.readthedocs.io/en/latest/reference/generated/pandera.api.polars.components.Column.html">Column documentation</a> for more details.</p>
 </section>
-<section id="avoid-global-variables" class="level3">
-<h3 class="anchored" data-anchor-id="avoid-global-variables">Avoid Global Variables</h3>
-<p>Relying on global variables can make your code harder to understand and debug. Instead, encapsulate state within classes or functions.</p>
-<p><strong>Bad Example (using a global variable):</strong></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_to_total(value):</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> total</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    total <span class="op">+=</span> value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Good Example (using a class):</strong></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Calculator:</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.total <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add_value(<span class="va">self</span>, value):</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.total <span class="op">+=</span> value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Encapsulating data within objects or functions ensures that your code is modular, testable, and less error-prone.</p>
-</section>
-<section id="use-f-strings-for-string-formatting" class="level3">
-<h3 class="anchored" data-anchor-id="use-f-strings-for-string-formatting">Use f-Strings for String Formatting</h3>
-<p>f-Strings (introduced in Python 3.6) are a clean and readable way to format strings.</p>
-<p><strong>Bad Example (concatenating strings):</strong></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Alice"</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">25</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"My name is "</span> <span class="op">+</span> name <span class="op">+</span> <span class="st">" and I am "</span> <span class="op">+</span> <span class="bu">str</span>(age) <span class="op">+</span> <span class="st">" years old"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Good Example (using f-strings):</strong></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Alice"</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">25</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"My name is </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> and I am </span><span class="sc">{</span>age<span class="sc">}</span><span class="ss"> years old"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>f-Strings are not only more readable but also more efficient than other string formatting methods.</p>
-</section>
-<section id="use-built-in-functions-and-libraries" class="level3">
-<h3 class="anchored" data-anchor-id="use-built-in-functions-and-libraries">Use Built-in Functions and Libraries</h3>
-<p>Python comes with many powerful built-in features. Use these to write efficient and proper code instead of coding it from scratch.</p>
-<p><strong>Bad Example (manually finding the maximum):</strong></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_max(numbers):</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    max_number <span class="op">=</span> numbers[<span class="dv">0</span>]</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> num <span class="kw">in</span> numbers:</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> num <span class="op">&gt;</span> max_number:</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>            max_number <span class="op">=</span> num</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> max_number</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Good Example (using max):</strong></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_max(numbers):</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">max</span>(numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="use-pythonic-code" class="level3">
-<h3 class="anchored" data-anchor-id="use-pythonic-code">Use Pythonic Code</h3>
-<p>“Pythonic” code refers to writing code that takes advantage of Python’s simplicity and readability. Avoid overly complex or verbose solutions when simpler options are available.</p>
-<p><strong>Bad Example:</strong></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>doubled <span class="op">=</span> []</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> num <span class="kw">in</span> numbers:</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    doubled.append(num <span class="op">*</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Good Example:</strong></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>doubled <span class="op">=</span> [num <span class="op">*</span> <span class="dv">2</span> <span class="cf">for</span> num <span class="kw">in</span> numbers]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Using list comprehensions, built-in functions, and readable idioms makes your code more elegant.</p>
-</section>
-<section id="handle-errors-gracefully" class="level3">
-<h3 class="anchored" data-anchor-id="handle-errors-gracefully">Handle Errors Gracefully</h3>
-<p>As a beginner, it’s tempting to skip error handling, but it’s an important part of writing good code. Use try and except blocks to handle potential errors.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    number <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Enter a number: "</span>))</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"The number is </span><span class="sc">{</span>number<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ValueError</span>:</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"That’s not a valid number!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This ensures your program doesn’t crash unexpectedly.</p>
+<section id="check-values" class="level3">
+<h3 class="anchored" data-anchor-id="check-values">Check Values</h3>
+<p>As well as column properties, we can also define checks on the values. For example, if a column must contain positive values, we can use:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>check_schema <span class="op">=</span> pa.DataFrameSchema(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"X"</span>: pa.Column(<span class="bu">str</span>),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Y"</span>: pa.Column(<span class="bu">int</span>, pa.Check.gt(<span class="dv">0</span>)),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Validating a dataframe with negative values then results in an error:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>negative_df <span class="op">=</span> pl.DataFrame(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"X"</span>: [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>],</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Y"</span>: [<span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>],</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>check_schema.validate(negative_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>pandera.errors.SchemaError: Column 'Y' failed validator number 0: &lt;Check greater_than: greater_than(0)&gt; failure case examples: [{'Y': -2}]</code></pre>
+<p>The <code>Check</code> class has method for validating numbers, strings and dates. See the <a href="https://pandera.readthedocs.io/en/latest/reference/generated/pandera.api.checks.Check.html">Check documentation</a> for more details.</p>
 
 
 </section>

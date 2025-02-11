@@ -1,0 +1,141 @@
+---
+title: Manual Tests
+---
+
+## What are manual tests?
+
+Manual testing is a process where a person executes test cases without using any
+automation tools. Manual testing is the most primitive of all testing types but helps find
+bugs and is particularly good for checking usability.
+
+Manual testing takes many forms, so it is difficult to be prescriptive. However, the
+following is a useful guide.
+
+## Functional Testing
+
+### What is functional testing?
+
+Functional testing verifies if the software performs according to its defined requirements
+and specifications.
+
+### Sense checking
+
+The crudest method of testing is to run the process and check the results make sense.
+Ideally, this should be defined in a number of quantitive ways. Such as:
+
+1.  **Range Checks:** Check that an output falls within a certain range, or set of allowed
+    values. For example, a ratio is always between 0 and 1.
+2.  **Consistency Checks:** Check that one output is consistent with other outputs. For
+    example, net claims is less than or equal to gross claims.
+3.  **Trend Checks:** Check that an output is consistent with the trend of other outputs.
+    For example, the total claims for a year of account is increasing over time.
+4.  **Benchmark Checks:** Check that an output is consistent with a benchmark. For example,
+    the total claims for one year of account is within a specified factor of the previous
+    year of account.
+
+The Subject Matter Expert (SME) for the project should be able to define such sense
+checks.
+
+::: {.callout-note}
+If a sense check is quantifiable, it is better to code it as a test.
+:::
+
+### Parallel Implementation
+
+A better process for manual testing is to create a parallel implementation. This should be
+a simple implementation that is easy to understand and run. For example, the calculation
+could be implemented in Excel for a small subset of the input data. The same input data
+can then be supplied to the Python code and outputs can then be compared.
+
+::: {.callout-note}
+If a parallel implementation is created, the Python execution and output comparison can be
+coded as a test.
+:::
+
+## Non-Functional Testing
+
+### What is non-functional testing?
+
+Non-functional testing verifies aspects like performance, usability, and security, not
+directly related to core functionalities.
+
+### Usability Testing
+
+This is particularly useful for applications. A dashboard may meet functional requirements
+but be a pain to use. The focus here is on the user experience rather than the results.
+Some aspects to consider when testing usability are:
+
+1.  **Primary Usage:** What is the main point of the application, or page? Can the user
+    resolve that point with the least effort possible? For example, if there are input
+    parameters, the defaults should be set to provide the most commonly used results;
+    Important outputs should be presented first, with supporting outputs below, or on
+    other tabs.
+2.  **Intuitiveness:** Can the user navigate the application without needing to read
+    instructions? For example, the application should have a clear structure, with
+    navigation buttons in the same place on each page.
+3.  **Consistency:** Does the application behave in the same way on each page? For example,
+    if a button is used to download data on one page, it should be used to download data
+    on all pages.
+4.  **Error Handling:** Does the application handle errors gracefully? For example, is the
+    user prevented from entering invalid inputs, or given a clear error message.
+
+::: {.callout-note}
+Some usability tests can be coded. For example, with Shiny applications,
+[playwright](https://shiny.posit.co/py/docs/end-to-end-testing.html) can be used to code
+user interactions.
+:::
+
+
+### Performance Testing
+
+Performance testing is used to determine how a system performs in terms of responsiveness.
+It is particularly important for web applications. While it may be difficult to quantify
+when performance becomes unacceptable, manual tests give a good indication. Forms of
+performance testing include:
+
+1.  **Basic Performance:** How long does the application take to start up? How long does
+    it take to load a page, or refresh outputs when inputs are changed?
+1.  **Load Testing:** How does the application perform when the expected number of users
+    are using it at the same time? For example, does the application slow down when
+    multiple users are using it?
+2.  **Stress Testing:** How does the application perform when it is pushed to its limits?
+    For example, does the application crash when peak number of users are using it at the
+    same time?
+
+::: {.callout-note}
+Key performance tests can be coded, so changes that impact performance are identified
+early on.
+:::
+
+### Regression Testing
+
+Regression testing checks that recent code changes have not introduced new bugs or
+affected existing functionality. It may be comprised of any of the above tests, but the
+point is to re-test everything, even if you would not expect a change to affect it.
+
+::: {.callout-note}
+Regression tests can be coded, so unexpected changes can be identified early on.
+:::
+
+
+## User Acceptance Testing
+
+User acceptance testing (UAT) is where real users test a product to ensure it works as
+intended. Generally, this takes the form of manual testing including any or all of the
+above.
+
+### Purpose
+*   Confirm that the software meets the business's requirements
+*   Ensure the software is ready for deployment
+*   Identify and fix issues before the software is released
+
+### How it's done
+*   Business users test the software in real-world scenarios
+*   Developers receive feedback from the users to resolve issues
+*   The software is released once it meets the requirements
+
+### Benefits
+*   Improves the quality of the software
+*   Enhances user satisfaction
+*   Prevents issues from being seen in live applications
+*   Ensures the software is accessible and usable by its intended audience

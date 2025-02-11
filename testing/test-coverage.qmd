@@ -1,0 +1,134 @@
+---
+title: Test Coverage
+---
+
+Test coverage is an important metric for indicating how much of your code is being tested.
+When the tests are run, each line executed is tracked and the coverage is the percentage
+of lines executed, compared to the total number of lines of code. The coverage should be
+above 90%.
+
+::: {.callout-note}
+Test coverage is not perfect, just a useful metric. Just because your coverage is 100%, it
+does not mean every possible scenario is tested. For example, it may not capture edge
+cases, such as when values are missing or 0.
+:::
+
+To calculate test coverage with `pytest`, install the
+[`pytest-cov`](https://pytest-cov.readthedocs.io/en/latest/) plugin using
+[uv](../reproducibility/project-management/uv.qmd). As with `pytest`, we use the "dev"
+group so it is not an explicit dependency of the project.
+
+```powershell
+uv add --dev pytest-cov
+```
+
+## Calculating Test Coverage
+
+Once installed, you can calculate test coverage by running `pytest` with the `--cov`
+argument set to the name of the code directory. For example:
+
+```powershell
+pytest --cov=src --cov-report=term-missing
+```
+
+Adding the `--cov-report=term-missing` argument highlights the lines of code that are not
+being executed during the tests. This is very useful to identify the tests that should be
+added to improve coverage.
+
+### Using Visual Studio Code
+
+You can also configure Visual Studio Code to run tests and calculate coverage. This is
+done by adding configuration settings to the `.vscode/settings.json` file. For example:
+
+```json
+{
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [
+        "--cov=src",
+        "--cov-report=term-missing",
+        "tests"
+    ]
+}
+```
+
+Then whenever you run tests in Visual Studio Code, the coverage will be calculated.
+
+## Test Coverage Reports
+
+The coverage report is printed to the terminal by default. It enhances the standard
+`pytest` report:
+
+![pytest-cov example](/images/pytest_coverage_example.png){width="600"}
+
+`pytest-cov` also supports the generation of HTML reports using the `--cov-report`
+argument. It is possible to specify multiple coverage reports, by repeatng the argument.
+In order to combine the test reports, we can update the summary in the test report with a
+link to the coverage report. For example, to run both reports, update the vscode settings
+to output both reports to a `test_report` directory:
+
+```json
+// /.vscode/settings.json
+{
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [
+        "--cov=src",
+        "--cov-report=term-missing",
+        "--cov-report=html:test_report/coverage",
+        "--html=test_report/index.html",
+        "tests"
+    ]
+}
+```
+
+Then add a link to the coverage report, by adding a `pytest_html_results_summary` hook in
+the test configuration file:
+
+```python
+# /tests/conftest.py
+from datetime import datetime
+
+import pytest
+
+
+def pytest_html_report_title(report):
+    report.title = "Testing Calculations"
+
+
+def pytest_html_results_summary(prefix, summary, postfix):
+    prefix.extend(['<a href="coverage/index.html">Coverage Report</a>'])
+
+
+def pytest_html_results_table_header(cells):
+    cells.insert(2, "<th>Description</th>")
+    cells.insert(1, '<th class="sortable time" data-column-type="time">Time</th>')
+
+
+def pytest_html_results_table_row(report, cells):
+    cells.insert(2, f"<td>{report.description}</td>")
+    cells.insert(
+        1, f'<td class="col-time">{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}</td>'
+    )
+
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    report = outcome.get_result()
+    report.description = str(item.function.__doc__)
+```
+
+This produces the following report:
+
+![pytest report with coverage link](/images/pytest_report_coverage_link.png)
+
+When you click on the **Coverage Report** link, it takes you to the main coverage report
+page:
+
+![pytest-cov main report page](/images/pytest_coverage_index.png)
+
+Selecting a py file, shows more details, including the lines that have not been executed
+when running the tests:
+
+![pytest-cov detailed report page](/images/pytest_coverage_details.png)

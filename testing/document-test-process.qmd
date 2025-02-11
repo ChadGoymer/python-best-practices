@@ -1,0 +1,38 @@
+---
+title: Document Test Process
+---
+
+## Why document the test process?
+
+Just as the code should be documented, so should the test process. This ensures that the
+tests can be repeated by others. The documentation should be stored with the project so
+that it is easy to find.
+
+For manual tests, the test process may be complex, containing many steps to setup execute
+and check results. There may also be cleanup steps afterwards. For coded tests, this
+should all be part of the code. Running the tests is then achieved by executing a script
+or clicking a button in Visual Studio Code.
+
+## A Testing Run Book
+
+A run book is a document that details a process step-by-step. It should have the following
+sections:
+
+1.  **Setup:** Steps to set up a test environment from scratch. This may include
+    configuring software, such as Visual Studio Code, installing packages; creating tables
+    in a database; or anything else that is required to run the tests.
+2.  **Execute:** Steps to run the tests. This may include running a script, clicking a
+    button, or executing a command.
+3.  **Check:** Steps to check the results. This may include checking the output of a
+    script, comparing results to a benchmark, or checking that a process has completed
+    successfully.
+4.  **Cleanup:** Steps to clean up after the tests. This may include deleting tables in a
+    database, removing files, or anything else that is required to leave the environment
+    in a clean state.
+
+## Coded test process
+
+If you have coded tests, you can run them easily in Visual Studio Code. The "Testing" menu
+can be used to configure tests and run them. The results are displayed in the terminal.
+This does not need to be documented, as it is detailed in the
+[Coded Tests](coded-tests.qmd) page.
