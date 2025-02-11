@@ -1,0 +1,324 @@
+---
+title: Coded Tests
+---
+
+## Why write coded tests?
+
+Writing tests in code takes time, but it has several advantages:
+
+1.  **Automation:** Coded tests can be automated, allowing them to be run quickly and
+    frequently.
+2.  **Repeatability:** Coded tests can be run by anyone, ensuring that the tests are
+    repeatable.
+3.  **Documentation:** The tests are documented in the code, making it easier for others
+    to understand the tests.
+4.  **Integration:** Coded tests can be integrated into the development process, ensuring
+    that tests are run each time the code is changed.
+
+## Basic Testing
+
+### Install pytest
+
+[`pytest`](https://docs.pytest.org/) offers several advantages over `unittest` that ships
+with Python, such as less boilerplate code, more readable output, and a rich plugin
+ecosystem. Use [uv](../reproducibility/project-management/uv.qmd) to install pytest into
+the "dev" group (this adds it as a development dependency rather than a package
+dependency):
+
+```powershell
+uv add --dev pytest
+```
+
+### Writing Tests
+
+Test scripts should be stored in a `tests` directory. It is good practice, to create a
+test script for each module in your project. For example, if you have a module named
+`my_module.py`, create a test script named `test_my_module.py`. This makes it easy for
+someone to identify where tests are located.
+
+As an example, suppose we have defined an `add()` function in the module
+`\src\calculator\calculations.py`, then we would create a corresponding test script
+`\tests\test_calculations.py` to test this function. In it we create our first simple
+test:
+
+``` python
+# \tests\test_calculations.py
+from calculator.calculations import add
+
+def test_add():
+    assert add(1, 1) == 2
+```
+
+`pytest` uses the built-in `assert` statement on a boolean condition. This approach forms
+the basis of most tests.
+
+### Executing Tests
+
+Tests can be run from the Powershell terminal using the `pytest` command:
+
+``` powershell
+PS C:\Users\chadg\Python\docs-example> pytest
+================================== test session starts ==================================
+platform win32 -- Python 3.12.7, pytest-8.3.4, pluggy-1.5.0
+rootdir: C:\Users\chadg\Python\docs-example
+configfile: pyproject.toml
+collected 1 item
+
+tests\test_calculations.py .                                                       [100%]
+
+=================================== 1 passed in 0.13s ===================================
+```
+
+This will run all tests in the current directory and its subdirectories and produce a
+summary of the results.
+
+Visual Studio Code can also be configured to run tests. Click on the "Testing" flask in
+the activity bar, click **Configure Python Tests** and select "pytest framework". Then
+select the directory containing the tests, i.e. `tests`. You can now see all the test
+scripts in the Explorer window and execute them using the play button.
+
+::::: columns
+::: column
+![Configure Python Tests](/images/vscode_testing_configure.png){height="350"}
+:::
+
+::: column
+![Run Python Tests](/images/vscode_testing_run.png){height="350"}
+:::
+:::::
+
+If there are test failures, they will be highlighted in VS Code:
+
+![Configure Python Tests](/images/vscode_testing_failure.png)
+
+### Checking for Exceptions
+
+If your function raises an error under certain conditions, you can test for this using the
+`pytest.raises` context manager. For example, with the `add()` used earlier, it raises a
+`TypeError` if the inputs are not numbers. This can be tested as follows:
+
+``` python
+import pytest
+from calculator.calculations import add
+
+def test_add_invalid_number():
+    with pytest.raises(TypeError):
+        add(1, "1")
+```
+
+### Organising Tests
+
+When you have multiple functions or methods per scripts, and multiple tests for each
+function or method, it becomes important to organise your tests. This makes them easier to
+find, but also allows you to easily execute a subset of tests. For example, if you have
+made a change to a function and just want to run the tests for that function.
+
+For `pytest`, the natural approach is to group all your test for a particular function or
+method into a class. The class name should start with `Test` and the method names should
+include `self` as an argument. For example:
+
+``` python
+# \tests\test_calculations.py
+import pytest
+from calculator.calculations import add
+
+class TestAdd:
+    def test_add_integer(self):
+        assert add(1, 1) == 2
+
+    def test_add_float(self):
+        assert add(1.0, 1.0) == 2.0
+
+    def test_add_invalid_number(self):
+        with pytest.raises(TypeError):
+            add(1, "1")
+```
+
+## Using Fixtures
+
+Often, running tests involves setting up resources, such as databases or files, and
+tearing them down afterwards to clean up. In `pytest`, you can achieve this using
+[fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html). Test fixtures are
+functions decorated with `@pytest.fixture`, which are then passed into your test
+functions. `pytest` then knows to run the function when the test is run.
+
+### Setting Up
+
+As a simple example, if you wish to test a function and use the same input in multiple
+tests, you can define it once as a test fixture and pass it into each test. We have
+extended the add function to now add a value to a column in a dataframe, using a fixture
+allows you to specify the test dataframe once and use it many times:
+
+``` python
+import polars as pl
+import pytest
+from polars.testing import assert_frame_equal
+
+from calculator.df_calculations import add_df
+
+
+@pytest.fixture
+def test_data():
+    return pl.DataFrame(
+        {
+            "X": ["A", "B", "C"],
+            "Y": [1, 2, 3],
+        }
+    )
+
+
+class TestAddDF:
+    def test_add_integer(self, test_data):
+        expected_data = pl.DataFrame(
+            {
+                "X": ["A", "B", "C"],
+                "Y": [2, 3, 4],
+            }
+        )
+
+        assert_frame_equal(add_df(test_data, 1), expected_data)
+```
+
+### Tearing Down
+
+If you need to create a file, database table or other external asset in order to test your
+code, then you should clean up afterwards. Test fixtures achieve this by using the `yield`
+statement. `yield` is used to return the required object for the test, then subsequent
+code is ran after the test has completed, so can be used to clean up.
+
+For example, if we extend the `add_df()` function to read the DataFrame from a CSV, then
+we need to create the CSV first, then delete it afterwards. This can be achieved as
+follows:
+
+``` python
+from pathlib import Path
+
+import polars as pl
+import pytest
+from polars.testing import assert_frame_equal
+
+from calculator.df_calculations import add_df
+
+
+@pytest.fixture
+def test_csv():
+    temp_csv = Path("./temp.csv")
+    pl.DataFrame(
+        {
+            "X": ["A", "B", "C"],
+            "Y": [1, 2, 3],
+        }
+    ).write_csv(temp_csv.name)
+    yield temp_csv
+    temp_csv.unlink()
+
+
+class TestAddCSV:
+    def test_add_integer(self, test_csv):
+        expected_data = pl.DataFrame(
+            {
+                "X": ["A", "B", "C"],
+                "Y": [2, 3, 4],
+            }
+        )
+
+        assert_frame_equal(add_csv(test_csv, 1), expected_data)
+```
+
+### Scope
+
+By default, fixtures are run seperately for each test function that calls them. However,
+if a fixture takes a while to run and is used in multiple tests, you can modify the scope
+to save time. The `@pytest.fixture` decorator has a `scope` argument with possible values:
+
+* `"function"`: Fixture is run once for each test function that calls it (default).
+* `"class"`: Fixture is run once for each test class and used within any function that
+  calls it.
+* `"module"`: Fixture is run once for each module and used within any function that calls
+  it.
+* `"package"`: Fixture is run once for the entire package and used within any function
+  that calls it.
+* `"session"`: Fixture is run once for each session and used within any function that
+  calls it.
+
+If a fixture is used across multiple modules, it should be defined in a separate
+`conftest.py` file, which is executed before any tests are run.
+
+### Builtin Fixtures
+
+`pytest` provides several [builtin
+fixtures](https://docs.pytest.org/en/stable/reference/fixtures.html) for common tasks. For
+example,
+[`tmp_path`](https://docs.pytest.org/en/stable/reference/reference.html#std-fixture-tmp_path)
+provides a temporary directory that is automatically cleaned up after the test. This can
+be useful for creating temporary files or directories for testing. Here is a simple
+example:
+
+``` python
+def test_create_file(tmp_path):
+    d = tmp_path / "sub"
+    d.mkdir()
+    p = d / "hello.txt"
+    CONTENT = "content"
+    p.write_text(CONTENT, encoding="utf-8")
+    assert p.read_text(encoding="utf-8") == CONTENT
+```
+
+## Mocking
+
+When testing code that interacts with external services, such as databases or APIs, it can
+be difficult to test as the data, and therefore the expected result, may change. In these
+cases you have two options:
+
+1.  Just test the structure of the result, not the content. This is a useful integration
+    test. It checks the connection to the external service and the structure of the data.
+    However, it does not fully test the function.
+2.  Mock the external service. This involves replacing the external service with a mock
+    object that returns a known result. This allows you to test the function in isolation.
+
+In practice, it is a good idea to implement both options.
+
+`pytest` allows you to mock object methods and attributes, items in dictionaries,
+environment variabes and more, using
+[monkeypatching](https://docs.pytest.org/en/stable/how-to/monkeypatch.html).
+
+In the following example, we have extended the `add_df()` function to read from a
+database, using the `polars.read_database()` function. We create a test fixture, so it can
+be used in multiple tests, and use `monkeypatch` to replace the `polars.read_database()`
+function, with `mock_read_database()`, which returns a defined DataFrame. Then when we
+execute `add_db()`, it will use the mock DataFrame, rather than reading from the database.
+
+``` python
+import polars as pl
+import pytest
+from polars.testing import assert_frame_equal
+
+from calculator.df_calculations import add_db
+
+@pytest.fixture
+def mock_polars_read_database(monkeypatch):
+    def mock_read_database(*args, **kwargs):
+        return pl.DataFrame(
+            {
+                "X": ["A", "B", "C"],
+                "Y": [1, 2, 3],
+            }
+        )
+
+    monkeypatch.setattr(pl, "read_database", mock_read_database)
+
+
+class TestAddDB:
+    def test_add_integer(self, mock_polars_read_database):
+        expected_data = pl.DataFrame(
+            {
+                "X": ["A", "B", "C"],
+                "Y": [2, 3, 4],
+            }
+        )
+
+        assert_frame_equal(add_db(test_csv, 1), expected_data)
+```
+
+For more mocking options, see the [`pytest-mock`](https://pytest-mock.readthedocs.io)
+plugin.
