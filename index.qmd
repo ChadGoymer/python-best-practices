@@ -87,7 +87,7 @@ reduces the time to handover to others and for them to modify it.
 :::: {.g-col-4}
 
 ::: {.callout-tip}
-## [Documentation](documentation/index.html)
+## [Documentation](documentation/index.qmd)
 Documentation ensures everyone understands the code's purpose, what it does and how to use
 it effectively.
 :::
@@ -97,7 +97,7 @@ it effectively.
 :::: {.g-col-4}
 
 ::: {.callout-tip}
-## Testing
+## [Testing](testing/index.qmd)
 Testing ensures the code actually does what it intended. Test results should be recorded
 as evidence and repeated whenever any changes are made.
 :::

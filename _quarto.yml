@@ -9,6 +9,7 @@ website:
     left:
       - coding-standards/index.qmd
       - documentation/index.qmd
+      - testing/index.qmd
   sidebar:
     contents:
       - text: "Python Best Practices"
