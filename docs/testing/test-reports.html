@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Coding Style – Python Best Practices</title>
+<title>Test Reports – Python Best Practices</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -144,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../coding-standards/index.html">Coding Standards</a></li><li class="breadcrumb-item"><a href="../coding-standards/coding-style.html">Coding Style</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../testing/index.html">Testing</a></li><li class="breadcrumb-item"><a href="../testing/test-reports.html">Test Reports</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -173,7 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../coding-standards/coding-style.html" class="sidebar-item-text sidebar-link active">
+  <a href="../coding-standards/coding-style.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Coding Style</span></a>
   </div>
 </li>
@@ -285,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../testing/test-reports.html" class="sidebar-item-text sidebar-link">
+  <a href="../testing/test-reports.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Test Reports</span></a>
   </div>
 </li>
@@ -313,30 +313,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#style-guide" id="toc-style-guide" class="nav-link active" data-scroll-target="#style-guide">Style Guide</a>
+  <li><a href="#generating-test-reports" id="toc-generating-test-reports" class="nav-link active" data-scroll-target="#generating-test-reports">Generating Test Reports</a>
   <ul class="collapse">
-  <li><a href="#automated-styling" id="toc-automated-styling" class="nav-link" data-scroll-target="#automated-styling">Automated Styling</a></li>
+  <li><a href="#using-visual-studio-code" id="toc-using-visual-studio-code" class="nav-link" data-scroll-target="#using-visual-studio-code">Using Visual Studio Code</a></li>
   </ul></li>
-  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link" data-scroll-target="#naming-conventions">Naming Conventions</a>
+  <li><a href="#viewing-test-reports" id="toc-viewing-test-reports" class="nav-link" data-scroll-target="#viewing-test-reports">Viewing Test Reports</a></li>
+  <li><a href="#enhancing-reports" id="toc-enhancing-reports" class="nav-link" data-scroll-target="#enhancing-reports">Enhancing Reports</a>
   <ul class="collapse">
-  <li><a href="#use-meaningful-names" id="toc-use-meaningful-names" class="nav-link" data-scroll-target="#use-meaningful-names">Use Meaningful Names</a></li>
-  </ul></li>
-  <li><a href="#code-layout" id="toc-code-layout" class="nav-link" data-scroll-target="#code-layout">Code Layout</a>
-  <ul class="collapse">
-  <li><a href="#blank-lines" id="toc-blank-lines" class="nav-link" data-scroll-target="#blank-lines">Blank Lines</a></li>
-  <li><a href="#indentation" id="toc-indentation" class="nav-link" data-scroll-target="#indentation">Indentation</a></li>
-  <li><a href="#line-length" id="toc-line-length" class="nav-link" data-scroll-target="#line-length">Line Length</a></li>
-  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments">Comments</a></li>
-  <li><a href="#whitespace" id="toc-whitespace" class="nav-link" data-scroll-target="#whitespace">Whitespace</a></li>
-  </ul></li>
-  <li><a href="#coding-practices" id="toc-coding-practices" class="nav-link" data-scroll-target="#coding-practices">Coding Practices</a>
-  <ul class="collapse">
-  <li><a href="#avoid-hardcoding-values" id="toc-avoid-hardcoding-values" class="nav-link" data-scroll-target="#avoid-hardcoding-values">Avoid Hardcoding Values</a></li>
-  <li><a href="#avoid-global-variables" id="toc-avoid-global-variables" class="nav-link" data-scroll-target="#avoid-global-variables">Avoid Global Variables</a></li>
-  <li><a href="#use-f-strings-for-string-formatting" id="toc-use-f-strings-for-string-formatting" class="nav-link" data-scroll-target="#use-f-strings-for-string-formatting">Use f-Strings for String Formatting</a></li>
-  <li><a href="#use-built-in-functions-and-libraries" id="toc-use-built-in-functions-and-libraries" class="nav-link" data-scroll-target="#use-built-in-functions-and-libraries">Use Built-in Functions and Libraries</a></li>
-  <li><a href="#use-pythonic-code" id="toc-use-pythonic-code" class="nav-link" data-scroll-target="#use-pythonic-code">Use Pythonic Code</a></li>
-  <li><a href="#handle-errors-gracefully" id="toc-handle-errors-gracefully" class="nav-link" data-scroll-target="#handle-errors-gracefully">Handle Errors Gracefully</a></li>
+  <li><a href="#report-title" id="toc-report-title" class="nav-link" data-scroll-target="#report-title">Report Title</a></li>
+  <li><a href="#enhancing-the-results-table" id="toc-enhancing-the-results-table" class="nav-link" data-scroll-target="#enhancing-the-results-table">Enhancing the Results Table</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -344,9 +329,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../coding-standards/index.html">Coding Standards</a></li><li class="breadcrumb-item"><a href="../coding-standards/coding-style.html">Coding Style</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../testing/index.html">Testing</a></li><li class="breadcrumb-item"><a href="../testing/test-reports.html">Test Reports</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Coding Style</h1>
+<h1 class="title">Test Reports</h1>
 </div>
 
 
@@ -363,236 +348,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="style-guide" class="level2">
-<h2 class="anchored" data-anchor-id="style-guide">Style Guide</h2>
-<p>The official Python style guide is known as <a href="https://peps.python.org/pep-0008/">PEP 8</a>. In Lloyd’s, code should follow the PEP 8 style, as described. For a more accessible overview, read the article <a href="https://realpython.com/python-pep8/">How to Write Beautiful Python Code With PEP 8</a>.</p>
-<section id="automated-styling" class="level3">
-<h3 class="anchored" data-anchor-id="automated-styling">Automated Styling</h3>
-<p>To simplify the process of adhering to the PEP 8 conventions, we recomend using <a href="https://docs.astral.sh/ruff/">Ruff</a> to style your code. Ruff checks your code and gives guidance on how to fix any issues (also known as linting). It can be run from the command line or as a <a href="https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff">Visual Studio Code extension</a>. The extension can also be used to format your code and it is recommended to set the option to format on save, to keep your code tidy. This can be achieved by adding the following options to your <code>settings.json</code> file:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="er">"</span><span class="ot">[</span><span class="er">python</span><span class="ot">]</span><span class="er">":</span> <span class="fu">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"editor.defaultFormatter"</span><span class="fu">:</span> <span class="st">"charliermarsh.ruff"</span><span class="fu">,</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"editor.formatOnSave"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"editor.codeActionsOnSave"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"source.fixAll"</span><span class="fu">:</span> <span class="st">"explicit"</span><span class="fu">,</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"source.organizeImports"</span><span class="fu">:</span> <span class="st">"explicit"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Test reports are invaluable for future reference. They provide a record of what was tested, how it was tested, and the results of the tests. Creating test reports with <code>pytest</code> requires a plugin called <a href="https://pytest-html.readthedocs.io/en/latest/"><code>pytest-html</code></a>.</p>
+<p><a href="https://pytest-html.readthedocs.io/en/latest/"><code>pytest-html</code></a> can be installed using <a href="../reproducibility/project-management/uv.qmd">uv</a>. As with <code>pytest</code>, we use the “dev” group so it is not an explicit dependency of the project.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>uv add <span class="op">--</span>dev pytest-html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="generating-test-reports" class="level2">
+<h2 class="anchored" data-anchor-id="generating-test-reports">Generating Test Reports</h2>
+<p>Once installed, you can generate a test report by running <code>pytest</code> with the <code>--html</code> argument, set to the name of the report file. For example:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pytest <span class="op">--</span>html<span class="op">=</span>report<span class="op">.</span><span class="fu">html</span> <span class="op">--</span>self-contained-html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Adding the <code>--self-contained-html</code> argument ensures that the report is created as a single file, making it easier to move and share.</p>
+<section id="using-visual-studio-code" class="level3">
+<h3 class="anchored" data-anchor-id="using-visual-studio-code">Using Visual Studio Code</h3>
+<p>You can also configure Visual Studio Code to run tests and generate reports. This is done by adding configuration settings to the <code>.vscode/settings.json</code> file. For example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"python.testing.unittestEnabled"</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"python.testing.pytestEnabled"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"python.testing.pytestArgs"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"--html=report.html"</span><span class="ot">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"--self-contained-html"</span><span class="ot">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"tests"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then whenever you run tests in Visual Studio Code, a new report will be generated.</p>
 </section>
 </section>
-<section id="naming-conventions" class="level2">
-<h2 class="anchored" data-anchor-id="naming-conventions">Naming Conventions</h2>
-<p>To ensure that code is written consistenty across projects, use the following naming conventions.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 50%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Type</th>
-<th style="text-align: left;">Naming Convention</th>
-<th style="text-align: left;">Examples</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Variable</td>
-<td style="text-align: left;">Use a lowercase single letter, word, or words. Separate words with underscores to improve readability.</td>
-<td style="text-align: left;"><code>x</code>, <code>var</code>, <code>python_variable</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Function</td>
-<td style="text-align: left;">Use a lowercase word or words. Separate words by underscores to improve readability.</td>
-<td style="text-align: left;"><code>function</code>, <code>python_function</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Class</td>
-<td style="text-align: left;">Start each word with a capital letter. Don’t separate words with underscores. This style is called camel case or Pascal case.</td>
-<td style="text-align: left;"><code>Model</code>, <code>PythonClass</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Method</td>
-<td style="text-align: left;">Use a lowercase word or words. Separate words with underscores to improve readability.</td>
-<td style="text-align: left;"><code>class_method</code>, <code>method</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Constant</td>
-<td style="text-align: left;">Use an uppercase single letter, word, or words. Separate words with underscores to improve readability.</td>
-<td style="text-align: left;"><code>CONSTANT</code>, <code>PYTHON_CONSTANT</code>, <code>PYTHON_LONG_CONSTANT</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Module</td>
-<td style="text-align: left;">Use a short, lowercase word or words. Separate words with underscores to improve readability.</td>
-<td style="text-align: left;"><code>module.py</code>, <code>python_module.py</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Package</td>
-<td style="text-align: left;">Use a short, lowercase word or words. Don’t separate words with underscores.</td>
-<td style="text-align: left;"><code>package</code>, <code>pythonpackage</code></td>
-</tr>
-</tbody>
-</table>
-<section id="use-meaningful-names" class="level3">
-<h3 class="anchored" data-anchor-id="use-meaningful-names">Use Meaningful Names</h3>
-<p>Don’t use vague or one-letter names (like <code>x</code> or <code>y</code>) if it is not for simple and short loops. Instead, give names that explain what the variable or the function does. This makes code much easier to read and understand.</p>
-<p><strong>Bad Example:</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> a(x, y):</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Good Example:</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_numbers(first_number, second_number):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> first_number <span class="op">+</span> second_number</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="viewing-test-reports" class="level2">
+<h2 class="anchored" data-anchor-id="viewing-test-reports">Viewing Test Reports</h2>
+<p>The report can be opened in your browser. The standard report looks like:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/pytest_report_example.png" class="img-fluid figure-img"></p>
+<figcaption>pytest-html example</figcaption>
+</figure>
+</div>
 </section>
+<section id="enhancing-reports" class="level2">
+<h2 class="anchored" data-anchor-id="enhancing-reports">Enhancing Reports</h2>
+<section id="report-title" class="level3">
+<h3 class="anchored" data-anchor-id="report-title">Report Title</h3>
+<p>By default the report title will be the filename of the report, you can edit it by using the <code>pytest_html_report_title</code> hook in the <code>conftest.py</code> file:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pytest_html_report_title(report):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    report.title <span class="op">=</span> <span class="st">"Testing Calculations"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="code-layout" class="level2">
-<h2 class="anchored" data-anchor-id="code-layout">Code Layout</h2>
-<section id="blank-lines" class="level3">
-<h3 class="anchored" data-anchor-id="blank-lines">Blank Lines</h3>
-<ul>
-<li>Surround top-level functions and classes with two blank lines.</li>
-<li>Surround method definitions inside classes with a single blank line.</li>
-<li>Use blank lines sparingly inside functions to show clear steps.</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(a, b):</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> subtract(a, b):</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">-</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="indentation" class="level3">
-<h3 class="anchored" data-anchor-id="indentation">Indentation</h3>
-<ul>
-<li>Use four spaces to indent code.</li>
-</ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet():</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hello!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>For long lines, we recommend using a hanging indent and put closing brackets on a new line, for example:</li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> function(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    arg_one,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    arg_two,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    arg_three,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    arg_four</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>):</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    list_of_numbers <span class="op">=</span> [</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        arg_one,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        arg_two,</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        arg_three,</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        arg_four</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> list_of_numbers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="line-length" class="level3">
-<h3 class="anchored" data-anchor-id="line-length">Line Length</h3>
-<ul>
-<li>Limit line length to 80 characters: Keep your code readable by not writing overly long lines. If a line gets too long, break it into smaller parts using parentheses or backslashes.</li>
-</ul>
-</section>
-<section id="comments" class="level3">
-<h3 class="anchored" data-anchor-id="comments">Comments</h3>
-<ul>
-<li>Comments should be used sparingly. Using good names and clear layout should be enough in most cases. Comments should focus on why the code is written in a certain way, not what the code does.</li>
-<li>For complicated code, split it into functions, classes and methods and use <a href="../documentation/index.html">docstrings</a> to document them instead.</li>
-</ul>
-</section>
-<section id="whitespace" class="level3">
-<h3 class="anchored" data-anchor-id="whitespace">Whitespace</h3>
-<ul>
-<li>Surround binary operators with a space.</li>
-<li>Add a space after a comma</li>
-<li>Do not use spaces around <code>=</code> when assigning function and method arguments</li>
-<li>Do not leave spaces at the end of the line. Visual Studio Code has an option to remove trailing whitespace on save:</li>
-</ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="er">"files.trimTrailingWhitespace":</span> <span class="er">true,</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="coding-practices" class="level2">
-<h2 class="anchored" data-anchor-id="coding-practices">Coding Practices</h2>
-<section id="avoid-hardcoding-values" class="level3">
-<h3 class="anchored" data-anchor-id="avoid-hardcoding-values">Avoid Hardcoding Values</h3>
-<p>Hardcoding values (e.g., numbers or strings) directly into your code can make it difficult to update or reuse. Instead, use variables or constants.</p>
-<p><strong>Bad Example:</strong></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The total price with tax is: $105"</span>)  <span class="co"># Hardcoded tax and total price</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Good Example:</strong></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>PRICE <span class="op">=</span> <span class="dv">100</span>  <span class="co"># Base price of the product</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>TAX_RATE <span class="op">=</span> <span class="fl">0.05</span>  <span class="co"># 5% tax rate</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the total price</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>total_price <span class="op">=</span> PRICE <span class="op">+</span> (PRICE <span class="op">*</span> TAX_RATE)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The total price with tax is: $</span><span class="sc">{</span>total_price<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This makes your code more flexible and easy to modify.</p>
-</section>
-<section id="avoid-global-variables" class="level3">
-<h3 class="anchored" data-anchor-id="avoid-global-variables">Avoid Global Variables</h3>
-<p>Relying on global variables can make your code harder to understand and debug. Instead, encapsulate state within classes or functions.</p>
-<p><strong>Bad Example (using a global variable):</strong></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_to_total(value):</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> total</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    total <span class="op">+=</span> value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Good Example (using a class):</strong></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Calculator:</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.total <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add_value(<span class="va">self</span>, value):</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.total <span class="op">+=</span> value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Encapsulating data within objects or functions ensures that your code is modular, testable, and less error-prone.</p>
-</section>
-<section id="use-f-strings-for-string-formatting" class="level3">
-<h3 class="anchored" data-anchor-id="use-f-strings-for-string-formatting">Use f-Strings for String Formatting</h3>
-<p>f-Strings (introduced in Python 3.6) are a clean and readable way to format strings.</p>
-<p><strong>Bad Example (concatenating strings):</strong></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Alice"</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">25</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"My name is "</span> <span class="op">+</span> name <span class="op">+</span> <span class="st">" and I am "</span> <span class="op">+</span> <span class="bu">str</span>(age) <span class="op">+</span> <span class="st">" years old"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Good Example (using f-strings):</strong></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Alice"</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">25</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"My name is </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> and I am </span><span class="sc">{</span>age<span class="sc">}</span><span class="ss"> years old"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>f-Strings are not only more readable but also more efficient than other string formatting methods.</p>
-</section>
-<section id="use-built-in-functions-and-libraries" class="level3">
-<h3 class="anchored" data-anchor-id="use-built-in-functions-and-libraries">Use Built-in Functions and Libraries</h3>
-<p>Python comes with many powerful built-in features. Use these to write efficient and proper code instead of coding it from scratch.</p>
-<p><strong>Bad Example (manually finding the maximum):</strong></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_max(numbers):</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    max_number <span class="op">=</span> numbers[<span class="dv">0</span>]</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> num <span class="kw">in</span> numbers:</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> num <span class="op">&gt;</span> max_number:</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>            max_number <span class="op">=</span> num</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> max_number</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Good Example (using max):</strong></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_max(numbers):</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">max</span>(numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="use-pythonic-code" class="level3">
-<h3 class="anchored" data-anchor-id="use-pythonic-code">Use Pythonic Code</h3>
-<p>“Pythonic” code refers to writing code that takes advantage of Python’s simplicity and readability. Avoid overly complex or verbose solutions when simpler options are available.</p>
-<p><strong>Bad Example:</strong></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>doubled <span class="op">=</span> []</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> num <span class="kw">in</span> numbers:</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    doubled.append(num <span class="op">*</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Good Example:</strong></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>doubled <span class="op">=</span> [num <span class="op">*</span> <span class="dv">2</span> <span class="cf">for</span> num <span class="kw">in</span> numbers]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Using list comprehensions, built-in functions, and readable idioms makes your code more elegant.</p>
-</section>
-<section id="handle-errors-gracefully" class="level3">
-<h3 class="anchored" data-anchor-id="handle-errors-gracefully">Handle Errors Gracefully</h3>
-<p>As a beginner, it’s tempting to skip error handling, but it’s an important part of writing good code. Use try and except blocks to handle potential errors.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    number <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Enter a number: "</span>))</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"The number is </span><span class="sc">{</span>number<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ValueError</span>:</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"That’s not a valid number!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This ensures your program doesn’t crash unexpectedly.</p>
+<section id="enhancing-the-results-table" class="level3">
+<h3 class="anchored" data-anchor-id="enhancing-the-results-table">Enhancing the Results Table</h3>
+<p>The results table itself can also be modified. For details, please refer to the <a href="https://pytest-html.readthedocs.io/en/latest/"><code>pytest-html</code></a> documentation, however the useful example below adds a ‘Time’ and ‘Description’ column to the table. The ‘Description’ is pulled from the docstring of the test function.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pytest_html_results_table_header(cells):</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    cells.insert(<span class="dv">2</span>, <span class="st">"&lt;th&gt;Description&lt;/th&gt;"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    cells.insert(<span class="dv">1</span>, <span class="st">'&lt;th class="sortable time" data-column-type="time"&gt;Time&lt;/th&gt;'</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pytest_html_results_table_row(report, cells):</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    cells.insert(<span class="dv">2</span>, <span class="ss">f"&lt;td&gt;</span><span class="sc">{</span>report<span class="sc">.</span>description<span class="sc">}</span><span class="ss">&lt;/td&gt;"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    cells.insert(</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span>, <span class="ss">f'&lt;td class="col-time"&gt;</span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="sc">.</span>strftime(<span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S"</span>)<span class="sc">}</span><span class="ss">&lt;/td&gt;'</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="at">@pytest.hookimpl</span>(hookwrapper<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pytest_runtest_makereport(item, call):</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    outcome <span class="op">=</span> <span class="cf">yield</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    report <span class="op">=</span> outcome.get_result()</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    report.description <span class="op">=</span> <span class="bu">str</span>(item.function.__doc__)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This produces the following output:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/pytest_report_enhanced.png" class="img-fluid figure-img"></p>
+<figcaption>pytest-html enhanced</figcaption>
+</figure>
+</div>
 
 
 </section>
