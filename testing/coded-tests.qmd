@@ -41,6 +41,11 @@ As an example, suppose we have defined an `add()` function in the module
 `\tests\test_calculations.py` to test this function. In it we create our first simple
 test:
 
+```python
+# \src\calculator\calculations.py
+def add(a: float | int, b: float | int) -> float | int:
+    return a + b
+```
 ``` python
 # \tests\test_calculations.py
 from calculator.calculations import add
@@ -97,7 +102,8 @@ If your function raises an error under certain conditions, you can test for this
 `pytest.raises` context manager. For example, with the `add()` used earlier, it raises a
 `TypeError` if the inputs are not numbers. This can be tested as follows:
 
-``` python
+```python
+# \tests\test_calculations.py
 import pytest
 from calculator.calculations import add
 
@@ -149,7 +155,16 @@ tests, you can define it once as a test fixture and pass it into each test. We h
 extended the add function to now add a value to a column in a dataframe, using a fixture
 allows you to specify the test dataframe once and use it many times:
 
-``` python
+```python
+# calculator/df_calculations.py
+import polars as pl
+
+def add_df(a: pl.DataFrame, b: int | float):
+    return a.with_columns(pl.col("Y") + pl.lit(b))
+```
+
+```python
+# \tests\test_df_calculations.py
 import polars as pl
 import pytest
 from polars.testing import assert_frame_equal
@@ -187,10 +202,24 @@ statement. `yield` is used to return the required object for the test, then subs
 code is ran after the test has completed, so can be used to clean up.
 
 For example, if we extend the `add_df()` function to read the DataFrame from a CSV, then
-we need to create the CSV first, then delete it afterwards. This can be achieved as
+we need to create the CSV first, then delete it afterwords. This can be achieved as
 follows:
 
-``` python
+```python
+# calculator/df_calculations.py
+import polars as pl
+from pydantic import FilePath
+
+def add_df(a: pl.DataFrame, b: int | float):
+    return a.with_columns(pl.col("Y") + pl.lit(b))
+
+def add_csv(f: FilePath, b: int | float):
+    df = pl.read_csv(f)
+    return add_df(df, b)
+```
+
+```python
+# \tests\test_df_calculations.py
 from pathlib import Path
 
 import polars as pl
@@ -198,7 +227,6 @@ import pytest
 from polars.testing import assert_frame_equal
 
 from calculator.df_calculations import add_df
-
 
 @pytest.fixture
 def test_csv():
@@ -264,7 +292,7 @@ def test_create_file(tmp_path):
     assert p.read_text(encoding="utf-8") == CONTENT
 ```
 
-## Mocking
+## Mocking (Monkeypatching)
 
 When testing code that interacts with external services, such as databases or APIs, it can
 be difficult to test as the data, and therefore the expected result, may change. In these
@@ -288,7 +316,19 @@ be used in multiple tests, and use `monkeypatch` to replace the `polars.read_dat
 function, with `mock_read_database()`, which returns a defined DataFrame. Then when we
 execute `add_db()`, it will use the mock DataFrame, rather than reading from the database.
 
-``` python
+```python
+# calculator/df_calculations.py
+import polars as pl
+
+def add_df(a: pl.DataFrame, b: int | float):
+    return a.with_columns(pl.col("Y") + pl.lit(b))
+
+def add_db(b: int | float, con=None):
+    df = pl.read_database("SELECT * FROM table", connection=con)
+    return add_df(df, b)
+```
+```python
+# \tests\test_df_calculations.py
 import polars as pl
 import pytest
 from polars.testing import assert_frame_equal
@@ -307,7 +347,6 @@ def mock_polars_read_database(monkeypatch):
 
     monkeypatch.setattr(pl, "read_database", mock_read_database)
 
-
 class TestAddDB:
     def test_add_integer(self, mock_polars_read_database):
         expected_data = pl.DataFrame(
@@ -317,8 +356,5 @@ class TestAddDB:
             }
         )
 
-        assert_frame_equal(add_db(test_csv, 1), expected_data)
+        assert_frame_equal(add_db(1), expected_data)
 ```
-
-For more mocking options, see the [`pytest-mock`](https://pytest-mock.readthedocs.io)
-plugin.
