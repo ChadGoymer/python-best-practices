@@ -21,13 +21,13 @@ call the functions.
 To create an application structure, use [uv](../reproducibility/project-management/uv.qmd)
 within PowerShell:
 
-```powershell
+``` powershell
 uv init example-app
 ```
 
 This creates a folder called `example-app` with the following structure:
 
-```powershell
+``` powershell
 tree example-app
 example-app
 ├── .python_version
@@ -41,20 +41,21 @@ should be used to document the application. The `hello.py` file is the main modu
 application. If you are buiding a Shiny app, you would replace or rename this `app.py`.
 The `pyproject.toml` file is used to specify the metadata for the application.
 
-::: {.callout-note}
+::: callout-note
 ## Note
+
 uv determines the version of Python to use based on installed versions. If you have more
 than one Python installation, it is a good idea to specify the version to use when
 creating the project. For example:
 
-```powershell
+``` powershell
 uv init example-app --python 3.12
 ```
 :::
 
 The pyproject.toml file contains the metadata below, you should update the description.
 
-```toml
+``` toml
 [project]
 name = "example-app"
 version = "0.1.0"
@@ -71,7 +72,7 @@ constants should be cearly defined at the top of these scripts.
 
 To define modules, create a suitably named folder and .py file within. Define any
 functions, classes and methods, within that file. In order to import, the function you
-must also create a __init__.py file within the folder. The __init__.py does not need to
+must also create a **init**.py file within the folder. The **init**.py does not need to
 contain anything, but if you want to limit the functions, classes and methods available
 outside the module, you can specify them here. For example, if your project structure
 looks like:
@@ -86,10 +87,13 @@ example-app
     ├── __init__.py
     └── some_file
 ```
-Then you can specify the functions and classes to make available in the __init_.py using:
+
+Then you can specify the functions and classes to make available in the \_\_init\_.py
+using:
 
 `some_module/__init__.py`
-```python
+
+``` python
 from .some_file import some_function
 from .some_file import SomeClass
 ```
@@ -97,7 +101,8 @@ from .some_file import SomeClass
 Then you can import them in your main.py script using:
 
 `main.py`
-```python
+
+``` python
 import some_module
 
 some_module.some_function()
@@ -110,12 +115,12 @@ For [Shiny](shiny.qmd) applications, we use the the project structure defined by
 ## Library Structure
 
 A library provides functions and objects for other projects to consume. Libraries are
-intended to be built and distributed, e.g., by uploading them to
-[Package Manager](package_manager.qmd).
+intended to be built and distributed, e.g., by uploading them to [Package
+Manager](package_manager.qmd).
 
 Libraries can be created by using the --lib flag:
 
-```powershell
+``` powershell
 uv init --lib example-lib
 ```
 
@@ -123,7 +128,7 @@ A `src` layout is used to ensure that the library is isolated from any python in
 in the project root and that distributed library code is well separated from the rest of
 the project source.
 
-```powershell
+``` powershell
 tree example-lib
 example-lib
 ├── .python_version
@@ -135,5 +140,5 @@ example-lib
         └── __init__.py
 ```
 
-For more details on building packages, see
-[building packages](../packages/building-packages.qmd)
+For more details on building packages, see [building
+packages](../packages/building-packages.qmd)

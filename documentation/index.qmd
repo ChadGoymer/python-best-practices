@@ -2,89 +2,76 @@
 title: "Documentation"
 ---
 
-
 ## Low Criticality
 
-::::: {.grid}
-
-:::: {.g-col-6}
-
-::: {.callout-note}
+::::::: grid
+:::: g-col-6
+::: callout-note
 ### [Markdown](markdown.qmd)
+
 Markdown is a lightweight markup language with plain text formatting syntax. It's designed
 to be easy to read and write, converting plain text into rich text formats like HTML. Its
 simplicity has made it popular for writing documentation and creating content for
 websites.
 :::
-
 ::::
 
-:::: {.g-col-6}
-
-::: {.callout-note}
+:::: g-col-6
+::: callout-note
 ### [README](readme.qmd)
+
 A README file is the first thing someone looking at your code reads. It should contain a
 summary of the project and instructions for how to use it. The README should be clear and
 concise, and link to further documentation if more detail is required.
 :::
-
 ::::
-
-:::::
+:::::::
 
 ## Medium Criticality
 
-::::: {.grid}
-
-:::: {.g-col-6}
-
-::: {.callout-warning}
+::::::: grid
+:::: g-col-6
+::: callout-warning
 ### [Docstrings](docstrings.qmd)
+
 It is good practice to document code as it is being developed. If code is well-structured
 into functions, classes and methods then each one should be documented separately. This
 makes using them clear to developers. the standard approach for this are docstrings.
 :::
-
 ::::
 
-:::: {.g-col-6}
-
-::: {.callout-warning}
+:::: g-col-6
+::: callout-warning
 ### [Process Scripts](process-scripts.qmd)
+
 When running complex processes, it is a good idea to have one or more scripts to run.
-These scripts, provide a simple high-level interface for users to set parameters and
-run each step of the process, without requiring much knowledge of Python or the project.
+These scripts, provide a simple high-level interface for users to set parameters and run
+each step of the process, without requiring much knowledge of Python or the project.
 :::
-
 ::::
-
-:::::
+:::::::
 
 ## High Criticality
 
-::::: {.grid}
-
-:::: {.g-col-6}
-
-::: {.callout-important}
+::::::: grid
+:::: g-col-6
+::: callout-important
 ## [Projects](projects.qmd)
+
 All the documentation described exists within the project's code. This encourages
 developers to update documentation as they change code. However, it is not very user
 friendly. For critical projects, a website should be created collating all the
 documentation.
 :::
-
 ::::
 
-:::: {.g-col-6}
-
-::: {.callout-important}
+:::: g-col-6
+::: callout-important
 ## [Change Log](changelog.qmd)
+
 As development occurs and changes are made, they should be tracked in GitHub. However,
 extracting a summary of changes from a commit history is not easy. A Changelog provides a
 brief summary of changes for each ask.
 :::
-
 ::::
-
-:::::
+:::::::

@@ -5,11 +5,11 @@ title: Process Scripts
 ## What is a process script?
 
 When building and running processes, it is good practice to implement all the logic in
-functions, classes and methods (see [../coding-standards/factoring.qmd]). Running the
+functions, classes and methods (see \[../coding-standards/factoring.qmd\]). Running the
 process then becomes a series of steps, each calling a function or method. These steps
 should be detailed in a high-level process script.
 
-::: {.callout-note}
+::: callout-note
 A process script should not contain any logic, it should just allow the user to set
 parameters and run the process by executing each step, one-by-one, or the whole process in
 a single step.
@@ -23,7 +23,7 @@ running the cell.
 
 ## Example
 
-````markdown
+```` markdown
 # Awesome Process
 
 ## Setup

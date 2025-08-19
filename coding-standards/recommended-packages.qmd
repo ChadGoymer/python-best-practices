@@ -6,10 +6,10 @@ title: "Recommended Packages"
 
 While [Pandas](https://pandas.pydata.org/docs/) is the most popular package for data
 wrangling in Python, and may be used, it is recommended to use
- [Polars](https://docs.pola.rs/) instead. Polars is more performant and has more readable
- syntax. It is built to chain methods in an elegant way, for example:
+[Polars](https://docs.pola.rs/) instead. Polars is more performant and has more readable
+syntax. It is built to chain methods in an elegant way, for example:
 
-```python
+``` python
 import polars as pl
 
 df = (
@@ -29,7 +29,7 @@ them depend on other packages:
 
 Polars can read and write to CSV out of the box, using:
 
-```python
+``` python
 import polars as pl
 
 df = pl.read_csv("data.csv")
@@ -42,16 +42,17 @@ Polars can read data from Excel by installing the
 [fastexcel](https://fastexcel.toucantoco.dev/fastexcel.html) package and write using the
 [xlsxwriter](https://xlsxwriter.readthedocs.io/) package. Once installed, you can use:
 
-```python
+``` python
 df = pl.read_excel("data.xlsx", sheet_name="Sheet1")
 df.write_excel("data.xlsx", worksheet="Sheet2")
 ```
+
 ### Databases
 
 Polars can read and write to a database, if an appropriate connection is supplied. See
 [lloydsdb](../packages/lloydsdb.qmd) for more details.
 
-```python
+``` python
 import polars as pl
 import lloydsdb as db
 
@@ -65,7 +66,7 @@ df.write_database("NewTable",  connection=engine)
 For visualisation, it is recommended to use [Plotly](https://plotly.com/python/). For
 example:
 
-```python
+``` python
 import plotly.express as px
 
 tips = px.data.tips()
@@ -79,11 +80,11 @@ px.scatter(tips, x="total_bill", y="tip")
 When it comes to producing reports, [Quarto](https://quarto.org/) provides a simple,
 versatile and beautiful approach. It can be used to produce:
 
-1. Articles
-2. Presentations
-3. Books
-4. Websites
-5. Dashboards
+1.  Articles
+2.  Presentations
+3.  Books
+4.  Websites
+5.  Dashboards
 
 ## Web Applications
 
@@ -92,7 +93,7 @@ When building dashboards or web applications, it is recommended to use
 the developer to concentrate on the content and controls. For example, a basic app can be
 created using:
 
-```python
+``` python
 from shiny import App, render, ui
 
 app_ui = ui.page_fixed(

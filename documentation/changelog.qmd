@@ -11,24 +11,24 @@ improve communication and project transparency.
 
 ## Key Components
 
-* **Clear and Concise:** Use short, descriptive sentences that are easy to understand.
-  Avoid technical jargon whenever possible.
-* **Markdown:** Use Markdown to format the document and adhere to it throughout the
-  project's history. This makes it easier to read and navigate.
-* **Version Numbers:** Clearly indicate the version number for each set of changes
-  (e.g., "v1.2.3").
-* **Types of Changes:** Categorize changes using conventions:
-    * **Added:** New functionality.
-    * **Updated:** Existing functionality that has been changed.
-    * **Fixed:** Bug fixes, security updates.
-* **Detailed Descriptions:** Provide sufficient detail for each change. For example:
-    * "Added support for Python 3.11."
-    * "Fixed a bug where the library would crash when processing large files."
-    * "Improved performance by 20%."
+-   **Clear and Concise:** Use short, descriptive sentences that are easy to understand.
+    Avoid technical jargon whenever possible.
+-   **Markdown:** Use Markdown to format the document and adhere to it throughout the
+    project's history. This makes it easier to read and navigate.
+-   **Version Numbers:** Clearly indicate the version number for each set of changes
+    (e.g., "v1.2.3").
+-   **Types of Changes:** Categorize changes using conventions:
+    -   **Added:** New functionality.
+    -   **Updated:** Existing functionality that has been changed.
+    -   **Fixed:** Bug fixes, security updates.
+-   **Detailed Descriptions:** Provide sufficient detail for each change. For example:
+    -   "Added support for Python 3.11."
+    -   "Fixed a bug where the library would crash when processing large files."
+    -   "Improved performance by 20%."
 
 ## Example Changelog
 
-```markdown
+``` markdown
 ## 1.2.0
 
 ### Added
@@ -44,12 +44,13 @@ improve communication and project transparency.
 
 ## Best Practices
 
-* **Start Early:** Begin maintaining a changelog from the very beginning of your project.
-* **Keep it Updated:** Regularly update the changelog with each release.
-* **Review and Edit:** Regularly review and edit the changelog to ensure clarity and
-  accuracy.
-* **Make it Accessible:** Make the changelog easily accessible to users (e.g., on the
-  project's website or in the documentation).
+-   **Start Early:** Begin maintaining a changelog from the very beginning of your
+    project.
+-   **Keep it Updated:** Regularly update the changelog with each release.
+-   **Review and Edit:** Regularly review and edit the changelog to ensure clarity and
+    accuracy.
+-   **Make it Accessible:** Make the changelog easily accessible to users (e.g., on the
+    project's website or in the documentation).
 
 ## Conclusion
 
