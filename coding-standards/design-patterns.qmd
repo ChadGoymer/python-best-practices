@@ -104,11 +104,11 @@ project. This ensures that all projects follow the same structure and code patte
 
 Examples of existing patterns we use include:
 
-1.  [lloydsdb](../packages/lloydsdb.qmd): lloydsdb is a package that provides a common way
-    to read and write data from a Lloyd's database. It also contains a general approach
-    for running processes and capturing outputs and an audit trail.
-2.  [lloydsbrand](../packages/lloydsbrand.qmd): lloydsbrand is a package that provides
-    styling and formatting option for applications and reports, so they follow Lloyd's
-    brand guidelines.
+1.  [lloydsdb](https://github/pages/mrc/lloyds-packages): lloydsdb is a package that
+    provides a common way to read and write data from a Lloyd's database. It also contains
+    a general approach for running processes and capturing outputs and an audit trail.
+2.  [lloydsbrand](https://github/pages/mrc/lloyds-branding): lloydsbrand is a package that
+    provides styling and formatting option for applications and reports, so they follow
+    Lloyd's brand guidelines.
 3.  [Tapyr](https://appsilon.github.io/tapyr-docs/): Tapyr provides a template for Shiny
     applications.

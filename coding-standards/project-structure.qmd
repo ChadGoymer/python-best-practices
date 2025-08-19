@@ -18,8 +18,17 @@ difference is that an application has a run script that is used to start the app
 The run script is the entry point to the application and is used to load the modules and
 call the functions.
 
-To create an application structure, use [uv](../reproducibility/project-management/uv.qmd)
-within PowerShell:
+To create an application structure, use [uv](https://docs.astral.sh/uv/). To install `uv`
+use the following command in Powershell:
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+You may need to restart your terminal afterwards. You can test your installing by entering
+`uv` in powershell. You should see the help menu.
+
+Then you can initiate a project using the following command in Powershell:
 
 ``` powershell
 uv init example-app
