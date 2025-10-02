@@ -1,0 +1,17 @@
+---
+title: "Input Data"
+---
+
+Imagine you have some code that performs an analysis and produces a report. You later identify an issue or a change you want to make and want to re-run the report. If the upstream data has changed, you cannot reproduce what you had previously. May be that is OK, if you are only interested in live data, but if you want your report to be reproducible you need to capture the version of the input data in some way. It is recommended to use a database or store files in SharePoint.
+
+## Input Data IDs
+
+As mentioned in the [audit trail](audit-trail.qmd), you should capture the input data IDs. This could be a return year, an "as at" date, or a run ID if it is from another process. The idea is that you can identify exactly what data was used to produce the results.
+
+## Storing Input Data
+
+If you cannot guarantee an ID will always refer to the same data, then you should store the actual input data. Preferably this should be in a database, but if it is not well structured then use SharePoint.
+
+If using a database, you can create use an ID or timestamp to identify the version of the data. This allows you to easily identify the data used in a run.
+
+If using SharePoint, you can create a folder for each version, and store the input data files in that folder. You should also capture audit information in a text file or spreadsheet in the same folder, so it is clear where the data came from.
