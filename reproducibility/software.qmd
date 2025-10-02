@@ -1,0 +1,99 @@
+---
+title: Software
+---
+
+Virtual machines have been deployed for you with the software you need. However, it is important that everyone uses the same configuration to ensure that the code runs in the same way on different machines.
+
+## Python
+
+We support the last three minor versions of Python at any one time, excluding the latest one. This ensures we are using versions that have been thoroughly tested and patched. For example, if the current latest stable version is 3.14, we support 3.11, 3.12, and 3.13.
+
+When you start a new project, you should use the latest version of Python available. If you are changing an existing project, you should use the Python version defined in the project's configuration file.
+
+Since we uninstall older versions of Python, as we install new ones, each project must be upgrade at least once every three years. This keeps the code up-to-date and ensures we are using the latest features and security patches.
+
+## Visual Studio Code
+
+Visual Studio Code is the recommended IDE for Python development. It is free, open-source, and has a large number of extensions available. The Python extension for Visual Studio Code provides Python language support and debugging capabilities.
+
+### Recommended Extensions
+
+1.  [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python): Provides Python language support and debugging capabilities.
+2.  [Pyright](https://marketplace.visualstudio.com/items?itemName=ms-pyright.pyright): Provides static type checking for Python.
+3.  [Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff): Provides linting and code formatting for Python.
+4.  [autoDocstring](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring): Quickly create NumPy style docstrings by typing `"""` and pressing `Enter` within a function or class definition.
+5.  [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens): Provides user-friendly Git enhancements.
+6.  [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot): Provides AI-powered code suggestions.
+7.  [Shiny](https://marketplace.visualstudio.com/items?itemName=Posit.shiny): Run and develop Shiny apps in Python or R.
+8.  [Quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto): Extension for the Quarto scientific and technical publishing system.
+
+### Recommended Settings
+
+``` yaml
+{
+    "files.autoSave": "afterDelay",
+    "files.trimTrailingWhitespace": true,
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 90,
+    "editor.rulers": [
+        90
+    ],
+    "pyright.disableOrganizeImports": true,
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+            "source.organizeImports": "explicit"
+        }
+    },
+    "github.copilot.enable": {
+        "quarto": true,
+        "*": true
+    },
+    "autoDocstring.docstringFormat": "numpy",
+    "autoDocstring.startOnNewLine": true,
+    "quarto.render.renderOnSave": true,
+    "quarto.render.previewType": "external",
+    "quarto.visualEditor.markdownWrap": "column",
+    "quarto.visualEditor.markdownWrapColumn": 90
+}
+```
+
+## Supporting Software
+
+### GitHub
+
+GitHub is a web-based platform used for version control and collaboration. It provides access control and collaboration features such as bug tracking, feature requests, task management, and wikis for every project.
+
+GitHub stores the code on a central server, but in order to use the code you will need to use either Git Bash or GitKraken, to clone the repository to your local machine. Git Bash is a command line tool, while GitKraken is a graphical user interface.
+
+### Git Bash
+
+Git Bash needs to be configured even if you use GitKraken as it is used under-the-hood by a number of applications, such as [`uv`](package-management.qmd). Git is a distributed version control system that tracks changes in source code during software development.
+
+Git is pre-installed on your virtual machine, however some configuration changes must be applied in order to use it. Since we sign our https certificate for GitHub ourselves, Git warns us that the connection may not be secure. To ignore this warning, run the following command:
+
+``` bash
+git config --global http.sslVerify false
+```
+
+When authenticating with GitHub, it is recommended to use a personal access token (PAT) instead of your password. This is more secure and allows you to control the access of the token. Git Bash can be configured to store the token in Windows Credential Manager, so you don't have to enter it every time you push or pull from GitHub. To set this up, run the following command:
+
+``` bash
+git config --global credential.helper manager
+```
+
+Git is now ready for use.
+
+### GitKraken
+
+GitKraken provides a nice user interface for Git. It is pre-installed on your virtual machine, though you need to configure it to use your GitHub account.
+
+### Posit Package Manager
+
+Posit Package Manager is a package manager for Python and R. It is used instead of PyPI or CRAN as the source for installing packages. It can also host internally-developed packages so they are installed in the same way as any other package. Your virtual machine has been configured to use Posit Package Manager by default.
+
+### Posit Connect
+
+Posit Connect is a platform for sharing and publishing Python and R content. We do not deploy to Posit Connect directly, instead we set up content to monitor a GitHub repository. When changes are pushed to the repository, Posit Connect automatically pulls the changes and updates the content. This ensures that the content is always up-to-date and that the version of code used is always tracked in GitHub.
