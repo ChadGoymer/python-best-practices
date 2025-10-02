@@ -50,7 +50,7 @@ df.write_excel("data.xlsx", worksheet="Sheet2")
 ### Databases
 
 Polars can read and write to a database, if an appropriate connection is supplied. See
-[lloydsdb](../packages/lloydsdb.qmd) for more details.
+[lloydsdb](https://github/pages/mrc/lloyds-databases) for more details.
 
 ``` python
 import polars as pl

@@ -21,7 +21,7 @@ Writing tests in code takes time, but it has several advantages:
 
 [`pytest`](https://docs.pytest.org/) offers several advantages over `unittest` that ships
 with Python, such as less boilerplate code, more readable output, and a rich plugin
-ecosystem. Use [uv](../reproducibility/project-management/uv.qmd) to install pytest into
+ecosystem. Use [uv](../reproducibility/package-management.qmd) to install pytest into
 the "dev" group (this adds it as a development dependency rather than a package
 dependency):
 

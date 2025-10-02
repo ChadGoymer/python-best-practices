@@ -8,7 +8,7 @@ tested, how it was tested, and the results of the tests. Creating test reports w
 [`pytest-html`](https://pytest-html.readthedocs.io/en/latest/).
 
 [`pytest-html`](https://pytest-html.readthedocs.io/en/latest/) can be installed using
-[uv](../reproducibility/project-management/uv.qmd). As with `pytest`, we use the "dev"
+[uv](../reproducibility/package-management.qmd). As with `pytest`, we use the "dev"
 group so it is not an explicit dependency of the project.
 
 ``` powershell

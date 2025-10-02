@@ -15,7 +15,7 @@ cases, such as when values are missing or 0.
 
 To calculate test coverage with `pytest`, install the
 [`pytest-cov`](https://pytest-cov.readthedocs.io/en/latest/) plugin using
-[uv](../reproducibility/project-management/uv.qmd). As with `pytest`, we use the "dev"
+[uv](../reproducibility/package-management.qmd). As with `pytest`, we use the "dev"
 group so it is not an explicit dependency of the project.
 
 ``` powershell

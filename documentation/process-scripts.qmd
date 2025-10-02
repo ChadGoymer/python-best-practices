@@ -29,7 +29,7 @@ running the cell.
 ## Setup
 
 In order to run this process the following packages must be installed, using
-[uv](../reproducibility/project-management/uv.qmd):
+[uv](../reproducibility/package-management.qmd):
 
 ```powershell
 uv add polars lloydsdb
