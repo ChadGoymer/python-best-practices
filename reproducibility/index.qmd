@@ -1,0 +1,64 @@
+---
+title: "Reproducibility"
+---
+
+Anyone should be able to run your code and produce the same results you did. While this may seem obvious, it takes some care to ensure this is always the case. Even if they have the same version of the code, other factors can prevent them from running it in the same way. All dependencies must be captured and/or controlled. You should ensure other people can pick up and run your code without a problem. You should also be able to rerun your code later and get the same results. This is not the case if source data changes over time. If you find a bug in your code and need to fix it and rerun a report, it will not be possible if the input data has changed. The four primary areas to consider ensuring reproducibility are:
+
+1. Environment: The Python version used and its configuration; but potentially also the computer and operating system as well.
+2. Packages: The packages used and their version.
+3. Code: The version of code used.
+4. Input Data: The data used in the execution.
+
+Each section details the minimum standards, based on the criticality of the project. The standards are cumulative, so medium criticality must meet both medium and low standards.
+
+## Low Criticality
+
+::::::: grid
+:::: g-col-6
+::: callout-note
+### [Software](software.qmd)
+
+To ensure that the code runs in the same way on different machines, it is important for everyone to set up their environment in the same way. Software has been deployed for you to a virtual machine, but we still need to ensure everyone uses the same configuration.
+:::
+::::
+:::::::
+
+## Medium Criticality
+
+::::::: grid
+:::: g-col-6
+::: callout-warning
+### [Version Control](version-control.qmd)
+
+Ensuring everyone uses the correct version of code is straight forward with version control software, such as Git. Code should be executed from the main branch of the repository, without any edits. Any changes should be made on a separate branch, and only merged into main when testing and review is complete. See [Version Control Part 1](https://lloydsoflondon.sharepoint.com/sites/r-usersgroup/SitePages/Version-Control-Part-1.aspx) for more details.
+:::
+::::
+
+:::: g-col-6
+::: callout-note
+### [Package Management](package-management.qmd)
+
+To ensure anyone else who uses your code also has the same packages installed. It is important to use a package manager such as `uv`. `uv` is used to install packages instead of `pip` or `conda` and tracks the versions.
+:::
+::::
+:::::::
+
+## High Criticality
+
+::::::: grid
+:::: g-col-6
+::: callout-important
+### [Input Data](input-data.qmd)
+
+Imagine you have some code that performs an analysis and produces a report. You later identify an issue or a change you want to make and want to re-run the report. If the upstream data has changed, you cannot reproduce what you had previously. May be that is OK, if you are only interested in live data, but if you want your report to be reproducible you need to capture the version of the input data in some way. It is recommended to use a database or store files in SharePoint.
+:::
+::::
+
+:::: g-col-6
+::: callout-important
+### [Audit Trail](audit-trail.qmd)
+
+As part of the code, it is recommended that you output an audit trail. It should capture what was run, who by and when, so that it can be reproduced. With python projects we have a defined [run process](find/link), that should be followed.
+:::
+::::
+:::::::
