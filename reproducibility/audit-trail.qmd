@@ -1,0 +1,25 @@
+---
+title: "Audit Trail"
+---
+
+An audit trail is a record of the execution of a project. It should include who ran the code, when they ran it, and what was run. This allows you to reproduce results and understand how they were achieved. An audit trail may take the form of a log file, a section in a report, or records in a database. It should be easy to access and understand.
+
+What should be recorded for an audit trail:
+
+1.  **Parameters**: Any user-input to the process that can change the results.
+2.  **Version**: The version number of the code.
+3.  **Input data IDs**: Can be used to identify the version of the data, e.g. Return Year, As At Date, a run ID if it is from another process)
+4.  **Executed By**: The person (account) who ran the code, so if there are any questions in the future you know who to go to.
+5.  **Executed At**: Capturing when it was run is also useful, when diagnosing issues.
+
+## Log File
+
+The simplest way to create an audit trail is to write a log file. You can either create a text file summarising the information above using a logging package, such as [`loguru`](https://loguru.readthedocs.io/), to record information and output to a file; or you can potentially use something more structured, such as a CSV or HTML file for later consumption.
+
+## Audit Section in a Report
+
+When creating a report, whether it is HTML, PDF, Word, Excel or other medium, it is good practice to add a audit section (page or worksheet). In this audit section you can record the information above as a reference to where the results came from.
+
+## Record in a Database
+
+When running processes that output results to a database, you should capture the above information as metadata. Every run will then have a full audit trail. The Actuarial Analytics team have defined a formal \[Run process\](bad-link/run-process.qmd) for this, which is used across all their projects.
