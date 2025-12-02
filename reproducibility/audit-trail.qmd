@@ -22,4 +22,4 @@ When creating a report, whether it is HTML, PDF, Word, Excel or other medium, it
 
 ## Record in a Database
 
-When running processes that output results to a database, you should capture the above information as metadata. Every run will then have a full audit trail. The Actuarial Analytics team have defined a formal \[Run process\](bad-link/run-process.qmd) for this, which is used across all their projects.
+When running processes that output results to a database, you should capture the above information as metadata. Every run will then have a full audit trail. The Actuarial Analytics team have defined a formal Run process for this, which is used across all their projects.

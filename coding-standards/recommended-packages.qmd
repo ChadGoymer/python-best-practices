@@ -111,5 +111,3 @@ def server(input, output, session):
 
 app = App(app_ui, server)
 ```
-
-For best practices when building Shiny web applications, see [Shiny](shiny.qmd).
