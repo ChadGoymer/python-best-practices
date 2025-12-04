@@ -1,0 +1,31 @@
+---
+title: "Access Control"
+---
+
+There should be appropriate controls on who has access to the source code and who can execute it. In addition, the choice of storage should have appropriate back-up and disaster recovery in place.
+
+Each section details the minimum standards, based on the criticality of the project. The standards are cumulative, so medium criticality must meet both medium and low standards.
+
+## Low Criticality
+
+::: callout-note
+### Source Code Storage
+
+Source code should be stored securely, so only defined users are able to change it. When stored in GitHub, access should be granted by teams, not by individuals, to maintain consistent access across many repositories.
+:::
+
+## Medium Criticality
+
+::: callout-warning
+### Environments
+
+Critical projects may have multiple environments. Access to these environments should be well-defined and controlled. Users should be reviewed on a regular basis. This includes access to services and data.
+:::
+
+## High Criticality
+
+::: callout-important
+### Disaster Recovery
+
+Critical projects should be backed up on a regular basis and recoverable in the event of a disaster.
+:::
