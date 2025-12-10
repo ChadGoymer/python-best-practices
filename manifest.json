@@ -26,6 +26,9 @@
     "_quarto.yml": {
       "checksum": "41368e5ebcd99c9a42b81885115f8c73"
     },
+    "change-control/index.qmd": {
+      "checksum": "8b77c6e063ee862763ab904a744c8bb8"
+    },
     "coding-standards/coding-style.qmd": {
       "checksum": "21f8ede81f126ce7f454252113cdc3fd"
     },
@@ -99,10 +102,10 @@
       "checksum": "4e5f11959574cc4527502d51e0e7a3d1"
     },
     "index.qmd": {
-      "checksum": "76c53fc89e6da7a32b1389d5c95f0097"
+      "checksum": "0e12b7da4038e4e2fd3ec69c8fe212fc"
     },
     "pyproject.toml": {
-      "checksum": "aa68779298805ad82b0a97cf50e27940"
+      "checksum": "98e43d587e2cc387d80ca183076dae72"
     },
     "reproducibility/audit-trail.qmd": {
       "checksum": "cdd6b21371f5395916347e08c55c78f6"
@@ -147,7 +150,7 @@
       "checksum": "fb1c7fa9f95a0af5fb950f374243a543"
     },
     "uv.lock": {
-      "checksum": "4805162619dff0d4c54386b4fe6f17e4"
+      "checksum": "7cd5824bc48cb144a7bd58a84db398a8"
     }
   }
 }
