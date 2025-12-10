@@ -7,41 +7,66 @@ website:
   navbar:
     background: primary
     left:
-      - coding-standards/index.qmd
-      - documentation/index.qmd
-      - testing/index.qmd
-      - reproducibility/index.qmd
-  sidebar:
-    contents:
-      - text: "Python Best Practices"
-        href: index.qmd
-      - section: "Coding Standards"
+      - text: "Coding Standards"
         href: coding-standards/index.qmd
-        contents:
-          - coding-standards/coding-style.qmd
-          - coding-standards/recommended-packages.qmd
-          - coding-standards/factoring.qmd
-          - coding-standards/recommended-packages.qmd
-          - coding-standards/design-patterns.qmd
-          - coding-standards/project-structure.qmd
-      - section: "Documentation"
+      - text: "Documentation"
         href: documentation/index.qmd
-        contents:
-          - documentation/markdown.qmd
-          - documentation/readme.qmd
-          - documentation/docstrings.qmd
-          - documentation/process-scripts.qmd
-          - documentation/projects.qmd
-          - documentation/changelog.qmd
-      - section: "Testing"
+      - text: "Testing"
         href: testing/index.qmd
-        contents:
-          - testing/manual-tests.qmd
-          - testing/document-test-process.qmd
-          - testing/coded-tests.qmd
-          - testing/test-reports.qmd
-          - testing/test-coverage.qmd
-          - testing/validate-inputs.qmd
+      - text: "Reproducibility"
+        href: reproducibility/index.qmd
+      - text: "Change Control"
+        href: change-control/index.qmd
+      - text: "Access Control"
+        href: access-control/index.qmd
+  sidebar:
+    - title: "Coding Standards"
+      contents:
+        - coding-standards/index.qmd
+        - coding-standards/coding-style.qmd
+        - coding-standards/recommended-packages.qmd
+        - coding-standards/factoring.qmd
+        - coding-standards/recommended-packages.qmd
+        - coding-standards/design-patterns.qmd
+        - coding-standards/project-structure.qmd
+    - title: "Documentation"
+      contents:
+        - documentation/index.qmd
+        - documentation/markdown.qmd
+        - documentation/readme.qmd
+        - documentation/docstrings.qmd
+        - documentation/process-scripts.qmd
+        - documentation/projects.qmd
+        - documentation/changelog.qmd
+    - title: "Testing"
+      contents:
+        - testing/index.qmd
+        - testing/manual-tests.qmd
+        - testing/document-test-process.qmd
+        - testing/coded-tests.qmd
+        - testing/test-reports.qmd
+        - testing/test-coverage.qmd
+        - testing/validate-inputs.qmd
+    - title: "Reproducibility"
+      contents:
+        - reproducibility/index.qmd
+        - reproducibility/software.qmd
+        - reproducibility/version-control.qmd
+        - reproducibility/package-management.qmd
+        - reproducibility/input-data.qmd
+        - reproducibility/audit-trail.qmd
+    - title: "Change Control"
+      contents:
+        - change-control/index.qmd
+        - text: "Code Versioning"
+          href: https://lloydsoflondon.sharepoint.com/sites/r-usersgroup/SitePages/Version-Control-Part-1.aspx
+        - text: "Branching"
+          href: https://lloydsoflondon.sharepoint.com/sites/r-usersgroup/SitePages/Version-Control-Part-2.aspx
+        - text: "Task Management"
+          href: https://lloydsoflondon.sharepoint.com/sites/r-usersgroup/SitePages/Version-Control-Part-3.aspx
+    - title: "Access Control"
+      contents:
+        - access-control/index.qmd
 
 format:
   html:
