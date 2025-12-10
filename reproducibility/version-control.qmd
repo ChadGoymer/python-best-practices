@@ -1,0 +1,7 @@
+---
+title: Version Control
+---
+
+Version control is essential when developing code. It allows you to track changes, revert to previous versions, and collaborate with others. The most common version control system is Git, which is used by GitHub. If required you can always go back to a version of the code which was used at the time, to reproduce results.
+
+For more information about version control, see the [Version Control Part 1](https://lloydsoflondon.sharepoint.com/sites/r-usersgroup/SitePages/Version-Control-Part-1.aspx) page.

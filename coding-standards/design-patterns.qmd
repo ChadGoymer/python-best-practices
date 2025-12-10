@@ -27,43 +27,44 @@ flexibility can also lead to inconsistencies and complexities if not managed pro
 Design patterns provide a framework for managing this complexity and offer several key
 benefits:
 
-* **Improved Code Reusability:** Design patterns offer proven solutions that can be
-  adapted and reused across different projects or within the same project. This reduces
-  development time and effort by avoiding reinventing the wheel.
-* **Enhanced Code Maintainability:** Well-structured code based on established patterns is
-  easier to understand, modify, and debug. This reduces the cost of maintaining and
-  evolving the software over time.
-* **Increased Code Readability:** Design patterns provide a common vocabulary for
-  developers. When a developer recognizes a pattern in the code, they immediately
-  understand the underlying structure and intent, making the code more readable and easier
-  to grasp.
-* **Better Communication and Collaboration:** Design patterns provide a shared language
-  for developers to discuss design choices. This improves communication and collaboration
-  within development teams, leading to more efficient and effective teamwork.
-* **Proven Solutions to Common Problems:** Design patterns represent best practices and
-  proven solutions to recurring design problems. By using design patterns, developers can
-  avoid common pitfalls and create more robust and reliable software.
-* **Abstraction and Encapsulation:** Many design patterns promote abstraction and
-  encapsulation, which are fundamental principles of good software design. These
-  principles help to reduce dependencies between different parts of the code, making it
-  more modular and easier to change.
-* **Scalability and Flexibility:** Design patterns can help to create more scalable and
-  flexible software systems. By using patterns that promote loose coupling and modularity,
-  developers can more easily adapt their software to changing requirements and increasing
-  demands.
+-   **Improved Code Reusability:** Design patterns offer proven solutions that can be
+    adapted and reused across different projects or within the same project. This reduces
+    development time and effort by avoiding reinventing the wheel.
+-   **Enhanced Code Maintainability:** Well-structured code based on established patterns
+    is easier to understand, modify, and debug. This reduces the cost of maintaining and
+    evolving the software over time.
+-   **Increased Code Readability:** Design patterns provide a common vocabulary for
+    developers. When a developer recognizes a pattern in the code, they immediately
+    understand the underlying structure and intent, making the code more readable and
+    easier to grasp.
+-   **Better Communication and Collaboration:** Design patterns provide a shared language
+    for developers to discuss design choices. This improves communication and
+    collaboration within development teams, leading to more efficient and effective
+    teamwork.
+-   **Proven Solutions to Common Problems:** Design patterns represent best practices and
+    proven solutions to recurring design problems. By using design patterns, developers
+    can avoid common pitfalls and create more robust and reliable software.
+-   **Abstraction and Encapsulation:** Many design patterns promote abstraction and
+    encapsulation, which are fundamental principles of good software design. These
+    principles help to reduce dependencies between different parts of the code, making it
+    more modular and easier to change.
+-   **Scalability and Flexibility:** Design patterns can help to create more scalable and
+    flexible software systems. By using patterns that promote loose coupling and
+    modularity, developers can more easily adapt their software to changing requirements
+    and increasing demands.
 
 ## Common Categories of Design Patterns:
 
 Design patterns are typically categorized into three main types:
 
-* **Creational Patterns:** These patterns deal with object creation mechanisms, providing
-  ways to create objects in a flexible and controlled manner. Examples include Singleton,
-  Factory Method, and Abstract Factory.
-* **Structural Patterns:** These patterns deal with the composition of classes and objects
-  to form larger structures. Examples include Adapter, Decorator, and Facade.
-* **Behavioral Patterns:** These patterns deal with the assignment of responsibilities
-  between objects and how they communicate with each other. Examples include Observer,
-  Strategy, and Template Method.
+-   **Creational Patterns:** These patterns deal with object creation mechanisms,
+    providing ways to create objects in a flexible and controlled manner. Examples include
+    Singleton, Factory Method, and Abstract Factory.
+-   **Structural Patterns:** These patterns deal with the composition of classes and
+    objects to form larger structures. Examples include Adapter, Decorator, and Facade.
+-   **Behavioral Patterns:** These patterns deal with the assignment of responsibilities
+    between objects and how they communicate with each other. Examples include Observer,
+    Strategy, and Template Method.
 
 ## Using Design Patterns Effectively in Python:
 
@@ -71,18 +72,18 @@ It's important to remember that design patterns are not a silver bullet. Applyin
 blindly without understanding the context can lead to over-engineering and unnecessary
 complexity. Here are some guidelines for using design patterns effectively in Python:
 
-* **Understand the Problem First:** Don't try to force-fit a design pattern into a
-  situation where it's not needed. Clearly understand the problem you're trying to solve
-  before choosing a pattern.
-* **Choose the Right Pattern:** Select the pattern that best addresses the specific
-  problem at hand. Consider the trade-offs of each pattern and choose the one that best
-  fits the context.
-* **Don't Overuse Patterns:** Using too many patterns can make the code overly complex and
-  difficult to understand. Use patterns judiciously and only when they provide a clear
-  benefit.
-* **Adapt Patterns to Python:** Python's dynamic nature and features like decorators and
-  metaclasses can offer elegant ways to implement design patterns. Adapt the patterns to
-  take advantage of these features.
+-   **Understand the Problem First:** Don't try to force-fit a design pattern into a
+    situation where it's not needed. Clearly understand the problem you're trying to solve
+    before choosing a pattern.
+-   **Choose the Right Pattern:** Select the pattern that best addresses the specific
+    problem at hand. Consider the trade-offs of each pattern and choose the one that best
+    fits the context.
+-   **Don't Overuse Patterns:** Using too many patterns can make the code overly complex
+    and difficult to understand. Use patterns judiciously and only when they provide a
+    clear benefit.
+-   **Adapt Patterns to Python:** Python's dynamic nature and features like decorators and
+    metaclasses can offer elegant ways to implement design patterns. Adapt the patterns to
+    take advantage of these features.
 
 By understanding and applying design patterns effectively, Python developers can write
 cleaner, more maintainable, and more scalable code, ultimately leading to more successful
@@ -103,11 +104,11 @@ project. This ensures that all projects follow the same structure and code patte
 
 Examples of existing patterns we use include:
 
-1. [lloydsdb](../packages/lloydsdb.qmd): lloydsdb is a package that provides a common way
-   to read and write data from a Lloyd's database. It also contains a general approach for
-   running processes and capturing outputs and an audit trail.
-1. [lloydsbrand](../packages/lloydsbrand.qmd): lloydsbrand is a package that provides
-   styling and formatting option for applications and reports, so they follow Lloyd's
-   brand guidelines.
-1. [Tapyr](https://appsilon.github.io/tapyr-docs/): Tapyr provides a template for Shiny
-   applications.
+1.  [lloydsdb](https://github/pages/mrc/lloyds-packages): lloydsdb is a package that
+    provides a common way to read and write data from a Lloyd's database. It also contains
+    a general approach for running processes and capturing outputs and an audit trail.
+2.  [lloydsbrand](https://github/pages/mrc/lloyds-branding): lloydsbrand is a package that
+    provides styling and formatting option for applications and reports, so they follow
+    Lloyd's brand guidelines.
+3.  [Tapyr](https://appsilon.github.io/tapyr-docs/): Tapyr provides a template for Shiny
+    applications.

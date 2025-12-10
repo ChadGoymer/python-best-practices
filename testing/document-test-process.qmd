@@ -34,5 +34,5 @@ sections:
 
 If you have coded tests, you can run them easily in Visual Studio Code. The "Testing" menu
 can be used to configure tests and run them. The results are displayed in the terminal.
-This does not need to be documented, as it is detailed in the
-[Coded Tests](coded-tests.qmd) page.
+This does not need to be documented, as it is detailed in the [Coded
+Tests](coded-tests.qmd) page.

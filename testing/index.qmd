@@ -6,81 +6,69 @@ title: "Testing"
 
 For low criticality projects, the tests should be run each time the project is used.
 
-::::: {.grid}
-
-:::: {.g-col-6}
-
-::: {.callout-note}
+::::::: grid
+:::: g-col-6
+::: callout-note
 ### [Manual Tests](manual-tests.qmd)
+
 For low criticality projects, manual testing is sufficient. This involves running the code
 and checking the results.
 :::
-
 ::::
 
-:::: {.g-col-6}
-
-::: {.callout-note}
+:::: g-col-6
+::: callout-note
 ### [Document Test Process](document-test-process.qmd)
+
 The test process should be documented so that others can repeat the tests. The
 documentation should be stored with the project.
 :::
-
 ::::
-
-:::::
+:::::::
 
 ## Medium Criticality
 
 For medium criticality projects, the tests should be run each time the code is changed.
 
-::::: {.grid}
-
-:::: {.g-col-6}
-
-::: {.callout-warning}
+::::::: grid
+:::: g-col-6
+::: callout-warning
 ### [Coded Tests](coded-tests.qmd)
+
 Tests should be written in code and stored with the project. This ensures the tests are
 repeatable by others.
 :::
-
 ::::
 
-:::: {.g-col-6}
-
-::: {.callout-warning}
+:::: g-col-6
+::: callout-warning
 ### [Test Reports](test-reports.qmd)
+
 The tests results should be captured in a report for future reference.
 :::
-
 ::::
-
-:::::
+:::::::
 
 ## High Criticality
 
 For high criticality projects, the tests should be automated.
 
-::::: {.grid}
-
-:::: {.g-col-6}
-
-::: {.callout-important}
+::::::: grid
+:::: g-col-6
+::: callout-important
 ## [Test Coverage](test-coverage.qmd)
+
 Test coverage should be monitored to ensure all code is tested. A suitable threshold
 should be set.
 :::
-
 ::::
 
-:::: {.g-col-6}
-
-::: {.callout-important}
+:::: g-col-6
+::: callout-important
 ## [Validate Inputs](validate-inputs.qmd)
+
 Validating the inputs ensures errors are captured early and produce a user-friendly
 message.
 :::
-
 ::::
-
-:::::
+:::::::

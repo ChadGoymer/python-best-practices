@@ -2,32 +2,29 @@
 title: "Project Structure"
 ---
 
-Project structure in Python depends on whether you are creating an application or a
-package. The project manager app [uv](https://docs.astral.sh/uv/) simplifies the process
-of creating a project structure. For critical processes, it is important that the code is
-structured in an organised and consistent manner. For example, Python code should be
-broken up into functions or classes with methods and stored in a folder of modules. Each
-file should have a test script, testing the functions and methods it contains in the tests
-folder.
+Project structure in Python depends on whether you are creating an application or a package. The project manager app [uv](https://docs.astral.sh/uv/) simplifies the process of creating a project structure. For critical processes, it is important that the code is structured in an organised and consistent manner. For example, Python code should be broken up into functions or classes with methods and stored in a folder of modules. Each file should have a test script, testing the functions and methods it contains in the tests folder.
 
 ## Application Structure
 
-An application is a standalone program that is run from the command line or a GUI. The
-structure of an application is similar to a package, but with a few differences. The main
-difference is that an application has a run script that is used to start the application.
-The run script is the entry point to the application and is used to load the modules and
-call the functions.
+An application is a standalone program that is run from the command line or a GUI. The structure of an application is similar to a package, but with a few differences. The main difference is that an application has a run script that is used to start the application. The run script is the entry point to the application and is used to load the modules and call the functions.
 
-To create an application structure, use [uv](../reproducibility/project-management/uv.qmd)
-within PowerShell:
+To create an application structure, use [uv](https://docs.astral.sh/uv/). To install `uv` use the following command in Powershell:
 
-```powershell
+``` powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+You may need to restart your terminal afterwards. You can test your installing by entering `uv` in powershell. You should see the help menu.
+
+Then you can initiate a project using the following command in Powershell:
+
+``` powershell
 uv init example-app
 ```
 
 This creates a folder called `example-app` with the following structure:
 
-```powershell
+``` powershell
 tree example-app
 example-app
 ├── .python_version
@@ -36,25 +33,21 @@ example-app
 └── pyproject.toml
 ```
 
-The `.python_version` file specifies the version of Python to use. The `README.md` file
-should be used to document the application. The `hello.py` file is the main module of the
-application. If you are buiding a Shiny app, you would replace or rename this `app.py`.
-The `pyproject.toml` file is used to specify the metadata for the application.
+The `.python_version` file specifies the version of Python to use. The `README.md` file should be used to document the application. The `hello.py` file is the main module of the application. If you are buiding a Shiny app, you would replace or rename this `app.py`. The `pyproject.toml` file is used to specify the metadata for the application.
 
-::: {.callout-note}
+::: callout-note
 ## Note
-uv determines the version of Python to use based on installed versions. If you have more
-than one Python installation, it is a good idea to specify the version to use when
-creating the project. For example:
 
-```powershell
+uv determines the version of Python to use based on installed versions. If you have more than one Python installation, it is a good idea to specify the version to use when creating the project. For example:
+
+``` powershell
 uv init example-app --python 3.12
 ```
 :::
 
 The pyproject.toml file contains the metadata below, you should update the description.
 
-```toml
+``` toml
 [project]
 name = "example-app"
 version = "0.1.0"
@@ -64,17 +57,9 @@ requires-python = ">=3.11"
 dependencies = []
 ```
 
-When adding code to the appication, there should be a simple top-level scripts for running
-the processes or application. These should not contain any logic, instead they should
-import functions from modules stored in folders and call them in order. Parameters or
-constants should be cearly defined at the top of these scripts.
+When adding code to the appication, there should be a simple top-level scripts for running the processes or application. These should not contain any logic, instead they should import functions from modules stored in folders and call them in order. Parameters or constants should be cearly defined at the top of these scripts.
 
-To define modules, create a suitably named folder and .py file within. Define any
-functions, classes and methods, within that file. In order to import, the function you
-must also create a __init__.py file within the folder. The __init__.py does not need to
-contain anything, but if you want to limit the functions, classes and methods available
-outside the module, you can specify them here. For example, if your project structure
-looks like:
+To define modules, create a suitably named folder and .py file within. Define any functions, classes and methods, within that file. In order to import, the function you must also create a **init**.py file within the folder. The **init**.py does not need to contain anything, but if you want to limit the functions, classes and methods available outside the module, you can specify them here. For example, if your project structure looks like:
 
 ```
 example-app
@@ -86,10 +71,12 @@ example-app
     ├── __init__.py
     └── some_file
 ```
-Then you can specify the functions and classes to make available in the __init_.py using:
+
+Then you can specify the functions and classes to make available in the \_\_init\_.py using:
 
 `some_module/__init__.py`
-```python
+
+``` python
 from .some_file import some_function
 from .some_file import SomeClass
 ```
@@ -97,33 +84,29 @@ from .some_file import SomeClass
 Then you can import them in your main.py script using:
 
 `main.py`
-```python
+
+``` python
 import some_module
 
 some_module.some_function()
 some_module.SomeClass()
 ```
 
-For [Shiny](shiny.qmd) applications, we use the the project structure defined by
-[Tapyr](https://appsilon.github.io/tapyr-docs/).
+For [Shiny](https://shiny.posit.co/py/) applications, we use the the project structure defined by [Tapyr](https://appsilon.github.io/tapyr-docs/).
 
 ## Library Structure
 
-A library provides functions and objects for other projects to consume. Libraries are
-intended to be built and distributed, e.g., by uploading them to
-[Package Manager](package_manager.qmd).
+A library provides functions and objects for other projects to consume. Libraries are intended to be built and distributed, e.g., by uploading them to [Package Manager](reproducibility/software.html#posit-package-manager).
 
 Libraries can be created by using the --lib flag:
 
-```powershell
+``` powershell
 uv init --lib example-lib
 ```
 
-A `src` layout is used to ensure that the library is isolated from any python invocations
-in the project root and that distributed library code is well separated from the rest of
-the project source.
+A `src` layout is used to ensure that the library is isolated from any python invocations in the project root and that distributed library code is well separated from the rest of the project source.
 
-```powershell
+``` powershell
 tree example-lib
 example-lib
 ├── .python_version
@@ -135,5 +118,4 @@ example-lib
         └── __init__.py
 ```
 
-For more details on building packages, see
-[building packages](../packages/building-packages.qmd)
+For more details on building packages, see [Python Packaging User Guide](https://packaging.python.org/en/latest/).

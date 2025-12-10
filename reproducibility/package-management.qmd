@@ -1,0 +1,115 @@
+---
+title: "Package Management"
+---
+
+For code to be reproducible it is important to ensure that all developers use the same versions of packages. The simplest way to do this is to use a package manager such as [`uv`](https://docs.astral.sh/uv/). `uv` replaces `pip` or `conda` and tracks the versions of packages installed.
+
+## Installing `uv`
+
+To install `uv` use the following command in Powershell:
+
+``` powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+Unfortunately, Powershell cannot automatically set the path for `uv` in the current session, so either you need to log off and back on again, or copy & paste the command returned by the above installation. It should be something like:
+
+``` powershell
+$env:Path = "C:\Users\{username}\.local\bin;$env:Path"
+```
+
+Where you replace `{username}` with your username.
+
+You can test `uv` has been installed correctly by entering `uv` in Powershell. You should see the help menu. If this does not work, try logging off your VM and back on again.
+
+## Creating a Project
+
+As described in [project structure](../coding-standards/project-structure.qmd), you can create a new project using `uv init`:
+
+``` powershell
+uv init example-app
+```
+
+or if you are in the project directory already:
+
+``` powershell
+uv init
+```
+
+This creates the required configuration files, `pyproject.toml` and `uv.lock` as well as creating a virtual environment to install packages into.
+
+## Installing Packages
+
+Installing packages with `uv` is straight forward, by using `uv add` in Powershell:
+
+``` powershell
+uv add polars
+```
+
+This installs the package, and any dependencies, in parallel. In addition, it records the dependencies in a `pyproject.toml` file and compiles all installed packages in a `uv.lock` file. As long as you use this command every time you install a package, it will be tracked.
+
+If you wish to install a specific version of a package, or upgrade an existing one, you can specify the version in `uv add`. If you need a specific feature from a package that was added in a verson, it is recommended you use `>=` rather than `==` to give `uv` flexibility to resolve dependencies. For example, to use `brand.yml` in a Shiny application we need the `theme` extra and version `1.2` or greater:
+
+``` powershell
+uv add 'shiny[theme]>=1.2'
+```
+
+## Uninstalling Packages
+
+If you no longer need a package, it is recommended that you use `uv remove`:
+
+``` powershell
+uv remove polars
+```
+
+This will uninstall the package and remove it from the `pyproject.toml` and `uv.lock` configuration files.
+
+## Installing Packages for Development
+
+When you are developing projects you may need packages that are not required to run the project. For example, `pytest` and any plugins are useful to write and run tests, but are not needed if you just want to execute a process or application. Similarly, `mkdocs` and its plugins are only used to generate documentation.
+
+In this case we can install packages for development only by using the `--dev` flag:
+
+``` powershell
+uv add --dev pytest
+```
+
+This adds a new dependency group called "dev" to the `pyproject.toml`. These packages are installed when developing the project, but not when deploying it.
+
+## Synchronising Packages
+
+If you have clone a project someone else created, or to a new location, you can install all the required packages using:
+
+``` powershell
+uv sync
+```
+
+This creates a virtual environment, if one does not already exist, and installs all the packages in the `uv.lock` file. If necessary, you can also clear your environment and reinstall all packages using the `--reinstall` flag:
+
+``` powershell
+uv sync --reinstall
+```
+
+## Locking the Environment
+
+Locking the environment updates the `uv.lock` file to reflect your current environment. If you have used `uv add` for each package install, this should not be necessary, but sometimes the environment and lock file get out of sync. Locking the environment is straight forward:
+
+``` powershell
+uv lock
+```
+
+One useful feature of the `uv lock` command is to upgrade packages. Using the `--upgrade` flag allows `uv` to install the latest versions of all the package dependencies, that are compatible with each other.
+
+``` powershell
+uv lock --upgrade
+```
+
+You can also restrict the upgrade to a single package with `--upgrade-package`:
+
+``` powershell
+uv lock --upgrade-package shiny
+```
+
+## Further Reading
+
+This page only scratches the surface of what `uv` can do. For more information, the [`uv` documentation](https://docs.astral.sh/uv/) is very comprehensive.

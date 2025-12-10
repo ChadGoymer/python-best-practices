@@ -2,32 +2,32 @@
 title: "Recommended Software"
 ---
 
-
 ## Integrated Development Environment
 
-For Python development we recommend using
-[Visual Studio Code](https://code.visualstudio.com/docs). It has great support for
-[Python](https://code.visualstudio.com/docs/python) and a large number of
-extensions for improving common tasks.
+For Python development we recommend using [Visual Studio
+Code](https://code.visualstudio.com/docs). It has great support for
+[Python](https://code.visualstudio.com/docs/python) and a large number of extensions for
+improving common tasks.
 
 ### Recommended Extensions
 
-1. [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python):
-   Provides Python language support and debugging capabilities.
-1. [Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff):
-   Provides linting and code formatting for Python.
-1. [Pyright](https://marketplace.visualstudio.com/items?itemName=ms-pyright.pyright):
-   Provides static type checking for Python.
-1. [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens):
-   Provides user-friendly Git enhancements.
-1. [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot):
-   Provides AI-powered code suggestions.
-1. [Shiny](https://marketplace.visualstudio.com/items?itemName=Posit.shiny): Run and
-   develop Shiny apps in Python or R.
-1. [Quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto): Extension
-   for the Quarto scientific and technical publishing system.
-1. [Posit Publisher](https://marketplace.visualstudio.com/items?itemName=Posit.publisher):
-   Publish and share your Python and R content on Posit Connect.
+1.  [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python):
+    Provides Python language support and debugging capabilities.
+2.  [Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff):
+    Provides linting and code formatting for Python.
+3.  [Pyright](https://marketplace.visualstudio.com/items?itemName=ms-pyright.pyright):
+    Provides static type checking for Python.
+4.  [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens):
+    Provides user-friendly Git enhancements.
+5.  [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot):
+    Provides AI-powered code suggestions.
+6.  [Shiny](https://marketplace.visualstudio.com/items?itemName=Posit.shiny): Run and
+    develop Shiny apps in Python or R.
+7.  [Quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto): Extension
+    for the Quarto scientific and technical publishing system.
+8.  [Posit
+    Publisher](https://marketplace.visualstudio.com/items?itemName=Posit.publisher):
+    Publish and share your Python and R content on Posit Connect.
 
 ### Recommended Settings
 
@@ -35,7 +35,7 @@ To take the most advantage of the extensions, we recommend the following setting
 access these using CTRL + Shift + P and the type "settings", then select **Preferences:
 Open User Settings (JSON)**.
 
-```json
+``` json
 {
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff",

@@ -7,7 +7,7 @@ When the tests are run, each line executed is tracked and the coverage is the pe
 of lines executed, compared to the total number of lines of code. The coverage should be
 above 90%.
 
-::: {.callout-note}
+::: callout-note
 Test coverage is not perfect, just a useful metric. Just because your coverage is 100%, it
 does not mean every possible scenario is tested. For example, it may not capture edge
 cases, such as when values are missing or 0.
@@ -15,10 +15,10 @@ cases, such as when values are missing or 0.
 
 To calculate test coverage with `pytest`, install the
 [`pytest-cov`](https://pytest-cov.readthedocs.io/en/latest/) plugin using
-[uv](../reproducibility/project-management/uv.qmd). As with `pytest`, we use the "dev"
+[uv](../reproducibility/package-management.qmd). As with `pytest`, we use the "dev"
 group so it is not an explicit dependency of the project.
 
-```powershell
+``` powershell
 uv add --dev pytest-cov
 ```
 
@@ -27,7 +27,7 @@ uv add --dev pytest-cov
 Once installed, you can calculate test coverage by running `pytest` with the `--cov`
 argument set to the name of the code directory. For example:
 
-```powershell
+``` powershell
 pytest --cov=src --cov-report=term-missing
 ```
 
@@ -40,7 +40,7 @@ added to improve coverage.
 You can also configure Visual Studio Code to run tests and calculate coverage. This is
 done by adding configuration settings to the `.vscode/settings.json` file. For example:
 
-```json
+``` json
 {
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
@@ -67,7 +67,7 @@ In order to combine the test reports, we can update the summary in the test repo
 link to the coverage report. For example, to run both reports, update the vscode settings
 to output both reports to a `test_report` directory:
 
-```json
+``` json
 // /.vscode/settings.json
 {
     "python.testing.unittestEnabled": false,
@@ -85,7 +85,7 @@ to output both reports to a `test_report` directory:
 Then add a link to the coverage report, by adding a `pytest_html_results_summary` hook in
 the test configuration file:
 
-```python
+``` python
 # /tests/conftest.py
 from datetime import datetime
 

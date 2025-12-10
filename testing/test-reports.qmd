@@ -8,10 +8,10 @@ tested, how it was tested, and the results of the tests. Creating test reports w
 [`pytest-html`](https://pytest-html.readthedocs.io/en/latest/).
 
 [`pytest-html`](https://pytest-html.readthedocs.io/en/latest/) can be installed using
-[uv](../reproducibility/project-management/uv.qmd). As with `pytest`, we use the "dev"
+[uv](../reproducibility/package-management.qmd). As with `pytest`, we use the "dev"
 group so it is not an explicit dependency of the project.
 
-```powershell
+``` powershell
 uv add --dev pytest-html
 ```
 
@@ -20,19 +20,19 @@ uv add --dev pytest-html
 Once installed, you can generate a test report by running `pytest` with the `--html`
 argument, set to the name of the report file. For example:
 
-```powershell
+``` powershell
 pytest --html=report.html --self-contained-html
 ```
 
-Adding the `--self-contained-html` argument ensures that the report is created as a
-single file, making it easier to move and share.
+Adding the `--self-contained-html` argument ensures that the report is created as a single
+file, making it easier to move and share.
 
 ### Using Visual Studio Code
 
-You can also configure Visual Studio Code to run tests and generate reports. This is
-done by adding configuration settings to the `.vscode/settings.json` file. For example:
+You can also configure Visual Studio Code to run tests and generate reports. This is done
+by adding configuration settings to the `.vscode/settings.json` file. For example:
 
-```json
+``` json
 {
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
@@ -59,7 +59,7 @@ The report can be opened in your browser. The standard report looks like:
 By default the report title will be the filename of the report, you can edit it by using
 the `pytest_html_report_title` hook in the `conftest.py` file:
 
-```python
+``` python
 def pytest_html_report_title(report):
     report.title = "Testing Calculations"
 ```
@@ -71,7 +71,7 @@ The results table itself can also be modified. For details, please refer to the
 useful example below adds a 'Time' and 'Description' column to the table. The
 'Description' is pulled from the docstring of the test function.
 
-```python
+``` python
 from datetime import datetime
 
 import pytest

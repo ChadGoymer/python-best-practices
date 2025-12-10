@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "metadata": {
+    "appmode": "quarto-static",
+    "content_category": "site"
+  },
+  "quarto": {
+    "version": "1.8.25",
+    "engines": [
+      "markdown"
+    ]
+  },
+  "files": {
+    ".gitignore": {
+      "checksum": "2859e7b8ea40a32de6efaab3062a9d95"
+    },
+    ".python-version": {
+      "checksum": "c3052f53ccf07991da5591cab5ee1274"
+    },
+    "README.md": {
+      "checksum": "5426f178c80295d304585efc77c7c926"
+    },
+    "_brand.yml": {
+      "checksum": "4164f68c13f459f08a8ae56752b05683"
+    },
+    "_quarto.yml": {
+      "checksum": "41368e5ebcd99c9a42b81885115f8c73"
+    },
+    "coding-standards/coding-style.qmd": {
+      "checksum": "21f8ede81f126ce7f454252113cdc3fd"
+    },
+    "coding-standards/design-patterns.qmd": {
+      "checksum": "5229caddf7cb6457f7f75e61e4e8a0d7"
+    },
+    "coding-standards/factoring.qmd": {
+      "checksum": "8e8cebc145bce4b94362a788a8986d89"
+    },
+    "coding-standards/index.qmd": {
+      "checksum": "3dd7b7f02529462f5397c0f137ce1c85"
+    },
+    "coding-standards/project-structure.qmd": {
+      "checksum": "b0d6f04ce0d7f3195d15d66158bc6bca"
+    },
+    "coding-standards/recommended-packages.qmd": {
+      "checksum": "dc0ea92ed33cd2ec1a48ba7bf35ea790"
+    },
+    "coding-standards/recommended-software.qmd": {
+      "checksum": "8a85781781329e9ebbc652016195b31b"
+    },
+    "documentation/changelog.qmd": {
+      "checksum": "a22a7814277db3acc184844e6ead9929"
+    },
+    "documentation/docstrings.qmd": {
+      "checksum": "10bcb9749e4f501271161f23e3296d4d"
+    },
+    "documentation/index.qmd": {
+      "checksum": "cf5ea67c721af7eb8df17edf9e9f09c0"
+    },
+    "documentation/markdown.qmd": {
+      "checksum": "21c5c9e6d3b65926a35947151ac5b14d"
+    },
+    "documentation/process-scripts.qmd": {
+      "checksum": "c510c6f762aac12f08742e10395ae629"
+    },
+    "documentation/projects.qmd": {
+      "checksum": "f4c0645185a01d015d510d087e4aa1ad"
+    },
+    "documentation/readme.qmd": {
+      "checksum": "43243806b5abe16df895ed97271caaeb"
+    },
+    "images/plotly_example.png": {
+      "checksum": "e26e2fb2380196c5f59de1d0b1b43fb2"
+    },
+    "images/pytest_coverage_details.png": {
+      "checksum": "2e7a1641ff6def46bf238690d2c908a3"
+    },
+    "images/pytest_coverage_example.png": {
+      "checksum": "fd7293c3e5349c29e91aaa7a3544a37c"
+    },
+    "images/pytest_coverage_index.png": {
+      "checksum": "155f0053db820349d05c690c66a29cce"
+    },
+    "images/pytest_report_coverage_link.png": {
+      "checksum": "8a6fa3a6ff9e07738c14322c2db4f9b3"
+    },
+    "images/pytest_report_enhanced.png": {
+      "checksum": "06c4a14a7f537b8827215cae295d53e1"
+    },
+    "images/pytest_report_example.png": {
+      "checksum": "8f8e370f56ea9526470c1d95bcd13763"
+    },
+    "images/vscode_testing_configure.png": {
+      "checksum": "f1c6eb350485bce9ed8a53fd0f067cf7"
+    },
+    "images/vscode_testing_failure.png": {
+      "checksum": "9cc5be2186f9cb0fc3ee9daa335c079e"
+    },
+    "images/vscode_testing_run.png": {
+      "checksum": "4e5f11959574cc4527502d51e0e7a3d1"
+    },
+    "index.qmd": {
+      "checksum": "76c53fc89e6da7a32b1389d5c95f0097"
+    },
+    "pyproject.toml": {
+      "checksum": "aa68779298805ad82b0a97cf50e27940"
+    },
+    "reproducibility/audit-trail.qmd": {
+      "checksum": "cdd6b21371f5395916347e08c55c78f6"
+    },
+    "reproducibility/index.qmd": {
+      "checksum": "8ea6091eaf2a31c3c4c9a027a7ceab03"
+    },
+    "reproducibility/input-data.qmd": {
+      "checksum": "75db9d953411e70f681d633f038f686d"
+    },
+    "reproducibility/package-management.qmd": {
+      "checksum": "06f63fc37eac27db61e5643a9c21dbc6"
+    },
+    "reproducibility/software.qmd": {
+      "checksum": "e851f00a24b934d02942baa6bd946f49"
+    },
+    "reproducibility/version-control.qmd": {
+      "checksum": "8548645d067f7228549fecbce3830865"
+    },
+    "requirements.txt": {
+      "checksum": "97c0316d3440bde47afea27c42fcfc84"
+    },
+    "testing/coded-tests.qmd": {
+      "checksum": "db46afa3ab7a2cb8cdd110e89ee2f173"
+    },
+    "testing/document-test-process.qmd": {
+      "checksum": "9cad95be21b63d81796bce2c5680c975"
+    },
+    "testing/index.qmd": {
+      "checksum": "751c6944690b28d4791b3af1edab1514"
+    },
+    "testing/manual-tests.qmd": {
+      "checksum": "3bb02c324d19963f4423fcb5e65c0807"
+    },
+    "testing/test-coverage.qmd": {
+      "checksum": "9829ae9d2c1e39bd2b511a23c3efd7d6"
+    },
+    "testing/test-reports.qmd": {
+      "checksum": "7f76f3bf8922ef638a03df441c3130cb"
+    },
+    "testing/validate-inputs.qmd": {
+      "checksum": "fb1c7fa9f95a0af5fb950f374243a543"
+    },
+    "uv.lock": {
+      "checksum": "4805162619dff0d4c54386b4fe6f17e4"
+    }
+  }
+}

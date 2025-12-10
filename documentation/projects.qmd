@@ -12,37 +12,42 @@ project.
 ### 1. Installation
 
 It is recommended you install mkdocs with
-[uv](../reproducibility/project-management/uv.qmd) into the dev group. You can do this in
+[uv](../reproducibility/package-management.qmd) into the dev group. You can do this in
 Powershell using:
 
-```Powershell
+``` powershell
 uv add --dev mkdocs "mkdocstrings[python]" mkdocs-material
 ```
 
-- `mkdocstrings[python]` is a plugin that automatically generates API documentation from
-  your Python code's docstrings.
-- `mkdocs-material` is a highly recommended theme that provides a modern and responsive
+-   `mkdocstrings[python]` is a plugin that automatically generates API documentation from
+    your Python code's docstrings.
+-   `mkdocs-material` is a highly recommended theme that provides a modern and responsive
     look.
 
 ### 2. Project Setup
 
 Navigate to your project's root directory in the terminal and initialize MkDocs:
 
-```Powershell
+``` powershell
 mkdocs new . # The '.' creates the config files in the current directory
 ```
 
 This creates two important files:
 
-*   `mkdocs.yml`: The main configuration file for MkDocs.
-*   `docs/index.md`: The main page of your documentation.
+-   `mkdocs.yml`: The main configuration file for MkDocs.
+-   `docs/index.md`: The main page of your documentation.
+
+::: callout-note
+Rename the `docs` directory to `mkdocs` so we can generate the documentation website in
+the `docs` directory. This allows us to host the documentation on GitHub Pages.
+:::
 
 ## 3. Configuring `mkdocs.yml`
 
 Open `mkdocs.yml` and configure it according to your project's needs. Here's a basic
 configuration:
 
-```yaml
+``` yaml
 site_name: Python Project
 site_url: "https://pages/github/mrc/python-project/"
 repo_url: "https://github/mrc/python-project/"
@@ -69,22 +74,24 @@ plugins:
 
 Key configuration options:
 
-*   `site_name`: The name of your project.
-*   `site_url`: The URL where your documentation will be hosted.
-*   `repo_url`: The URL of your project's repository.
-*   `theme`: Specifies the theme to use (`material` is highly recommended).
-*   `nav`: Defines the navigation menu of your documentation.
-*   `plugins`: Enables plugins like the search plugin. `mkdocstrings` is required to
+-   `site_name`: The name of your project.
+-   `site_url`: The URL where your documentation will be hosted.
+-   `repo_url`: The URL of your project's repository.
+-   `docs_dir`: The directory where your documentation files are stored.
+-   `site_dir`: The directory where the generated site will be stored.
+-   `theme`: Specifies the theme to use (`material` is highly recommended).
+-   `nav`: Defines the navigation menu of your documentation.
+-   `plugins`: Enables plugins like the search plugin. `mkdocstrings` is required to
     extract function and class documentation from docstrings.
 
 ### 4. Writing Documentation in Markdown
 
-Edit the `docs/index.md` file to write the main content of your documentation. You can use
-standard [Markdown](markdown.qmd) syntax. The index page should provide an overview of
+Edit the `mkdocs/index.md` file to write the main content of your documentation. You can
+use standard [Markdown](markdown.qmd) syntax. The index page should provide an overview of
 your project, very similar (or identical) to the [README](readme.qmd).
 
 If the README is getting large, it is a good idea to split it up into smaller articles.
-Each one can be saved as a separate markdown file in the `docs` folder. Make sure you
+Each one can be saved as a separate markdown file in the `mkdocs` folder. Make sure you
 remember to add it to the `nav` in the configuration file, so a user can navigate to it.
 
 ### 5. Rendering Docstrings
@@ -94,7 +101,7 @@ example, if you have implemented a function called `add()` with a docstring in
 `/calculator/calculations.py`, you can render the documentation in a markdown document
 using:
 
-```markdown
+``` markdown
 ## `add()`
 ::: calculator.calculations.add
 ```
@@ -103,7 +110,7 @@ In addition to functions, classes and methods, docstrings can be used to documen
 and packages. Module documenation should be added to the top of the file and describe the
 functions and classes in that script. For example:
 
-```markdown
+``` markdown
 # calculator/calculations.py
 
 """
@@ -134,14 +141,14 @@ The module contains the following functions:
 The above docstring, and all the function/class docstrings can then be reference in a
 markdown document using:
 
-```markdown
+``` markdown
 ::: calculator.calculations
 ```
 
-Finally, package documentation should be written in the top-level __init__.py file. This
+Finally, package documentation should be written in the top-level **init**.py file. This
 should summarise the entire package. For example:
 
-```markdown
+``` markdown
 # calculator/__init__.py
 
 """
@@ -155,7 +162,7 @@ Modules exported by this package:
 
 The above docstring can be rendered into a markdown document using:
 
-```markdown
+``` markdown
 ::: calculator
 ```
 
@@ -163,14 +170,14 @@ The above docstring can be rendered into a markdown document using:
 
 To build the documentation, run:
 
-```Powershell
+``` powershell
 mkdocs build
 ```
 
 This will generate the static site in the `site` directory. To serve the documentation
 locally for development, run:
 
-```Powershell
+``` powershell
 mkdocs serve
 ```
 
@@ -181,11 +188,11 @@ you make changes.
 
 There are several ways to deploy your MkDocs documentation:
 
-*   **GitHub Pages:** A simple option for hosting static websites directly from your
+-   **GitHub Pages:** A simple option for hosting static websites directly from your
     GitHub repository. Just set the pages options in GitHub to the 'site' folder. This is
     useful for bleeding edge development documentation.
 
-*   **Posit Connect:** Posit Connect can host static websites. The can be deployed from
+-   **Posit Connect:** Posit Connect can host static websites. The can be deployed from
     the UI. This is better for released documentation.
 
 ## Example Project Structure
@@ -197,7 +204,7 @@ my-project/
 │   ├── __init__.py
 │   └── my_module.py
 ├── mkdocs.yml
-├── docs/
+├── mkdocs/
 │   ├── index.md
 |   ├── setup-guide.md
 |   └── how-to-use.md

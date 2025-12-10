@@ -21,11 +21,11 @@ Writing tests in code takes time, but it has several advantages:
 
 [`pytest`](https://docs.pytest.org/) offers several advantages over `unittest` that ships
 with Python, such as less boilerplate code, more readable output, and a rich plugin
-ecosystem. Use [uv](../reproducibility/project-management/uv.qmd) to install pytest into
+ecosystem. Use [uv](../reproducibility/package-management.qmd) to install pytest into
 the "dev" group (this adds it as a development dependency rather than a package
 dependency):
 
-```powershell
+``` powershell
 uv add --dev pytest
 ```
 
@@ -40,6 +40,12 @@ As an example, suppose we have defined an `add()` function in the module
 `\src\calculator\calculations.py`, then we would create a corresponding test script
 `\tests\test_calculations.py` to test this function. In it we create our first simple
 test:
+
+``` python
+# \src\calculator\calculations.py
+def add(a: float | int, b: float | int) -> float | int:
+    return a + b
+```
 
 ``` python
 # \tests\test_calculations.py
@@ -98,6 +104,7 @@ If your function raises an error under certain conditions, you can test for this
 `TypeError` if the inputs are not numbers. This can be tested as follows:
 
 ``` python
+# \tests\test_calculations.py
 import pytest
 from calculator.calculations import add
 
@@ -150,6 +157,15 @@ extended the add function to now add a value to a column in a dataframe, using a
 allows you to specify the test dataframe once and use it many times:
 
 ``` python
+# calculator/df_calculations.py
+import polars as pl
+
+def add_df(a: pl.DataFrame, b: int | float):
+    return a.with_columns(pl.col("Y") + pl.lit(b))
+```
+
+``` python
+# \tests\test_df_calculations.py
 import polars as pl
 import pytest
 from polars.testing import assert_frame_equal
@@ -187,10 +203,24 @@ statement. `yield` is used to return the required object for the test, then subs
 code is ran after the test has completed, so can be used to clean up.
 
 For example, if we extend the `add_df()` function to read the DataFrame from a CSV, then
-we need to create the CSV first, then delete it afterwards. This can be achieved as
+we need to create the CSV first, then delete it afterwords. This can be achieved as
 follows:
 
 ``` python
+# calculator/df_calculations.py
+import polars as pl
+from pydantic import FilePath
+
+def add_df(a: pl.DataFrame, b: int | float):
+    return a.with_columns(pl.col("Y") + pl.lit(b))
+
+def add_csv(f: FilePath, b: int | float):
+    df = pl.read_csv(f)
+    return add_df(df, b)
+```
+
+``` python
+# \tests\test_df_calculations.py
 from pathlib import Path
 
 import polars as pl
@@ -198,7 +228,6 @@ import pytest
 from polars.testing import assert_frame_equal
 
 from calculator.df_calculations import add_df
-
 
 @pytest.fixture
 def test_csv():
@@ -231,15 +260,15 @@ By default, fixtures are run seperately for each test function that calls them. 
 if a fixture takes a while to run and is used in multiple tests, you can modify the scope
 to save time. The `@pytest.fixture` decorator has a `scope` argument with possible values:
 
-* `"function"`: Fixture is run once for each test function that calls it (default).
-* `"class"`: Fixture is run once for each test class and used within any function that
-  calls it.
-* `"module"`: Fixture is run once for each module and used within any function that calls
-  it.
-* `"package"`: Fixture is run once for the entire package and used within any function
-  that calls it.
-* `"session"`: Fixture is run once for each session and used within any function that
-  calls it.
+-   `"function"`: Fixture is run once for each test function that calls it (default).
+-   `"class"`: Fixture is run once for each test class and used within any function that
+    calls it.
+-   `"module"`: Fixture is run once for each module and used within any function that
+    calls it.
+-   `"package"`: Fixture is run once for the entire package and used within any function
+    that calls it.
+-   `"session"`: Fixture is run once for each session and used within any function that
+    calls it.
 
 If a fixture is used across multiple modules, it should be defined in a separate
 `conftest.py` file, which is executed before any tests are run.
@@ -264,7 +293,7 @@ def test_create_file(tmp_path):
     assert p.read_text(encoding="utf-8") == CONTENT
 ```
 
-## Mocking
+## Mocking (Monkeypatching)
 
 When testing code that interacts with external services, such as databases or APIs, it can
 be difficult to test as the data, and therefore the expected result, may change. In these
@@ -289,6 +318,19 @@ function, with `mock_read_database()`, which returns a defined DataFrame. Then w
 execute `add_db()`, it will use the mock DataFrame, rather than reading from the database.
 
 ``` python
+# calculator/df_calculations.py
+import polars as pl
+
+def add_df(a: pl.DataFrame, b: int | float):
+    return a.with_columns(pl.col("Y") + pl.lit(b))
+
+def add_db(b: int | float, con=None):
+    df = pl.read_database("SELECT * FROM table", connection=con)
+    return add_df(df, b)
+```
+
+``` python
+# \tests\test_df_calculations.py
 import polars as pl
 import pytest
 from polars.testing import assert_frame_equal
@@ -307,7 +349,6 @@ def mock_polars_read_database(monkeypatch):
 
     monkeypatch.setattr(pl, "read_database", mock_read_database)
 
-
 class TestAddDB:
     def test_add_integer(self, mock_polars_read_database):
         expected_data = pl.DataFrame(
@@ -317,8 +358,5 @@ class TestAddDB:
             }
         )
 
-        assert_frame_equal(add_db(test_csv, 1), expected_data)
+        assert_frame_equal(add_db(1), expected_data)
 ```
-
-For more mocking options, see the [`pytest-mock`](https://pytest-mock.readthedocs.io)
-plugin.

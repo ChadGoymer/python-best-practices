@@ -29,14 +29,14 @@ Ideally, this should be defined in a number of quantitive ways. Such as:
     example, net claims is less than or equal to gross claims.
 3.  **Trend Checks:** Check that an output is consistent with the trend of other outputs.
     For example, the total claims for a year of account is increasing over time.
-4.  **Benchmark Checks:** Check that an output is consistent with a benchmark. For example,
-    the total claims for one year of account is within a specified factor of the previous
-    year of account.
+4.  **Benchmark Checks:** Check that an output is consistent with a benchmark. For
+    example, the total claims for one year of account is within a specified factor of the
+    previous year of account.
 
 The Subject Matter Expert (SME) for the project should be able to define such sense
 checks.
 
-::: {.callout-note}
+::: callout-note
 If a sense check is quantifiable, it is better to code it as a test.
 :::
 
@@ -47,7 +47,7 @@ a simple implementation that is easy to understand and run. For example, the cal
 could be implemented in Excel for a small subset of the input data. The same input data
 can then be supplied to the Python code and outputs can then be compared.
 
-::: {.callout-note}
+::: callout-note
 If a parallel implementation is created, the Python execution and output comparison can be
 coded as a test.
 :::
@@ -73,18 +73,17 @@ Some aspects to consider when testing usability are:
 2.  **Intuitiveness:** Can the user navigate the application without needing to read
     instructions? For example, the application should have a clear structure, with
     navigation buttons in the same place on each page.
-3.  **Consistency:** Does the application behave in the same way on each page? For example,
-    if a button is used to download data on one page, it should be used to download data
-    on all pages.
+3.  **Consistency:** Does the application behave in the same way on each page? For
+    example, if a button is used to download data on one page, it should be used to
+    download data on all pages.
 4.  **Error Handling:** Does the application handle errors gracefully? For example, is the
     user prevented from entering invalid inputs, or given a clear error message.
 
-::: {.callout-note}
+::: callout-note
 Some usability tests can be coded. For example, with Shiny applications,
 [playwright](https://shiny.posit.co/py/docs/end-to-end-testing.html) can be used to code
 user interactions.
 :::
-
 
 ### Performance Testing
 
@@ -95,14 +94,14 @@ performance testing include:
 
 1.  **Basic Performance:** How long does the application take to start up? How long does
     it take to load a page, or refresh outputs when inputs are changed?
-1.  **Load Testing:** How does the application perform when the expected number of users
+2.  **Load Testing:** How does the application perform when the expected number of users
     are using it at the same time? For example, does the application slow down when
     multiple users are using it?
-2.  **Stress Testing:** How does the application perform when it is pushed to its limits?
+3.  **Stress Testing:** How does the application perform when it is pushed to its limits?
     For example, does the application crash when peak number of users are using it at the
     same time?
 
-::: {.callout-note}
+::: callout-note
 Key performance tests can be coded, so changes that impact performance are identified
 early on.
 :::
@@ -113,10 +112,9 @@ Regression testing checks that recent code changes have not introduced new bugs 
 affected existing functionality. It may be comprised of any of the above tests, but the
 point is to re-test everything, even if you would not expect a change to affect it.
 
-::: {.callout-note}
+::: callout-note
 Regression tests can be coded, so unexpected changes can be identified early on.
 :::
-
 
 ## User Acceptance Testing
 
@@ -125,17 +123,20 @@ intended. Generally, this takes the form of manual testing including any or all 
 above.
 
 ### Purpose
-*   Confirm that the software meets the business's requirements
-*   Ensure the software is ready for deployment
-*   Identify and fix issues before the software is released
+
+-   Confirm that the software meets the business's requirements
+-   Ensure the software is ready for deployment
+-   Identify and fix issues before the software is released
 
 ### How it's done
-*   Business users test the software in real-world scenarios
-*   Developers receive feedback from the users to resolve issues
-*   The software is released once it meets the requirements
+
+-   Business users test the software in real-world scenarios
+-   Developers receive feedback from the users to resolve issues
+-   The software is released once it meets the requirements
 
 ### Benefits
-*   Improves the quality of the software
-*   Enhances user satisfaction
-*   Prevents issues from being seen in live applications
-*   Ensures the software is accessible and usable by its intended audience
+
+-   Improves the quality of the software
+-   Enhances user satisfaction
+-   Prevents issues from being seen in live applications
+-   Ensures the software is accessible and usable by its intended audience

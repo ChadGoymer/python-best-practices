@@ -15,20 +15,20 @@ problem or piece of code into smaller, more manageable parts. This involves iden
 common patterns, extracting reusable components, and creating modular structures. In
 Python, this can be achieved through:
 
-* **Functions:** Encapsulating specific tasks into functions promotes code reuse and
-  improves readability.
-* **Classes:** Object-oriented programming allows grouping related data and functions into
-  classes, creating well-defined entities.
-* **Modules and Packages:** Arranging code into modules and packages enables better code
-  organization and namespace management.
+-   **Functions:** Encapsulating specific tasks into functions promotes code reuse and
+    improves readability.
+-   **Classes:** Object-oriented programming allows grouping related data and functions
+    into classes, creating well-defined entities.
+-   **Modules and Packages:** Arranging code into modules and packages enables better code
+    organization and namespace management.
 
 By factoring code effectively, developers can:
 
-* **Reduce Complexity:** Smaller, focused components are easier to understand and
-  maintain.
-* **Increase Reusability:** Factored code can be reused across different parts of the
-  project or even in other projects.
-* **Improve Testability:** Smaller units of code are easier to test in isolation.
+-   **Reduce Complexity:** Smaller, focused components are easier to understand and
+    maintain.
+-   **Increase Reusability:** Factored code can be reused across different parts of the
+    project or even in other projects.
+-   **Improve Testability:** Smaller units of code are easier to test in isolation.
 
 ## Refactoring: Improving Existing Code
 
@@ -37,23 +37,24 @@ code without changing its external behavior. It's about cleaning up the code, ma
 more readable, efficient, and maintainable. Common refactoring techniques in Python
 include:
 
-* **Renaming variables and functions:** Choosing descriptive names enhances code clarity.
-* **Simplifying complex expressions:** Breaking down complex logic into smaller, more
-  understandable steps.
-* **Removing duplicate code:** Identifying and extracting common code blocks into reusable
-  functions or classes.
-* **Improving code structure:** Reorganizing code to improve its flow and readability.
+-   **Renaming variables and functions:** Choosing descriptive names enhances code
+    clarity.
+-   **Simplifying complex expressions:** Breaking down complex logic into smaller, more
+    understandable steps.
+-   **Removing duplicate code:** Identifying and extracting common code blocks into
+    reusable functions or classes.
+-   **Improving code structure:** Reorganizing code to improve its flow and readability.
 
 The benefits of refactoring are numerous:
 
-* **Enhanced Readability:** Clean, well-structured code is easier to understand and
-  maintain.
-* **Reduced Technical Debt:** Addressing code issues early on prevents them from
-  accumulating and causing problems later.
-* **Improved Performance:** Refactoring can sometimes lead to performance improvements by
-  optimizing algorithms or data structures.
-* **Easier Collaboration:** Well-structured code facilitates collaboration among
-  developers.
+-   **Enhanced Readability:** Clean, well-structured code is easier to understand and
+    maintain.
+-   **Reduced Technical Debt:** Addressing code issues early on prevents them from
+    accumulating and causing problems later.
+-   **Improved Performance:** Refactoring can sometimes lead to performance improvements
+    by optimizing algorithms or data structures.
+-   **Easier Collaboration:** Well-structured code facilitates collaboration among
+    developers.
 
 ## Factoring and Refactoring in Practice
 
@@ -61,12 +62,12 @@ Both factoring and refactoring are essential practices for writing maintainable 
 scalable Python code. They should be integrated into the development process from the
 beginning, rather than being treated as afterthoughts.
 
-* **Plan for Factoring:** When starting a new project or feature, consider how to break
-  down the problem into smaller, manageable parts.
-* **Refactor Regularly:** Don't wait for code to become a mess before refactoring.
-  Regularly review and improve your code to keep it clean and maintainable.
-* **Use Tools:** Several tools can assist with refactoring in Python, such as Ruff in
-  Visual Studio Code.
+-   **Plan for Factoring:** When starting a new project or feature, consider how to break
+    down the problem into smaller, manageable parts.
+-   **Refactor Regularly:** Don't wait for code to become a mess before refactoring.
+    Regularly review and improve your code to keep it clean and maintainable.
+-   **Use Tools:** Several tools can assist with refactoring in Python, such as Ruff in
+    Visual Studio Code.
 
 When deciding how to divide up code a useful rule-of-thumb is to describe what the code is
 doing as bullet points. Each bullet point could then be a function or method. If a

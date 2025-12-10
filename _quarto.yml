@@ -10,6 +10,7 @@ website:
       - coding-standards/index.qmd
       - documentation/index.qmd
       - testing/index.qmd
+      - reproducibility/index.qmd
   sidebar:
     contents:
       - text: "Python Best Practices"
