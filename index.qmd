@@ -95,7 +95,7 @@ Results should be reproducible by others, and your future self. This means keepi
 
 :::: g-col-4
 ::: callout-tip
-## Change Control
+## [Change Control](change-control/index.qmd)
 
 Changes to code are inevitable and should be managed. Changes must be understood by all parties, agreed, reviewed and approved. It should also be possible to easily revert changes.
 :::

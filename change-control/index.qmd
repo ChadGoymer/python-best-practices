@@ -1,0 +1,77 @@
+---
+title: "Change Control"
+---
+
+Changes to code is inevitable. New functionality needs to be added, or changes to existing functionality, and sometimes bugs are found and need fixing. It is important to track such changes, so that each individual update is understood, agreed, reviewed and approved. In addition, it should be possible to revert the changes if an issue is found.
+
+In addition, it is important to apply changes in a separate environment first so they can be tested and reviewed without altering the code in Production. Only after approval from an appropriate person should the code be deployed to Production. Each section details the minimum standards, based on the criticality of the project. The standards are cumulative, so medium criticality must meet both medium and low standards.
+
+## Low Criticality
+
+::::::: grid
+:::: g-col-6
+::: callout-note
+### [Code Versioning](https://lloydsoflondon.sharepoint.com/sites/r-usersgroup/SitePages/Version-Control-Part-1.aspx)
+
+All code should be stored in version control. Changes should be tracked by committing them into a Git repository. Code should be saved into GitHub regularly, so it is available to all team members.
+:::
+::::
+
+:::: g-col-6
+::: callout-note
+### User Acceptance Testing
+
+If you are developing a process or application for another team, it is essential they test it to ensure it does what they need, in a way that is appropriate. This process is referred to as user acceptance testing (UAT).
+
+Once the end users are happy with the results, they should give a formal Approval for audit purposes.
+:::
+::::
+:::::::
+
+## Medium Criticality
+
+::::::: grid
+:::: g-col-6
+::: callout-warning
+### [Branching](https://lloydsoflondon.sharepoint.com/sites/r-usersgroup/SitePages/Version-Control-Part-2.aspx)
+
+Changes should not be made on the main branch directly. Instead, changes should be implemented on another branch. Only after they are reviewed by another person and approved are they merged into the main branch.
+
+This process also allows multiple people to work on separate changes in the same repo without interfering with each other's work.
+:::
+::::
+
+:::: g-col-6
+::: callout-warning
+### Environments
+
+An environment is a copy of the process or application, and possibly the systems involved. Multiple environments allow us to isolate changes in progress from the process or application that is currently in use.
+
+Changes are generally made and tested first within a Development environment. This may just be your VM, or a whole dedicated environment. Then the changes are deployed to a Testing environment for UAT. Finally, once the changes are approved by the users they can be deployed into Production.
+:::
+::::
+:::::::
+
+# High Criticality
+
+::::::: grid
+:::: g-col-6
+::: callout-important
+### [Task management](https://lloydsoflondon.sharepoint.com/sites/r-usersgroup/SitePages/Version-Control-Part-3.aspx)
+
+Task management is about recording changes and bugs for future development. For a new project, defining the tasks up front focuses development. It also helps planning as it is easier to estimate small, well-defined tasks than a vague large project.
+
+Tasks can be agreed with the owner of the project, so everyone has a clear understanding of what is to be delivered. The tasks can then be assigned to individuals to implement, and the progress tracked. This is helpful to ensure a project stays on schedule.
+
+GitHub and Azure DevOps allow you to specify tasks. These tasks can then be linked to branches for the development and pull requests for the review. This gives a full audit trail of what was specified, what was implemented and who reviewed it.
+:::
+::::
+
+:::: g-col-6
+::: callout-important
+### Automated Deployment
+
+Automated deployment is the process of deploying code to different environments using scripts or applications. This ensures that the deployment process is consistent and repeatable. It also reduces the risk of human error. Posit Package Manager and Posit Connect can be configured to pull packages and applications respectively from GitHub automatically when changes are made on specified branches.
+:::
+::::
+:::::::
