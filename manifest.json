@@ -12,7 +12,7 @@
   },
   "files": {
     ".gitignore": {
-      "checksum": "2859e7b8ea40a32de6efaab3062a9d95"
+      "checksum": "3a9704feb3d577ac7b966687917095b0"
     },
     ".python-version": {
       "checksum": "c3052f53ccf07991da5591cab5ee1274"
@@ -24,7 +24,7 @@
       "checksum": "4164f68c13f459f08a8ae56752b05683"
     },
     "_quarto.yml": {
-      "checksum": "41368e5ebcd99c9a42b81885115f8c73"
+      "checksum": "21738d6321dd3e3b55eb961420503710"
     },
     "access-control/index.qmd": {
       "checksum": "b386356336025c7f0b6d5f3f30b58306"
@@ -105,7 +105,7 @@
       "checksum": "4e5f11959574cc4527502d51e0e7a3d1"
     },
     "index.qmd": {
-      "checksum": "9dd29be898c6f01909b3462f6a234933"
+      "checksum": "2ebadc8fb58ff97988d19400d39b162a"
     },
     "pyproject.toml": {
       "checksum": "98e43d587e2cc387d80ca183076dae72"
