@@ -26,7 +26,7 @@ website:
         - coding-standards/coding-style.qmd
         - coding-standards/recommended-packages.qmd
         - coding-standards/factoring.qmd
-        - coding-standards/recommended-packages.qmd
+        - coding-standards/recommended-software.qmd
         - coding-standards/design-patterns.qmd
         - coding-standards/project-structure.qmd
     - title: "Documentation"
